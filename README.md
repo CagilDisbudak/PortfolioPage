@@ -1,6 +1,14 @@
-# Personal Portfolio
+# Personal Portfolio — Çağıl Dişbudak
 
 A one-page portfolio built with React + Vite + TypeScript + TailwindCSS + Framer Motion.
+
+## Identity & Links
+
+- Name: Çağıl Dişbudak
+- Role: Software Engineer (Backend-focused; Python/Django, Java/Spring, Docker/K8s)
+- GitHub: https://github.com/CagilDisbudak
+- LinkedIn: https://www.linkedin.com/in/cagildisbudak/
+- Email: cdisbudak24@gmail.com
 
 ## Commands
 
@@ -19,3 +27,9 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+## References Used
+
+- Infinite menu (idea/reference): https://reactbits.dev/components/infinite-menu
+- Glass surface (idea/reference): https://reactbits.dev/components/glass-surface
+- Logo loop (idea/reference): https://reactbits.dev/animations/logo-loop

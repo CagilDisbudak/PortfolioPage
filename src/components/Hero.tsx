@@ -1,14 +1,16 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import { revealParent, revealChild, spring } from '../lib/motion';
+import TechStrip from './TechStrip';
 
 export default function Hero() {
   return (
-    <section className="relative pt-28 md:pt-36 pb-20 md:pb-28" aria-label="Hero">
-      {/* Background blobs */}
+      <section className="relative pt-28 md:pt-36 pb-20 md:pb-28" aria-label="Hero">
+        {/* Background blobs with smooth bottom gradient to transition */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-24 -left-16 w-72 h-72 rounded-full bg-cyan-500/10 blur-3xl animate-blob" />
-        <div className="absolute -bottom-24 -right-16 w-96 h-96 rounded-full bg-teal-500/10 blur-3xl animate-blob" style={{ animationDelay: '2s' }} />
+          <div className="absolute -top-24 -left-16 w-72 h-72 rounded-full bg-cyan-500/10 blur-[80px] animate-blob" />
+          <div className="absolute -bottom-24 -right-16 w-96 h-96 rounded-full bg-teal-500/10 blur-[90px] animate-blob" style={{ animationDelay: '2s' }} />
+          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent via-[rgba(11,11,13,0.6)] to-[rgba(11,11,13,1)]" />
       </div>
 
       <motion.div
@@ -24,6 +26,9 @@ export default function Hero() {
         </motion.h1>
         <motion.p variants={revealChild} className="mt-3 text-xl md:text-2xl text-white/80">Software Engineer — Backend-focused</motion.p>
         <motion.p variants={revealChild} className="mt-2 text-white/60">Python/Django, Java/Spring, Docker/K8s</motion.p>
+        <div className="flex justify-center">
+          <TechStrip />
+        </div>
 
         <motion.div variants={revealChild} className="mt-8 flex gap-4">
           <a href="#contact" className="glass px-5 py-3 text-sm font-medium hover:shadow-glow transition-shadow">

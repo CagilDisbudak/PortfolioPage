@@ -59,3 +59,144 @@ body::before {
   filter: url('/filters.svg#goo');
 }
 
+/* Flat tech strip with logos */
+.tech-strip-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(18px);
+  filter: url('/filters.svg#goo');
+  mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+}
+.tech-strip-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  white-space: nowrap;
+  animation: tickerLeft 26s linear infinite;
+  will-change: transform;
+}
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.7rem;
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 9999px;
+}
+.tech-chip svg { display: block; }
+.tech-strip-container:hover .tech-strip-track { animation-play-state: paused; }
+
+@keyframes tickerLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) { .tech-strip-track { animation: none; } }
+
+/* Logo loop (circular orbit) inspired by reactbits logo-loop */
+.logo-loop {
+  width: 360px;
+  height: 360px;
+  position: relative;
+}
+.logo-loop-ring {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient( circle at 50% 50%, rgba(255,255,255,0.04), transparent 60% );
+}
+.logo-loop-ring::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, rgba(34,211,238,0.14), rgba(20,184,166,0.12), rgba(255,255,255,0.04), rgba(34,211,238,0.14));
+  filter: blur(14px);
+  opacity: 0.6;
+}
+.logo-chip {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: rotate(calc(var(--i) * 45deg)) translate(150px) rotate(calc(var(--i) * -45deg));
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 9999px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset;
+}
+.logo-loop-ring { animation: orbit 28s linear infinite; will-change: transform; }
+.logo-chip { transition: transform 200ms ease, background-color 200ms ease; }
+.logo-chip:hover { background: rgba(255,255,255,0.1); transform: rotate(calc(var(--i) * 45deg)) translate(150px) rotate(calc(var(--i) * -45deg)) scale(1.05); }
+
+@keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+@media (max-width: 480px) {
+  .logo-loop { width: 280px; height: 280px; }
+  .logo-chip { transform: rotate(calc(var(--i) * 45deg)) translate(115px) rotate(calc(var(--i) * -45deg)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-loop-ring { animation: none; }
+}
+
+/* Improved infinite marquee styles with edge fade and hover pause */
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+  gap: 0.25rem;
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  padding: 0.5rem 0;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(18px);
+  border-radius: 1rem;
+  filter: url('/filters.svg#goo');
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 0.75rem;
+  will-change: transform;
+}
+
+.marquee-pill {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 9999px;
+}
+
+@keyframes tickerLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes tickerRight {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.marquee-left { animation: tickerLeft 26s linear infinite; }
+.marquee-right { animation: tickerRight 28s linear infinite; }
+
+.marquee-container:hover .marquee-left,
+.marquee-container:hover .marquee-right { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-left, .marquee-right { animation: none; }
+}
+
