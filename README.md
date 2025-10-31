@@ -1,4 +1,4 @@
-# Knk — Personal Portfolio
+# Personal Portfolio
 
 A one-page portfolio built with React + Vite + TypeScript + TailwindCSS + Framer Motion.
 
