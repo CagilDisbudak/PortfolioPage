@@ -2,10 +2,24 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import { revealParent, revealChild, spring } from '../lib/motion';
 import TechStrip from './TechStrip';
+import Particles from './Particles';
+import ScrambledText from './ScrambledText';
 
 export default function Hero() {
   return (
       <section className="relative pt-28 md:pt-36 pb-20 md:pb-28" aria-label="Hero">
+        <Particles
+          particleColors={["#22d3ee", "#e6fbff", "#14b8a6"]}
+          particleCount={260}
+          particleSpread={20}
+          speed={0.1}
+          particleBaseSize={80}
+          moveParticlesOnHover={false}
+          particleHoverFactor={1}
+          alphaParticles={false}
+          disableRotation={false}
+          className="z-0"
+        />
         {/* Background blobs with smooth bottom gradient to transition */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute -top-24 -left-16 w-72 h-72 rounded-full bg-cyan-500/10 blur-[80px] animate-blob" />
@@ -20,12 +34,15 @@ export default function Hero() {
         whileInView="whileInView"
         viewport={{ once: true, amount: 0.5 }}
       >
-        <motion.p variants={revealChild} className="text-sm tracking-widest text-white/60">Pragmatic backend, playful UX.</motion.p>
+        <motion.p variants={revealChild} className="text-sm tracking-widest text-white/60">
+          <ScrambledText text="" trigger="mount" />
+        </motion.p>
         <motion.h1 variants={revealChild} className="mt-4 text-5xl md:text-7xl font-semibold">
-          <span className="accent-text">Çağıl Dişbudak</span>
+          <span className="accent-text"><ScrambledText text="Çağıl Dişbudak" trigger="mount" /></span>
         </motion.h1>
-        <motion.p variants={revealChild} className="mt-3 text-xl md:text-2xl text-white/80">Software Engineer — Backend-focused</motion.p>
-        <motion.p variants={revealChild} className="mt-2 text-white/60">Python/Django, Java/Spring, Docker/K8s</motion.p>
+        <motion.p variants={revealChild} className="mt-3 text-xl md:text-2xl text-white/80">
+          <ScrambledText text="Software Engineer — Backend-focused" trigger="hover" />
+        </motion.p>
         <div className="flex justify-center">
           <TechStrip />
         </div>

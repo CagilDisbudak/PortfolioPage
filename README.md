@@ -30,6 +30,6 @@ npm run preview
 
 ## References Used
 
-- Infinite menu (idea/reference): https://reactbits.dev/components/infinite-menu
+- Particles background: https://reactbits.dev/backgrounds/particles
 - Glass surface (idea/reference): https://reactbits.dev/components/glass-surface
-- Logo loop (idea/reference): https://reactbits.dev/animations/logo-loop
+- Scrambled text (idea/reference): https://reactbits.dev/text-animations/scrambled-text

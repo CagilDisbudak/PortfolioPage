@@ -1,0 +1,18 @@
+.particles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particles-container.interactive {
+  pointer-events: auto; /* allow mouse tracking when interactive */
+}
+
+/* Ensure the canvas fits the container */
+.particles-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+
