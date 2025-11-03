@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+// Types from 'ogl' can vary across versions; fall back to 'any' where needed to avoid TS red underlines
 import { Renderer, Camera, Geometry, Program, Mesh } from 'ogl';
 import './Particles.css';
 
@@ -117,8 +118,26 @@ export default function Particles({
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-    const renderer = new Renderer({ depth: false, alpha: true });
-    const gl = renderer.gl;
+
+    // Safari/WebKit guard: ensure WebGL is available before creating renderer
+    const testCanvas = document.createElement('canvas');
+    const canWebGL = !!(
+      testCanvas.getContext('webgl') ||
+      testCanvas.getContext('experimental-webgl')
+    );
+    if (!canWebGL) {
+      return; // fail silently; background remains static
+    }
+
+    let renderer: any = null;
+    let gl: WebGLRenderingContext | WebGL2RenderingContext | any;
+    try {
+      renderer = new Renderer({ depth: false, alpha: true });
+      // @ts-ignore types from ogl
+      gl = (renderer as any).gl as WebGLRenderingContext;
+    } catch {
+      return; // fail silently on Safari GPU/driver issues
+    }
     container.appendChild(gl.canvas);
     gl.clearColor(0, 0, 0, 0);
     const camera = new Camera(gl, { fov: 15 });
@@ -170,7 +189,9 @@ export default function Particles({
       color: { size: 3, data: colors },
     });
 
-    const program = new Program(gl, {
+    let program: any;
+    try {
+      program = new Program(gl as any, {
       vertex,
       fragment,
       uniforms: {
@@ -182,7 +203,12 @@ export default function Particles({
       },
       transparent: true,
       depthTest: false,
-    });
+    }) as any;
+    } catch {
+      // Shader compile/link error; clean up and bail
+      if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
+      return;
+    }
 
     const particles = new Mesh(gl, { mode: gl.POINTS, geometry, program });
     let animationFrameId: number;
