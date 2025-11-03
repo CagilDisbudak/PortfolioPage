@@ -56,7 +56,8 @@ body::before {
 }
 
 .goo {
-  filter: url('/filters.svg#goo');
+  /* Inline filter reference (works on GitHub Pages subpaths) */
+  filter: url('#goo');
 }
 
 /* Flat tech strip with logos */
