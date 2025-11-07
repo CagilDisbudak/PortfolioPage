@@ -56,7 +56,7 @@ export default function Hero() {
           <TechStrip />
         </div>
 
-        <motion.div variants={revealChild} className="mt-8 flex gap-4">
+        <motion.div variants={revealChild} className="mt-8 flex gap-4 justify-center">
           <a href="#contact" className="glass px-5 py-3 text-sm font-medium hover:shadow-glow transition-shadow">
             Contact
           </a>
