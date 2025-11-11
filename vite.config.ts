@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   // Target the GitHub Pages project site path to avoid 404s when the trailing slash is missing
-  base: '/PortfolioPage/',
+  base: '/./',
 });
 
