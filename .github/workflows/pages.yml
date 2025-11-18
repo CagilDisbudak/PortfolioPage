@@ -39,6 +39,7 @@ jobs:
           CI: true
           NODE_OPTIONS: --max-old-space-size=4096
         run: npm run build
+        # Ensure base path is correctly set for GitHub Pages
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
