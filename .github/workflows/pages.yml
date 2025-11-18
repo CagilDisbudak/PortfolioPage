@@ -41,6 +41,14 @@ jobs:
         run: npm run build
         # Ensure base path is correctly set for GitHub Pages
 
+      - name: Verify build output
+        run: |
+          echo "Checking vite.config.ts base path:"
+          grep -A 1 "base:" vite.config.ts || echo "vite.config.ts not found or base not set"
+          echo ""
+          echo "Checking built index.html script path:"
+          grep -o 'src="[^"]*"' dist/index.html | head -1 || echo "index.html not found or script tag missing"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
