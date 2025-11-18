@@ -1,5 +1,6 @@
 name: Deploy to GitHub Pages
 
+# Trigger rebuild to fix base path issue
 on:
   push:
     branches: [ main ]
