@@ -60,7 +60,12 @@ export default function Hero() {
           <a href="#contact" className="glass px-5 py-3 text-sm font-medium hover:shadow-glow transition-shadow">
             Contact
           </a>
-          <a href="/PortfolioPage/Çağıl-Dişbudak-CV.pdf" download="Çağıl-Dişbudak-CV.pdf" className="px-5 py-3 text-sm font-medium border border-white/20 rounded-2xl hover:bg-white/5 transition-colors" aria-label="Download resume">
+          <a
+            href="/PortfolioPage/Cagil-Disbudak-Resume.pdf"
+            download="Cagil-Disbudak-Resume.pdf"
+            className="px-5 py-3 text-sm font-medium border border-white/20 rounded-2xl hover:bg-white/5 transition-colors"
+            aria-label="Download resume"
+          >
             Resume/CV
           </a>
         </motion.div>
