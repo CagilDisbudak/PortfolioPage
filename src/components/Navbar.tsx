@@ -13,13 +13,13 @@ export default function Navbar() {
 
     return (
         <>
-            <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
-                <nav className="relative flex items-center gap-1 p-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md shadow-lg shadow-black/20">
+            <div className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 max-w-[90vw] w-fit">
+                <nav className="relative flex items-center gap-1 p-1 md:p-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md shadow-lg shadow-black/20">
 
                     {/* Logo / Home Name */}
                     <a
                         href="#"
-                        className="px-4 py-2 text-sm font-semibold tracking-wide text-white hover:text-cyan-400 transition-colors"
+                        className="px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-semibold tracking-wide text-white hover:text-cyan-400 transition-colors whitespace-nowrap"
                         onClick={() => setMobileOpen(false)}
                     >
                         Çağıl Dişbudak
@@ -42,11 +42,11 @@ export default function Navbar() {
                     {/* Mobile Toggle */}
                     <button
                         onClick={() => setMobileOpen(!mobileOpen)}
-                        className="md:hidden p-2 rounded-full hover:bg-white/10 text-white/80 transition-colors"
+                        className="md:hidden p-1.5 rounded-full hover:bg-white/10 text-white/80 transition-colors"
                         aria-label="Toggle menu"
                     >
                         <svg
-                            className="w-5 h-5"
+                            className="w-4 h-4"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
