@@ -19,7 +19,7 @@ export default function Navbar() {
                     {/* Logo / Home Name */}
                     <a
                         href="#"
-                        className="px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-semibold tracking-wide text-white hover:text-cyan-400 transition-colors whitespace-nowrap"
+                        className="px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-semibold tracking-wide text-white hover:text-cyan-400 transition-colors whitespace-nowrap flex-shrink-0"
                         onClick={() => setMobileOpen(false)}
                     >
                         Çağıl Dişbudak
