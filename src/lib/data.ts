@@ -16,16 +16,16 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: 'BookSwap',
-    subtitle: 'Peer-to-Peer Book Exchange Platform',
-    tech: ['JavaScript', 'HTML/CSS', 'LocalStorage'],
-    github: 'https://github.com/CagilDisbudak/BookSwap',
-    live: '#',
-    blurb: 'A fully functional book exchange platform enabling users to list, discover, and swap books locally.',
+    title: 'DragMate',
+    subtitle: 'Multiplayer Chess & Backgammon Platform',
+    tech: ['React', 'TypeScript', 'TailwindCSS', 'dnd-kit'],
+    github: 'https://github.com/CagilDisbudak/DragMate',
+    live: 'https://cagildisbudak.github.io/DragMate/',
+    blurb: 'A modern, liquid-glass aesthetic platform featuring real-time multiplayer Chess and Backgammon with smooth drag-and-drop interactions.',
     achievements: [
-      'Designed a responsive UI with a focus on ease of use for non-technical users.',
-      'Implemented local storage caching to persist user preferences and cart data without a backend.',
-      'Optimized asset loading to ensure sub-1s initial render time on mobile devices.',
+      'Implemented real-time multiplayer logic and adaptive AI opponents for both Chess and Backgammon.',
+      'Designed a premium "liquid glass" UI with dynamic animations and responsive layouts for mobile and desktop.',
+      'Built a robust drag-and-drop system using @dnd-kit/core for seamless gameplay.',
     ],
     isFeatured: true,
   },
@@ -41,6 +41,20 @@ export const projects: Project[] = [
       'Implemented client-side filtering and sorting to reduce unnecessary network requests.',
     ],
     isFeatured: false,
+  },
+  {
+    title: 'BookSwap',
+    subtitle: 'Peer-to-Peer Book Exchange Platform',
+    tech: ['JavaScript', 'HTML/CSS', 'LocalStorage'],
+    github: 'https://github.com/CagilDisbudak/BookSwap',
+    live: '#',
+    blurb: 'A fully functional book exchange platform enabling users to list, discover, and swap books locally.',
+    achievements: [
+      'Designed a responsive UI with a focus on ease of use for non-technical users.',
+      'Implemented local storage caching to persist user preferences and cart data without a backend.',
+      'Optimized asset loading to ensure sub-1s initial render time on mobile devices.',
+    ],
+    isFeatured: true,
   },
   {
     title: 'Decentralized Voting Prototype',

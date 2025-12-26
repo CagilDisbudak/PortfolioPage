@@ -24,6 +24,16 @@ export default function Projects() {
                     {p.title}
                   </a>
                   {p.isFeatured && <span className="text-[10px] uppercase font-bold text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded-full bg-cyan-500/10">Featured</span>}
+                  {p.live && p.live !== '#' && (
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-2 text-[10px] uppercase font-bold text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors"
+                    >
+                      Live Demo
+                    </a>
+                  )}
                 </motion.h3>
                 {p.subtitle && (
                   <motion.p variants={revealChild} className="text-white/60 text-sm mt-1 font-medium">{p.subtitle}</motion.p>
