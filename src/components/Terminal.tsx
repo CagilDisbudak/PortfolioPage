@@ -221,7 +221,7 @@ export default function Terminal() {
           {/* Terminal content */}
           <div
             ref={terminalRef}
-            className="p-4 font-mono text-sm min-h-[300px] max-h-[400px] overflow-y-auto bg-black/20"
+            className="p-4 font-mono text-sm h-[400px] overflow-y-auto bg-black/20"
           >
             <div className="space-y-2">
               {/* History */}
@@ -269,7 +269,7 @@ export default function Terminal() {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  className="flex-1 bg-transparent text-white/90 outline-none font-mono"
+                  className="flex-1 bg-transparent text-white/90 outline-none focus:outline-none focus:ring-0 border-0 font-mono"
                   placeholder="Type a command... (try 'help')"
                   disabled={isProcessing}
                   autoFocus
