@@ -4,10 +4,12 @@ import { revealParent, revealChild, spring } from '../lib/motion';
 import TechStrip from './TechStrip';
 import Particles from './Particles';
 import ScrambledText from './ScrambledText';
+import GlassCard from './GlassCard';
+import { techBadges, keyCompetencies } from '../lib/data';
 
 export default function Hero() {
   return (
-    <section className="relative pt-28 md:pt-36 pb-20 md:pb-28" aria-label="Hero">
+    <section id="about" className="relative pt-28 md:pt-36 pb-20 md:pb-28" aria-label="Hero">
       <Particles
         particleColors={["#22d3ee", "#e6fbff", "#14b8a6"]}
         particleCount={420}
@@ -72,6 +74,44 @@ export default function Hero() {
           <a href="#contact" className="px-6 py-3 text-sm font-medium text-white/70 hover:text-white transition-colors">
             Contact Me
           </a>
+        </motion.div>
+
+        {/* About section content merged into Hero */}
+        <motion.div
+          variants={revealParent}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mt-16 md:mt-24"
+        >
+          <motion.h2 variants={revealChild} className="text-2xl font-semibold">About</motion.h2>
+          <GlassCard className="mt-6">
+            <motion.p variants={revealChild} className="text-white/80 leading-relaxed text-lg">
+              Backend engineer crafting reliable systems with a playful touch. I love shaping APIs, data flows, and
+              infrastructure that scale, while sprinkling in delightful UX. When not building services, I tinker with
+              animations and micro-interactions. ⚙️✨
+            </motion.p>
+
+            <motion.div variants={revealChild} className="mt-8">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-cyan-400 mb-4">Key Competencies</h3>
+              <ul className="grid sm:grid-cols-2 gap-3 text-sm text-white/70">
+                {keyCompetencies.map((c) => (
+                  <li key={c} className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/50" />
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <motion.div variants={revealChild} className="mt-8 flex flex-wrap gap-2">
+              {techBadges.map((t) => (
+                <span key={t} className="px-3 py-1 rounded-full text-xs bg-white/5 border border-white/10 text-white/60">
+                  {t}
+                </span>
+              ))}
+            </motion.div>
+          </GlassCard>
         </motion.div>
       </motion.div>
     </section>
