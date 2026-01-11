@@ -11,7 +11,7 @@ import BackToTop from './components/BackToTop';
 
 export default function App() {
   return (
-    <div className="relative min-h-screen text-white antialiased bg-[#0b0b0d] dark:bg-[#0b0b0d]">
+    <div className="relative min-h-screen text-white antialiased">
       <ScrollProgress />
       <GooeyCursor />
       <Navbar />
