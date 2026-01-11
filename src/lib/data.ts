@@ -127,9 +127,7 @@ export type Testimonial = {
   role: string;
   content: string;
   avatar?: string;
-};
-
-export const testimonials: Testimonial[] = [
+};export const testimonials: Testimonial[] = [
   {
     name: 'Tech Lead',
     role: 'Senior Developer',
