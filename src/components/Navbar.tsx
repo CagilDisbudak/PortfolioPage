@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
     { href: '#about', label: 'About' },
     { href: '#projects', label: 'Work' },
     { href: '#skills', label: 'Skills' },
+    { href: '#terminal', label: 'Terminal' },
     { href: '#contact', label: 'Contact' },
 ];
 
@@ -37,6 +39,8 @@ export default function Navbar() {
                                 {link.label}
                             </a>
                         ))}
+                        <div className="w-px h-4 bg-white/10 mx-2" />
+                        <ThemeToggle />
                     </div>
 
                     {/* Mobile Toggle */}
@@ -80,6 +84,9 @@ export default function Navbar() {
                                     {link.label}
                                 </a>
                             ))}
+                            <div className="px-4 py-3 flex items-center justify-center border-t border-white/10">
+                                <ThemeToggle />
+                            </div>
                         </motion.div>
                     )}
                 </AnimatePresence>
