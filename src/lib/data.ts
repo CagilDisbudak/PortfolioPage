@@ -122,3 +122,32 @@ export const skills = {
   },
 };
 
+export type Testimonial = {
+  name: string;
+  role: string;
+  content: string;
+  avatar?: string;
+};
+
+export const testimonials: Testimonial[] = [
+  {
+    name: 'Tech Lead',
+    role: 'Senior Developer',
+    content: 'Exceptional backend engineering skills. The microservices architecture implemented was robust and scalable.',
+  },
+  {
+    name: 'Project Manager',
+    role: 'Agile Team',
+    content: 'Reliable, efficient, and always delivers high-quality code. A true professional who understands both technical and business requirements.',
+  },
+  {
+    name: 'DevOps Engineer',
+    role: 'Infrastructure Team',
+    content: 'Great collaboration on containerization and deployment pipelines. Made our CI/CD process significantly smoother.',
+  },
+  {
+    name: 'CTO',
+    role: 'Startup Founder',
+    content: 'Built our entire backend infrastructure from scratch. The system handles scale beautifully and is maintainable.',
+  },
+];
