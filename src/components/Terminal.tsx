@@ -125,6 +125,13 @@ export default function Terminal() {
   const [typingOutput, setTypingOutput] = useState<OutputLine[]>([]);
   const [currentTypingIndex, setCurrentTypingIndex] = useState(0);
   const [currentDir] = useState('/home/portfolio');
+  const [matrixMode, setMatrixMode] = useState(false);
+  const [matrixColumns, setMatrixColumns] = useState<Array<{
+    chars: string[];
+    headIndex: number;
+    speed: number;
+  }>>([]);
+  const matrixAnimationRef = useRef<number | null>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -167,12 +174,112 @@ export default function Terminal() {
     };
   }, [currentCommandIndex, autoMode]);
 
+  // Matrix rain effect
+  useEffect(() => {
+    if (!matrixMode) {
+      if (matrixAnimationRef.current !== null) {
+        cancelAnimationFrame(matrixAnimationRef.current);
+        matrixAnimationRef.current = null;
+      }
+      setMatrixColumns([]);
+      return;
+    }
+
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;:,.<>?';
+    const terminalHeight = 400; // Terminal height in pixels
+    const charHeight = 18; // Height of each character in pixels
+    const maxChars = Math.ceil(terminalHeight / charHeight) + 10; // Extra chars for smooth scrolling
+    const columnWidth = 9; // Width of each column in pixels (smaller = more columns)
+    // Calculate number of columns - use larger number for full coverage
+    // Terminal container is typically around 700-1200px wide
+    const estimatedWidth = typeof window !== 'undefined' ? Math.min(window.innerWidth, 1400) : 1200;
+    const numColumns = Math.max(120, Math.floor(estimatedWidth / columnWidth));
+
+    // Initialize matrix columns
+    const initialColumns: Array<{ chars: string[]; headIndex: number; speed: number }> = [];
+    for (let i = 0; i < numColumns; i++) {
+      const columnChars: string[] = [];
+      for (let j = 0; j < maxChars; j++) {
+        columnChars.push(chars[Math.floor(Math.random() * chars.length)]);
+      }
+      initialColumns.push({
+        chars: columnChars,
+        headIndex: -10 - Math.random() * 15, // Start from above (negative values)
+        speed: 0.05 + Math.random() * 0.08, // Slower speed: between 0.05 and 0.13
+      });
+    }
+    setMatrixColumns(initialColumns);
+
+    let lastTime = performance.now();
+    const updateInterval = 100; // Update character changes every 100ms
+    let lastCharUpdate = lastTime;
+
+    const animate = (currentTime: number) => {
+      if (!matrixMode) return;
+
+      const deltaTime = currentTime - lastTime;
+      lastTime = currentTime;
+
+      const shouldUpdateChars = currentTime - lastCharUpdate > updateInterval;
+
+      setMatrixColumns((prev) => {
+        return prev.map((column) => {
+          // Head index azalıyor = aşağıya gidiyor (charIdx artıyor = aşağıya gidiyor)
+          // Head index head'in array içindeki hangi karaktere denk geldiği
+          // Head index artınca head aşağıya gidiyor, ama charIdx artınca da aşağıya gidiyor
+          // O yüzden head index'i artırıyoruz (head aşağıya gidiyor)
+          let newHeadIndex = column.headIndex + column.speed * (deltaTime / 16); // Normalize to 60fps
+
+          // Reset head when it goes well beyond the terminal (yukarıdan aşağıya)
+          // maxChars includes extra chars, so we reset when head goes past terminal height
+          const terminalChars = Math.ceil(terminalHeight / charHeight);
+          if (newHeadIndex >= terminalChars + 15) {
+            newHeadIndex = -15 - Math.random() * 20; // Start from above with random delay
+          }
+
+          // Update characters periodically
+          let newChars = column.chars;
+          if (shouldUpdateChars) {
+            newChars = [...column.chars];
+            // Randomly change some characters (but not too many for performance)
+            const changeCount = Math.floor(newChars.length * 0.3);
+            for (let i = 0; i < changeCount; i++) {
+              const randomIdx = Math.floor(Math.random() * newChars.length);
+              newChars[randomIdx] = chars[Math.floor(Math.random() * chars.length)];
+            }
+          }
+
+          return {
+            ...column,
+            chars: newChars,
+            headIndex: newHeadIndex,
+          };
+        });
+      });
+
+      if (shouldUpdateChars) {
+        lastCharUpdate = currentTime;
+      }
+
+      matrixAnimationRef.current = requestAnimationFrame(animate);
+    };
+
+    matrixAnimationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (matrixAnimationRef.current !== null) {
+        cancelAnimationFrame(matrixAnimationRef.current);
+        matrixAnimationRef.current = null;
+      }
+    };
+  }, [matrixMode]);
+
   // Scroll to bottom
   useEffect(() => {
-    if (terminalRef.current) {
+    if (terminalRef.current && !matrixMode) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
-  }, [history, typingOutput]);
+  }, [history, typingOutput, matrixMode]);
 
   // Tab completion handler
   const handleTabCompletion = useCallback((currentInput: string) => {
@@ -196,6 +303,21 @@ export default function Terminal() {
   // Keyboard handlers
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Handle Ctrl+C to exit matrix mode
+      if (matrixMode && e.ctrlKey && e.key === 'c') {
+        e.preventDefault();
+        setMatrixMode(false);
+        if (matrixAnimationRef.current !== null) {
+          cancelAnimationFrame(matrixAnimationRef.current);
+          matrixAnimationRef.current = null;
+        }
+        setMatrixColumns([]);
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+        return;
+      }
+
       if (document.activeElement !== inputRef.current) return;
 
       if (e.key === 'ArrowUp') {
@@ -227,7 +349,7 @@ export default function Terminal() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [commandHistory, historyIndex, inputValue, handleTabCompletion]);
+  }, [commandHistory, historyIndex, inputValue, handleTabCompletion, matrixMode]);
 
   // Typewriter effect for output
   useEffect(() => {
@@ -444,15 +566,8 @@ export default function Terminal() {
     }
 
     if (lowerCmd === 'matrix') {
-      return [
-        { text: 'Entering the Matrix...', type: 'info' },
-        { text: '', type: 'default' },
-        { text: '01001000 01100101 01101100 01101100 01101111', type: 'success' },
-        { text: '01010111 01101111 01110010 01101100 01100100', type: 'success' },
-        { text: '', type: 'default' },
-        { text: 'Welcome to the Matrix, Neo.', type: 'info' },
-        { text: 'Reality is just a construct. Code is real.', type: 'default' },
-      ];
+      // Matrix mode will be handled specially
+      return [];
     }
 
     if (lowerCmd === 'hack') {
@@ -624,13 +739,57 @@ export default function Terminal() {
     e.preventDefault();
     if (!inputValue.trim() || isProcessing) return;
 
+    const lowerInput = inputValue.trim().toLowerCase();
+
+    // Handle clear/cls command specially - clear history without adding command to history
+    if (lowerInput === 'clear' || lowerInput === 'cls') {
+      setHistory([]);
+      setTypingOutput([]);
+      if (inputValue.trim()) {
+        setCommandHistory((prev) => {
+          const newHistory = [...prev];
+          if (newHistory[newHistory.length - 1] !== inputValue.trim()) {
+            newHistory.push(inputValue.trim());
+          }
+          return newHistory.slice(-50);
+        });
+      }
+      setInputValue('');
+      setHistoryIndex(-1);
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+      return;
+    }
+
+    // Handle matrix command specially
+    if (lowerInput === 'matrix') {
+      setMatrixMode(true);
+      setHistory((prev) => [...prev, { command: inputValue, output: [], type: 'user' }]);
+      if (inputValue.trim()) {
+        setCommandHistory((prev) => {
+          const newHistory = [...prev];
+          if (newHistory[newHistory.length - 1] !== inputValue.trim()) {
+            newHistory.push(inputValue.trim());
+          }
+          return newHistory.slice(-50);
+        });
+      }
+      setInputValue('');
+      setHistoryIndex(-1);
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+      return;
+    }
+
     setIsProcessing(true);
     setAutoMode(false);
     setShowTabCompletions(false);
 
     const output = executeCommand(inputValue);
 
-    if (output.length > 0 || inputValue.trim().toLowerCase() === 'clear' || inputValue.trim().toLowerCase() === 'cls') {
+    if (output.length > 0) {
       // Add to command history
       if (inputValue.trim()) {
         setCommandHistory((prev) => {
@@ -643,7 +802,7 @@ export default function Terminal() {
       }
 
       // Handle special commands with typewriter effect
-      if (output.length > 5 && (inputValue.trim().toLowerCase() === 'neofetch' || inputValue.trim().toLowerCase() === 'matrix' || inputValue.trim().toLowerCase() === 'hack')) {
+      if (output.length > 5 && (inputValue.trim().toLowerCase() === 'neofetch' || inputValue.trim().toLowerCase() === 'hack')) {
         setIsTypingOutput(true);
         setTypingOutput(output);
         setCurrentTypingIndex(0);
@@ -696,14 +855,103 @@ export default function Terminal() {
           {/* Terminal content */}
           <div
             ref={terminalRef}
-            className="p-4 font-mono text-sm h-[400px] overflow-y-auto bg-black/20 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent cursor-text"
+            className="p-4 font-mono text-sm h-[400px] overflow-hidden bg-black/20 cursor-text relative"
             onClick={() => {
-              if (inputRef.current) {
+              if (inputRef.current && !matrixMode) {
                 inputRef.current.focus();
               }
             }}
           >
-            <div className="space-y-2">
+            {matrixMode ? (
+              <div className="absolute inset-0 overflow-hidden bg-black" style={{ padding: 0 }}>
+                <div className="h-full w-full flex flex-row relative" style={{ overflow: 'hidden' }}>
+                  {matrixColumns.map((column, colIdx) => {
+                    const charHeight = 18;
+                    const terminalHeight = 400;
+                    return (
+                      <div
+                        key={colIdx}
+                        className="relative font-mono select-none"
+                        style={{
+                          width: '9px',
+                          minWidth: '9px',
+                          height: '100%',
+                          flexShrink: 0,
+                          overflow: 'hidden',
+                          position: 'relative',
+                        }}
+                      >
+                        {column.chars.map((char, charIdx) => {
+                          // Head index artıyor = head aşağıya gidiyor
+                          // charY: karakterin terminal içindeki Y pozisyonu
+                          // Head charIdx = headIndex olan karakter, head'in pozisyonu = headIndex * charHeight
+                          // Karakterler head'in etrafında dizilmiş
+                          const charY = charIdx * charHeight;
+                          const distanceFromHead = column.headIndex - charIdx; // Pozitif = head aşağıda (charIdx < headIndex)
+                          const isHead = Math.abs(distanceFromHead) < 0.5;
+                          
+                          // Calculate opacity based on distance from head (trail effect)
+                          // Head'in arkasındaki karakterler (yukarıdakiler, distanceFromHead < 0, yani charIdx < headIndex) fade olmalı
+                          let opacity = 0;
+                          if (isHead) {
+                            opacity = 1;
+                          } else if (distanceFromHead < 0 && distanceFromHead > -15) {
+                            // Head'in arkasında (yukarıda, charIdx < headIndex): fade out with exponential decay
+                            opacity = Math.max(0, Math.exp(distanceFromHead * 0.15));
+                          } else if (distanceFromHead >= 0) {
+                            // Head'in önünde (aşağıda, charIdx >= headIndex): very dark
+                            opacity = 0.05;
+                          }
+
+                          // Only render characters that are visible (within terminal bounds)
+                          if (charY < -charHeight || charY > terminalHeight + charHeight) {
+                            return null;
+                          }
+
+                          // Only render characters that are visible or near the head
+                          if (opacity < 0.01 && !isHead) {
+                            return null;
+                          }
+
+                          return (
+                            <div
+                              key={charIdx}
+                              className="absolute text-green-400"
+                              style={{
+                                top: `${charY}px`,
+                                left: '0',
+                                width: '9px',
+                                height: `${charHeight}px`,
+                                opacity: opacity,
+                                color: isHead ? '#00ff00' : '#00cc00',
+                                textShadow: isHead 
+                                  ? '0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00' 
+                                  : distanceFromHead < 0 && distanceFromHead > -8
+                                  ? '0 0 5px #00cc00'
+                                  : 'none',
+                                fontSize: '12px',
+                                lineHeight: `${charHeight}px`,
+                                fontWeight: isHead ? 'bold' : 'normal',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                              }}
+                            >
+                              {char}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="absolute bottom-4 left-4 right-4 text-green-400/60 text-xs">
+                  Press Ctrl+C to exit
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-2 overflow-y-auto h-full scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
               {/* History */}
               {history.map((item, idx) => (
                 <div key={idx} className="space-y-1">
@@ -806,7 +1054,8 @@ export default function Terminal() {
                   </motion.span>
                 )}
               </form>
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </motion.div>
