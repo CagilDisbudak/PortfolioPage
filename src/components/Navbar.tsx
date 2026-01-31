@@ -14,8 +14,8 @@ export default function Navbar() {
 
     return (
         <>
-            <div className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 max-w-[90vw] w-fit">
-                <nav className="relative flex items-center gap-1 p-1 md:p-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md shadow-lg shadow-black/20">
+            <div className="fixed top-2 sm:top-4 md:top-6 left-1/2 -translate-x-1/2 z-[100] max-w-[95vw] w-fit">
+                <nav className="relative flex items-center gap-1 p-1.5 md:p-1.5 rounded-full border border-white/10 bg-black/70 backdrop-blur-xl shadow-lg shadow-black/40">
 
                     {/* Logo / Home Name */}
                     <a

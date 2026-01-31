@@ -9,7 +9,7 @@ import { techBadges, keyCompetencies } from '../lib/data';
 
 export default function Hero() {
   return (
-    <section id="about" className="relative pt-28 md:pt-36 pb-20 md:pb-28" aria-label="Hero">
+    <section id="about" className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 md:pb-28" aria-label="Hero">
       <Particles
         particleColors={["#22d3ee", "#e6fbff", "#14b8a6"]}
         particleCount={420}
