@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
@@ -10,6 +10,11 @@ import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
 
 export default function App() {
+  // Sayfa yenilendiğinde en üste scroll et
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="relative min-h-screen text-white antialiased">
       <ScrollProgress />
