@@ -1,39 +1,77 @@
 import { motion } from 'framer-motion';
-import React from 'react';
-import GlassCard from './GlassCard';
+import Panel from './Panel';
 import { revealParent, revealChild } from '../lib/motion';
 import { skills } from '../lib/data';
 
+const LEVEL_FILL: Record<string, number> = {
+  Expert: 5,
+  Solid: 4,
+  Functional: 3,
+};
+
+function LevelBar({ level }: { level: string }) {
+  const fill = LEVEL_FILL[level] ?? 3;
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="flex gap-1">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <motion.span
+            key={i}
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.05 * i, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformOrigin: 'left' }}
+            className={`block h-1 w-4 rounded-full origin-left ${i < fill ? 'bg-amber-400' : 'bg-white/10'}`}
+          />
+        ))}
+      </div>
+      <span className="text-white/60 text-xs font-medium whitespace-nowrap">{level}</span>
+    </div>
+  );
+}
+
+// Chapter 03. The Core is inspected from above behind this — the spec sheet
+// moment, so the content is a literal spec-comparison table.
 export default function Skills() {
   const groups: Array<[string, { level: string; items: string[] }]> = Object.entries(skills) as any;
   return (
-    <section id="skills" className="relative py-16 md:py-24" aria-label="Skills">
+    <section id="skills" className="relative py-24 md:py-36" aria-label="Skills">
       <motion.div
         className="container mx-auto px-6 max-w-6xl"
         variants={revealParent}
         initial="initial"
         whileInView="whileInView"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.25 }}
       >
-        <motion.h2 variants={revealChild} className="text-2xl font-semibold">Skills</motion.h2>
-        <div className="mt-6 grid md:grid-cols-3 gap-6">
-          {groups.map(([name, group]) => (
-            <GlassCard key={name}>
-              <motion.h3 variants={revealChild} className="text-lg font-semibold capitalize">{name}</motion.h3>
-              <motion.p variants={revealChild} className="text-white/60 text-sm mt-1">{group.level}</motion.p>
-              <motion.ul variants={revealChild} className="mt-4 space-y-2">
-                {group.items.map((i) => (
-                  <li key={i} className="flex items-center gap-2">
-                    <span className="size-1.5 rounded-full bg-cyan-400/60" aria-hidden />
-                    <span className="text-sm text-white/80">{i}</span>
-                  </li>
-                ))}
-              </motion.ul>
-            </GlassCard>
-          ))}
-        </div>
+        <motion.span variants={revealChild} className="section-eyebrow">03 — Skills</motion.span>
+        <motion.h2 variants={revealChild} className="section-heading mt-3">Toolbox</motion.h2>
+
+        <motion.div variants={revealChild} className="mt-10">
+          <Panel className="!p-4 md:!p-6">
+            <div className="spec-table-wrap">
+              <table className="spec-table">
+                <thead>
+                  <tr>
+                    <th>Domain</th>
+                    <th>Level</th>
+                    <th>Tools</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {groups.map(([name, group]) => (
+                    <tr key={name}>
+                      <td className="text-white font-semibold capitalize whitespace-nowrap">{name}</td>
+                      <td><LevelBar level={group.level} /></td>
+                      <td className="text-white/70">{group.items.join(' · ')}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Panel>
+        </motion.div>
       </motion.div>
     </section>
   );
 }
-

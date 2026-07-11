@@ -1,120 +1,85 @@
-import { motion } from 'framer-motion';
-import React from 'react';
-import { revealParent, revealChild, spring } from '../lib/motion';
-import TechStrip from './TechStrip';
-import Particles from './Particles';
-import ScrambledText from './ScrambledText';
-import GlassCard from './GlassCard';
-import { techBadges, keyCompetencies } from '../lib/data';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { revealParent, revealChild, revealBlur } from '../lib/motion';
+import Magnetic from './Magnetic';
 
+// One-screen opener: name and a single action, silhouetted against the
+// black hole. The fullscreen shader itself (BlackHoleScene, scroll-scrubbed)
+// is the hero visual — no floating object to frame here.
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const reduced = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+  const departOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const cueOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+
   return (
-    <section id="about" className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 md:pb-28" aria-label="Hero">
-      <Particles
-        particleColors={["#22d3ee", "#e6fbff", "#14b8a6"]}
-        particleCount={420}
-        particleSpread={22}
-        speed={0.1}
-        particleBaseSize={70}
-        moveParticlesOnHover={false}
-        particleHoverFactor={1}
-        alphaParticles={false}
-        disableRotation={false}
-        className="z-0"
-      />
-      {/* Background blobs with smooth bottom gradient to transition */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        {/* Soft ambient blobs */}
-        <div className="absolute -top-24 -left-16 w-72 h-72 rounded-full bg-cyan-500/10 blur-[90px] animate-blob" />
-        <div className="absolute -bottom-24 -right-16 w-[28rem] h-[28rem] rounded-full bg-teal-500/10 blur-[110px] animate-blob" style={{ animationDelay: '2s' }} />
-
-        {/* Right edge fade to reduce visible boundary on wide screens */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-[22vw] max-w-[420px] bg-gradient-to-l from-[rgba(11,11,13,0.9)] via-[rgba(11,11,13,0.6)] to-transparent" />
-
-        {/* Large radial vignette on the right to mask transitions */}
-        <div className="pointer-events-none absolute right-[-10vw] top-1/3 w-[60vw] h-[60vw] -translate-y-1/2 rounded-full bg-cyan-400/6 blur-[140px]" />
-
-        {/* Bottom gradient into content area */}
-        <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-b from-transparent via-[rgba(11,11,13,0.6)] to-[rgba(11,11,13,1)]" />
-      </div>
-
-      <motion.div
-        className="container mx-auto px-6 max-w-6xl"
-        variants={revealParent}
-        initial="initial"
-        whileInView="whileInView"
-        viewport={{ once: true, amount: 0.5 }}
-      >
-        <motion.p variants={revealChild} className="text-sm tracking-widest text-white/60">
-          <ScrambledText text="" trigger="mount" />
-        </motion.p>
-        <motion.h1 variants={revealChild} className="mt-4 text-5xl md:text-7xl font-semibold">
-          <span className="accent-text"><ScrambledText text="Çağıl Dişbudak" trigger="mount" /></span>
-        </motion.h1>
-        <motion.p variants={revealChild} className="mt-3 text-xl md:text-2xl text-white/80">
-          <ScrambledText text="Software Engineer — Backend-focused" trigger="hover" />
-        </motion.p>
-        <motion.p variants={revealChild} className="mt-2 text-base md:text-lg text-cyan-400/90 font-medium tracking-wide">
-          Building scalable backend systems & resilient infrastructure
-        </motion.p>
-        <div className="flex justify-center">
-          <TechStrip />
-        </div>
-
-        <motion.div variants={revealChild} className="mt-8 flex flex-col md:flex-row gap-4 justify-center items-center">
-          <a
-            href="/PortfolioPage/Cagil-Disbudak-Resume.pdf"
-            download="Cagil-Disbudak-Resume.pdf"
-            className="glass px-8 py-3 text-base font-semibold hover:shadow-cyan-500/20 hover:shadow-glow transition-all active:scale-95 flex items-center gap-2"
-            aria-label="Download resume"
-          >
-            <span>Download Resume/CV</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-          </a>
-          <a href="#contact" className="px-6 py-3 text-sm font-medium text-white/70 hover:text-white transition-colors">
-            Contact Me
-          </a>
-        </motion.div>
-
-        {/* About section content merged into Hero */}
+    <section
+      ref={sectionRef}
+      id="top"
+      className="relative min-h-screen flex flex-col items-center text-center px-6 pt-32 md:pt-40"
+      aria-label="Intro"
+    >
+      <motion.div style={reduced ? undefined : { opacity: departOpacity }}>
         <motion.div
+          className="container mx-auto max-w-4xl"
           variants={revealParent}
           initial="initial"
-          whileInView="whileInView"
-          viewport={{ once: true, amount: 0.3 }}
-          className="mt-16 md:mt-24"
+          animate="animate"
         >
-          <motion.h2 variants={revealChild} className="text-2xl font-semibold">About</motion.h2>
-          <GlassCard className="mt-6">
-            <motion.p variants={revealChild} className="text-white/80 leading-relaxed text-lg">
-              Backend engineer crafting reliable systems with a playful touch. I love shaping APIs, data flows, and
-              infrastructure that scale, while sprinkling in delightful UX. When not building services, I tinker with
-              animations and micro-interactions. ⚙️✨
-            </motion.p>
+          <motion.span variants={revealChild} className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-white/60">
+            Backend Engineer
+          </motion.span>
+          <motion.h1 variants={revealBlur} initial="initial" animate="whileInView" className="hero-title mt-5 font-semibold will-change-[filter,transform]">
+            <span className="accent-text">Çağıl Dişbudak</span>
+          </motion.h1>
+          <motion.p variants={revealChild} className="mt-4 text-lg md:text-xl text-white/70 max-w-xl mx-auto">
+            Building scalable backend systems &amp; resilient infrastructure.
+          </motion.p>
 
-            <motion.div variants={revealChild} className="mt-8">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-cyan-400 mb-4">Key Competencies</h3>
-              <ul className="grid sm:grid-cols-2 gap-3 text-sm text-white/70">
-                {keyCompetencies.map((c) => (
-                  <li key={c} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/50" />
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div variants={revealChild} className="mt-8 flex flex-wrap gap-2">
-              {techBadges.map((t) => (
-                <span key={t} className="px-3 py-1 rounded-full text-xs bg-white/5 border border-white/10 text-white/60">
-                  {t}
-                </span>
-              ))}
-            </motion.div>
-          </GlassCard>
+          <motion.div variants={revealChild} className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Magnetic>
+              <a
+                href="/PortfolioPage/Cagil-Disbudak-Resume.pdf"
+                download="Cagil-Disbudak-Resume.pdf"
+                className="px-7 py-3 rounded-full text-base font-semibold bg-amber-400 text-black hover:bg-amber-300 transition-colors active:scale-95 flex items-center gap-2"
+                aria-label="Download resume"
+              >
+                <span>Download CV</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+              </a>
+            </Magnetic>
+            <Magnetic strength={0.22}>
+              <a href="#contact" className="px-6 py-3 text-sm font-medium text-white/70 hover:text-white transition-colors">
+                Contact →
+              </a>
+            </Magnetic>
+          </motion.div>
         </motion.div>
       </motion.div>
+
+      <motion.a
+        href="#about"
+        style={reduced ? undefined : { opacity: cueOpacity }}
+        className="absolute bottom-8 flex flex-col items-center gap-2 text-white/40 hover:text-white/80 transition-colors"
+        aria-label="Scroll to learn more"
+      >
+        <span className="font-mono text-[10px] tracking-[0.35em] uppercase">Scroll</span>
+        <motion.svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          animate={reduced ? undefined : { y: [0, 6, 0] }}
+          transition={reduced ? undefined : { repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </motion.svg>
+      </motion.a>
     </section>
   );
 }
-

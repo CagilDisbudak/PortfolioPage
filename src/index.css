@@ -6,230 +6,167 @@
   --bg: #0b0b0d;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
+}
+
+/* Smooth anchor navigation (SiteNav), suppressed for reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Keeps anchor-jump targets from landing partially under the fixed h-14 nav. */
+section[id] {
+  scroll-margin-top: 3.5rem;
 }
 
 body {
   font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
   background: var(--bg);
   color: white;
-}
-
-/* Subtle grain/noise texture using layered gradients in a pseudo element */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient( circle at 20% 10%, rgba(255,255,255,0.02), transparent 35% ),
-    radial-gradient( circle at 80% 30%, rgba(255,255,255,0.015), transparent 40% ),
-    radial-gradient( circle at 50% 80%, rgba(255,255,255,0.015), transparent 45% );
-  background-blend-mode: screen;
-  mix-blend-mode: overlay;
-  filter: contrast(100%);
-  z-index: 0;
+  -webkit-font-smoothing: antialiased;
+  /* Defense-in-depth: nothing should ever force a sideways scrollbar. */
+  overflow-x: hidden;
 }
 
 /* Custom selection color */
 ::selection {
-  background: rgba(34, 211, 238, 0.25);
-  color: #e6fbff;
+  background: rgba(251, 191, 36, 0.28);
+  color: #fff7e6;
 }
 
 /* Focus ring */
 :focus-visible {
-  outline: 2px solid rgba(34, 211, 238, 0.8);
+  outline: 2px solid rgba(251, 191, 36, 0.8);
   outline-offset: 2px;
 }
 
-.glass {
-  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-glow rounded-2xl;
-}
-
 .accent-text {
-  background: linear-gradient(90deg, #22d3ee, #14b8a6);
+  /* Restrained two-tone gradient with a slow, low-amplitude breathing shift —
+     depth, not a shimmer. */
+  background: linear-gradient(100deg, #fde68a, #fb923c, #c026d3);
+  background-size: 180% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: accent-shimmer 14s ease-in-out infinite alternate;
 }
 
-.goo {
-  /* Inline filter reference (works on GitHub Pages subpaths) */
-  filter: url('#goo');
+@keyframes accent-shimmer {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 100% 50%;
+  }
 }
 
-/* Flat tech strip with logos */
-.tech-strip-container {
-  position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
-  border: none;
-  background: transparent;
-  backdrop-filter: none;
-  mix-blend-mode: normal;
-  isolation: isolate;
-  filter: none;
-  mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+@media (prefers-reduced-motion: reduce) {
+  .accent-text {
+    animation: none;
+  }
 }
-.tech-strip-container::before{ content: none; }
-.tech-strip-track {
+
+/* Fluid section rhythm shared by every major section */
+.section-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.6rem 0.8rem;
-  white-space: nowrap;
-  animation: tickerLeft 26s linear infinite;
-  will-change: transform;
+  gap: 0.6rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(251, 191, 36, 0.8);
 }
-.tech-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.7rem;
-  color: rgba(255,255,255,0.9);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 9999px;
-}
-.tech-chip svg { display: block; }
-.tech-strip-container:hover .tech-strip-track { animation-play-state: paused; }
 
-@keyframes tickerLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-@media (prefers-reduced-motion: reduce) { .tech-strip-track { animation: none; } }
-
-/* Logo loop (circular orbit) inspired by reactbits logo-loop */
-.logo-loop {
-  width: 360px;
-  height: 360px;
-  position: relative;
-}
-.logo-loop-ring {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 9999px;
-  display: grid;
-  place-items: center;
-  background: radial-gradient( circle at 50% 50%, rgba(255,255,255,0.04), transparent 60% );
-}
-.logo-loop-ring::before {
+.section-eyebrow::before {
   content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: conic-gradient(from 0deg, rgba(34,211,238,0.14), rgba(20,184,166,0.12), rgba(255,255,255,0.04), rgba(34,211,238,0.14));
-  filter: blur(14px);
-  opacity: 0.6;
-}
-.logo-chip {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: rotate(calc(var(--i) * 45deg)) translate(150px) rotate(calc(var(--i) * -45deg));
-  padding: 0.35rem 0.7rem;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.9);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 9999px;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset;
-}
-.logo-loop-ring { animation: orbit 28s linear infinite; will-change: transform; }
-.logo-chip { transition: transform 200ms ease, background-color 200ms ease; }
-.logo-chip:hover { background: rgba(255,255,255,0.1); transform: rotate(calc(var(--i) * 45deg)) translate(150px) rotate(calc(var(--i) * -45deg)) scale(1.05); }
-
-@keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-@media (max-width: 480px) {
-  .logo-loop { width: 280px; height: 280px; }
-  .logo-chip { transform: rotate(calc(var(--i) * 45deg)) translate(115px) rotate(calc(var(--i) * -45deg)); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .logo-loop-ring { animation: none; }
+  display: block;
+  width: 1.25rem;
+  height: 1px;
+  background: rgba(251, 191, 36, 0.6);
 }
 
-/* Improved infinite marquee styles with edge fade and hover pause */
-.marquee-container {
-  position: relative;
-  overflow: hidden;
-  gap: 0.25rem;
-  display: grid;
-  grid-template-rows: repeat(2, auto);
-  padding: 0.5rem 0;
-  border: none;
-  background: transparent;
-  backdrop-filter: none;
-  border-radius: 1rem;
-  mix-blend-mode: normal;
-  isolation: isolate;
-  filter: none;
-  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+.section-heading {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.9rem, 1.4rem + 2.2vw, 3.25rem);
+  line-height: 1.08;
 }
 
-.marquee-track {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  gap: 0.75rem;
-  will-change: transform;
+/* Fluid hero name — scales continuously with viewport instead of jumping
+   between Tailwind breakpoints. Tuned so a ~14-character name still clears
+   the smallest common phone widths (~360-390px) on one line; overflow-wrap
+   is a hard safety net against any longer name ever blowing out the layout. */
+.hero-title {
+  font-size: clamp(1.95rem, 1.15rem + 5vw, 6.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  overflow-wrap: anywhere;
 }
 
-.marquee-pill {
-  display: inline-block;
-  padding: 0.35rem 0.8rem;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.85);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 9999px;
+/* Hides the scrollbar on the nav's horizontally-scrollable jump-link strip
+   (mirrors how apple.com collapses its section tabs into a swipeable row
+   once they no longer fit) while keeping the element natively scrollable. */
+.nav-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-@keyframes tickerLeft {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-@keyframes tickerRight {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
+.nav-scroll::-webkit-scrollbar {
+  display: none;
 }
 
-.marquee-left { animation: tickerLeft 26s linear infinite; }
-.marquee-right { animation: tickerRight 28s linear infinite; }
-
-.marquee-container:hover .marquee-left,
-.marquee-container:hover .marquee-right { animation-play-state: paused; }
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-left, .marquee-right { animation: none; }
+/* Big bold pull-phrase used ahead of a project's detail list — the same
+   oversized-stat treatment apple.com uses for "8x zoom" / "48MP" callouts. */
+.stat-callout {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.35rem, 1rem + 1.6vw, 2.1rem);
+  line-height: 1.15;
 }
 
-/* Infinite Marquee animations */
-@keyframes marquee-left {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+/* Spec-comparison table (Skills) — apple.com's battery/performance
+   comparison tables: bold row labels, quiet zebra striping, horizontally
+   scrollable on narrow screens instead of squeezing columns unreadably. */
+.spec-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-@keyframes marquee-right {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
+.spec-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
 }
 
-.animate-marquee-left {
-  animation: marquee-left linear infinite;
-}.animate-marquee-right {
-  animation: marquee-right linear infinite;
+.spec-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+  padding: 0 1rem 0.75rem;
 }
 
-/* Animated gradient backgrounds */
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+.spec-table th:first-child,
+.spec-table td:first-child {
+  padding-left: 0;
 }
 
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 15s ease infinite;
+.spec-table td {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  vertical-align: top;
+}
+
+.spec-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
 }

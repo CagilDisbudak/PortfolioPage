@@ -13,7 +13,7 @@ export default function BackToTop() {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
@@ -32,11 +32,11 @@ export default function BackToTop() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-cyan-500/20 backdrop-blur-xl border border-cyan-400/30 hover:bg-cyan-500/30 hover:border-cyan-400/50 transition-all shadow-lg hover:shadow-cyan-500/20 focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
+          className="fixed bottom-6 right-4 md:bottom-8 md:right-8 z-40 p-3 rounded-full bg-amber-500/20 backdrop-blur-xl border border-amber-400/30 hover:bg-amber-500/30 hover:border-amber-400/50 transition-all shadow-lg hover:shadow-amber-500/20 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
           aria-label="Back to top"
         >
           <svg
-            className="w-5 h-5 text-cyan-400"
+            className="w-5 h-5 text-amber-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
