@@ -2,171 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ————— Portfolio Town global styles ————— */
+
 :root {
-  --bg: #0b0b0d;
+  --void: #0b0f14;
 }
 
 html,
 body,
 #root {
   height: 100%;
-}
-
-/* Smooth anchor navigation (SiteNav), suppressed for reduced motion */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-/* Keeps anchor-jump targets from landing partially under the fixed h-14 nav. */
-section[id] {
-  scroll-margin-top: 3.5rem;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-  background: var(--bg);
-  color: white;
-  -webkit-font-smoothing: antialiased;
-  /* Defense-in-depth: nothing should ever force a sideways scrollbar. */
-  overflow-x: hidden;
+  background: var(--void);
+  color: #fff;
+  font-family: 'Press Start 2P', 'Courier New', monospace;
+  /* The game is a fixed viewport — the page itself never scrolls. */
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Custom selection color */
-::selection {
-  background: rgba(251, 191, 36, 0.28);
-  color: #fff7e6;
+/* Crisp integer-scaled pixels everywhere sprites/tiles are drawn. */
+.pixelated,
+canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
-/* Focus ring */
+/* Classic GBA-style dialogue frame: dark-navy outer rule, pale inner panel,
+   thin accent rule — flatter and more flush than a drop-shadowed UI card. */
+.rpg-frame {
+  border: 3px solid #1f1b2e;
+  box-shadow:
+    inset 0 0 0 3px #f8f6ee,
+    inset 0 0 0 6px #2b2340,
+    inset 0 0 0 9px #f8f6ee,
+    2px 2px 0 rgba(11, 15, 20, 0.4);
+  background: #f8f6ee;
+  color: #2b2340;
+  border-radius: 3px;
+}
+
+.rpg-frame-dark {
+  border: 3px solid #1f1b2e;
+  box-shadow:
+    inset 0 0 0 3px #3d4663,
+    2px 2px 0 rgba(0, 0, 0, 0.4);
+  background: #1c2233;
+  color: #f8f6ee;
+  border-radius: 3px;
+}
+
+/* Menu panels can scroll internally, with a chunky retro scrollbar. */
+.rpg-scroll {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #2b2340 transparent;
+}
+.rpg-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.rpg-scroll::-webkit-scrollbar-thumb {
+  background: #2b2340;
+  border: 3px solid #f8f6ee;
+}
+
+/* Allow text selection inside dialogue/menus (useful for copying links/emails). */
+.selectable,
+.selectable * {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
 :focus-visible {
-  outline: 2px solid rgba(251, 191, 36, 0.8);
+  outline: 3px solid #fbbf24;
   outline-offset: 2px;
-}
-
-.accent-text {
-  /* Restrained two-tone gradient with a slow, low-amplitude breathing shift —
-     depth, not a shimmer. */
-  background: linear-gradient(100deg, #fde68a, #fb923c, #c026d3);
-  background-size: 180% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: accent-shimmer 14s ease-in-out infinite alternate;
-}
-
-@keyframes accent-shimmer {
-  from {
-    background-position: 0% 50%;
-  }
-
-  to {
-    background-position: 100% 50%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .accent-text {
-    animation: none;
-  }
-}
-
-/* Fluid section rhythm shared by every major section */
-.section-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(251, 191, 36, 0.8);
-}
-
-.section-eyebrow::before {
-  content: '';
-  display: block;
-  width: 1.25rem;
-  height: 1px;
-  background: rgba(251, 191, 36, 0.6);
-}
-
-.section-heading {
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  font-size: clamp(1.9rem, 1.4rem + 2.2vw, 3.25rem);
-  line-height: 1.08;
-}
-
-/* Fluid hero name — scales continuously with viewport instead of jumping
-   between Tailwind breakpoints. Tuned so a ~14-character name still clears
-   the smallest common phone widths (~360-390px) on one line; overflow-wrap
-   is a hard safety net against any longer name ever blowing out the layout. */
-.hero-title {
-  font-size: clamp(1.95rem, 1.15rem + 5vw, 6.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  overflow-wrap: anywhere;
-}
-
-/* Hides the scrollbar on the nav's horizontally-scrollable jump-link strip
-   (mirrors how apple.com collapses its section tabs into a swipeable row
-   once they no longer fit) while keeping the element natively scrollable. */
-.nav-scroll {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.nav-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-/* Big bold pull-phrase used ahead of a project's detail list — the same
-   oversized-stat treatment apple.com uses for "8x zoom" / "48MP" callouts. */
-.stat-callout {
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  font-size: clamp(1.35rem, 1rem + 1.6vw, 2.1rem);
-  line-height: 1.15;
-}
-
-/* Spec-comparison table (Skills) — apple.com's battery/performance
-   comparison tables: bold row labels, quiet zebra striping, horizontally
-   scrollable on narrow screens instead of squeezing columns unreadably. */
-.spec-table-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.spec-table {
-  width: 100%;
-  min-width: 560px;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
-
-.spec-table th {
-  text-align: left;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
-  font-weight: 600;
-  padding: 0 1rem 0.75rem;
-}
-
-.spec-table th:first-child,
-.spec-table td:first-child {
-  padding-left: 0;
-}
-
-.spec-table td {
-  padding: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  vertical-align: top;
-}
-
-.spec-table tr:hover td {
-  background: rgba(255, 255, 255, 0.02);
 }

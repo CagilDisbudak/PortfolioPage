@@ -22,7 +22,7 @@ export default {
         xl: '28px',
       },
       fontFamily: {
-        inter: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        pixel: ['"Press Start 2P"', 'Courier New', 'monospace'],
       },
     },
   },
