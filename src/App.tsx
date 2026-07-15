@@ -53,15 +53,19 @@ const portfolioData = {
     badges: ['Python', 'Django', 'Java', 'Spring Boot', 'Docker', 'Kubernetes', 'PostgreSQL', 'Redis', 'AWS', 'CI/CD'],
   },
 
-  // TODO: paste your real work history here — the Recruiter NPC and the
-  // backpack PROFILE tab render whatever is in this array.
+  // ⚠️ FILL ME IN — this is placeholder text. Add your real roles here (newest
+  // first). Everything that reads work history is driven by this array: the
+  // RECRUITER NPC in town, the BACKPACK > PROFILE tab, and the EXPERIENCE
+  // section of the classic CV view (?classic=1). Add as many entries as you
+  // like — the UI renders each one automatically. Delete this placeholder.
   experience: [
     {
-      role: 'Backend Engineer',
-      company: 'Your Company',
-      period: '20XX — Present',
-      summary: 'Designing and scaling backend services, APIs and infrastructure.',
+      role: 'Your Role', // e.g. 'Backend Engineer'
+      company: 'Your Company', // e.g. 'Acme Corp'
+      period: '20XX — Present', // e.g. 'Jan 2023 — Present'
+      summary: 'One or two sentences on what you built, owned, or scaled here.',
     },
+    // { role: '...', company: '...', period: '...', summary: '...' },
   ],
 
   projects: [
@@ -198,26 +202,28 @@ const reducedMotion =
 const SPRITE_W = 16;
 const SPRITE_H = 20;
 
+// Hand-authored character parts, composed by stack() into 16x20 frames.
+// Legend: O outline · A cap · a cap-highlight · H hair · S skin · s skin-shadow
+//         E eye · C shirt · c shirt-highlight · D shirt-shade · P pants
+//         p pants-highlight · B shoes. Lowercase tones are DERIVED from the
+//         base palette color at render time (see getSpriteFrame), so richer
+//         shading costs no extra per-character palette data.
 const HEAD_DOWN = [
-  '................',
-  '....OOOOOOOO....',
-  '..OOAAAAAAAAOO..',
-  '..OAAAAAAAAAAO..',
-  '.OAAAAAAAAAAAAO.',
+  '.....OOOOOO.....',
+  '...OOaaaaaaOO...',
+  '..OaaaaaaaaaaO..',
   '.OAAAAAAAAAAAAO.',
   '.OHHHHHHHHHHHHO.',
-  '.OSSESSSSSSESSO.',
-  '.OSSESSSSSSESSO.',
   '.OSSSSSSSSSSSSO.',
+  '.OSSEESSSSEESSO.',
+  '.OSSssSSSSssSSO.',
   '..OSSSSSSSSSSO..',
   '...OOSSSSSSOO...',
 ];
 const HEAD_UP = [
-  '................',
-  '....OOOOOOOO....',
-  '..OOAAAAAAAAOO..',
-  '..OAAAAAAAAAAO..',
-  '.OAAAAAAAAAAAAO.',
+  '.....OOOOOO.....',
+  '...OOaaaaaaOO...',
+  '..OaaaaaaaaaaO..',
   '.OAAAAAAAAAAAAO.',
   '.OHHHHHHHHHHHHO.',
   '.OHHHHHHHHHHHHO.',
@@ -227,28 +233,44 @@ const HEAD_UP = [
   '...OOHHHHHHOO...',
 ];
 const HEAD_SIDE = [
-  '................',
-  '....OOOOOOOO....',
-  '..OOAAAAAAAAOO..',
-  '..OAAAAAAAAAAO..',
-  '.OAAAAAAAAAAAAO.',
+  '.....OOOOOO.....',
+  '...OOaaaaaaOO...',
+  '..OaaaaaaaaaaO..',
   '.OAAAAAAAAAAAAO.',
   '.OHHHHHHHHHHHHO.',
-  '.OSESSHHHHHHHHO.',
-  '.OSESSHHHHHHHHO.',
-  '.OSSSSHHHHHHHHO.',
-  '..OSSSHHHHHHHO..',
-  '...OOSSSSSSOO...',
+  '.OSSSSSSHHHHHHO.',
+  '.OSSEESSHHHHHHO.',
+  '.OSSssSSHHHHHHO.',
+  '..OSSSSSHHHHHO..',
+  '...OOSSSHHHOO...',
 ];
 
-const TORSO_FRONT = ['..OCCCCCCCCCCO..', '.OSOCCCCCCCCOSO.', '.OSOCDCCCCDCOSO.'];
-const TORSO_BACK = ['..OCCCCCCCCCCO..', '.OSOCAAAAAACOSO.', '.OSOCAAAAAACOSO.'];
-const TORSO_SIDE = ['..OCCCCCCCCCCO..', '..OCCOSSOCCCCO..', '..OCDOSSODCCCO..'];
+const TORSO_FRONT = [
+  '...OCCCCCCCCO...',
+  '..OCcCCCCCCcCO..',
+  '.OSCCCCCCCCCCSO.',
+  '.OSSCCCDDCCCSSO.',
+  '..OOCCCCCCCCOO..',
+];
+const TORSO_BACK = [
+  '...OCCCCCCCCO...',
+  '..OCcCCCCCCcCO..',
+  '.OSCCCCCCCCCCSO.',
+  '.OSSCCCCCCCCSSO.',
+  '..OOCCCCCCCCOO..',
+];
+const TORSO_SIDE = [
+  '...OCCCCCCCCO...',
+  '...OCcCCCCcCO...',
+  '...OSSCCCCSSO...',
+  '...OSSCDDCSSO...',
+  '...OOCCCCCCOO...',
+];
 
-const LEGS_STAND = ['...OPPPPPPPPO...', '....OPPOOPPO....', '....OBBOOBBO....', '....OOO..OOO....', '................'];
-const LEGS_WALK = ['...OPPPPPPPPO...', '....OPPOOBBO....', '....OBBO..OO....', '....OOO.........', '................'];
+const LEGS_STAND = ['...OPPPPPPPPO...', '...OPPPOOPPPO...', '...OPPPOOPPPO...', '...OBBBOOBBBO...', '....OOOOOOOO....'];
+const LEGS_WALK = ['...OPPPPPPPPO...', '...OBBPOOPPPO...', '...OBBBOOPPPO...', '....OOOOOBBBO...', '.........OOO....'];
 const LEGS_SIDE_STAND = ['...OPPPPPPPPO...', '....OPPPPPPO....', '....OBBBBBBO....', '....OOOOOOOO....', '................'];
-const LEGS_SIDE_WALK = ['...OPPPPPPPPO...', '...OPPO..OPPO...', '...OBBO..OBBO...', '...OOO....OOO...', '................'];
+const LEGS_SIDE_WALK = ['...OPPPPPPPPO...', '...OPPO..OPPO...', '...OBBO..OBBO...', '...OOO...OOO....', '................'];
 
 function mirrorRows(rows: string[]): string[] {
   return rows.map((r) => r.split('').reverse().join(''));
@@ -283,6 +305,19 @@ type Palette = { A: string; H: string; S: string; C: string; D: string; P: strin
 const OUTLINE = '#241d33';
 const EYE = '#241d33';
 
+// Blend a hex color toward white (amt>0) or black (amt<0). Used to derive
+// highlight/shadow tones from a character's base palette at render time.
+function shade(hex: string, amt: number): string {
+  const n = parseInt(hex.slice(1), 16);
+  const target = amt < 0 ? 0 : 255;
+  const p = Math.abs(amt);
+  const mix = (c: number) => Math.round(c + (target - c) * p);
+  const r = mix((n >> 16) & 255);
+  const g = mix((n >> 8) & 255);
+  const b = mix(n & 255);
+  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
+}
+
 const PALETTES: Record<string, Palette> = {
   player: { A: '#f59e0b', H: '#3b2c20', S: '#f3c396', C: '#14b8a6', D: '#0f9488', P: '#334155', B: '#7c3f21' },
   guide: { A: '#4ade80', H: '#57402b', S: '#f3c396', C: '#16a34a', D: '#15803d', P: '#57534e', B: '#3f2d1e' },
@@ -294,6 +329,9 @@ const PALETTES: Record<string, Palette> = {
   sergeant: { A: '#a3a380', H: '#3f3f2e', S: '#d9a06b', C: '#7c7a52', D: '#5f5d3f', P: '#44412e', B: '#26241a' },
   rookie: { A: '#f9a8d4', H: '#9d174d', S: '#fcd9ae', C: '#ec4899', D: '#db2777', P: '#4c1d95', B: '#2e1065' },
   leader: { A: '#0f172a', H: '#0f172a', S: '#e7b287', C: '#f59e0b', D: '#d97706', P: '#0f172a', B: '#0b1120' },
+  nurse: { A: '#f8fafc', H: '#ec4899', S: '#fcd9ae', C: '#f9a8d4', D: '#ec4899', P: '#f1f5f9', B: '#db2777' },
+  hiker: { A: '#ea580c', H: '#3f2d1e', S: '#e7b287', C: '#a16207', D: '#854d0e', P: '#3f6212', B: '#422006' },
+  catcher: { A: '#eab308', H: '#422006', S: '#f3c396', C: '#4d7c0f', D: '#3f6212', P: '#a16207', B: '#422006' },
 };
 
 const spriteCache = new Map<string, HTMLCanvasElement>();
@@ -307,7 +345,15 @@ function getSpriteFrame(paletteId: string, facing: Dir, frame: number): HTMLCanv
   c.width = SPRITE_W;
   c.height = SPRITE_H;
   const ctx = c.getContext('2d')!;
-  const colors: Record<string, string> = { O: OUTLINE, E: EYE, ...pal };
+  const colors: Record<string, string> = {
+    O: OUTLINE,
+    E: EYE,
+    ...pal,
+    a: shade(pal.A, 0.28), // cap highlight
+    s: shade(pal.S, -0.18), // skin shadow (under-eye / cheek)
+    c: shade(pal.C, 0.16), // shirt highlight
+    p: shade(pal.P, 0.24), // pants highlight (unused in current matrices, kept for future frames)
+  };
   for (let y = 0; y < rows.length; y++) {
     const row = rows[y];
     for (let x = 0; x < row.length; x++) {
@@ -617,6 +663,7 @@ type Building = {
   x: number; y: number; w: number; h: number;
   roof: string; roofDark: string; wall: string;
   door: Vec; // tile within the building footprint
+  heal?: boolean; // stamps a big white-bordered red cross on the roof
 };
 
 function paintBuilding(ctx: Ctx, b: Building) {
@@ -632,12 +679,25 @@ function paintBuilding(ctx: Ctx, b: Building) {
   px(ctx, x - 2, y + roofH - 4, w + 4, 4, b.roofDark); // eaves overhang
   px(ctx, x, y, 2, roofH, b.roofDark);
   px(ctx, x + w - 2, y, 2, roofH, b.roofDark);
-  // chimney with a lazy puff of smoke drifting above the ridge
-  const chimX = x + w - 10;
-  px(ctx, chimX, y - 6, 6, 10, b.roofDark);
-  px(ctx, chimX + 1, y - 6, 4, 8, b.roof);
-  px(ctx, chimX + 1, y - 9, 2, 2, 'rgba(226,232,240,0.65)');
-  px(ctx, chimX + 2, y - 12, 3, 3, 'rgba(241,245,249,0.55)');
+  if (b.heal) {
+    // Big unmistakable white-bordered red cross centered on the roof — the
+    // universal "heal here" marker.
+    const cw = 20, ch = 20;
+    const cx = x + (w - cw) / 2;
+    const cy = y + Math.max(4, (roofH - ch) / 2);
+    px(ctx, cx - 2, cy - 2, cw + 4, ch + 4, '#ffffff'); // white backing
+    const armT = 6;
+    px(ctx, cx + (cw - armT) / 2, cy, armT, ch, '#e23b3b'); // vertical bar
+    px(ctx, cx, cy + (ch - armT) / 2, cw, armT, '#e23b3b'); // horizontal bar
+    px(ctx, cx + (cw - armT) / 2, cy, armT, 2, '#f87171'); // little highlight
+  } else {
+    // chimney with a lazy puff of smoke drifting above the ridge
+    const chimX = x + w - 10;
+    px(ctx, chimX, y - 6, 6, 10, b.roofDark);
+    px(ctx, chimX + 1, y - 6, 4, 8, b.roof);
+    px(ctx, chimX + 1, y - 9, 2, 2, 'rgba(226,232,240,0.65)');
+    px(ctx, chimX + 2, y - 12, 3, 3, 'rgba(241,245,249,0.55)');
+  }
   // walls
   const wy = y + roofH;
   px(ctx, x, wy, w, wallRows, b.wall);
@@ -674,7 +734,7 @@ function paintBuilding(ctx: Ctx, b: Building) {
 /* Decor painters — furniture, signs, exhibits. Painted onto the map canvas. */
 type DecorType =
   | 'sign' | 'mailbox' | 'bed' | 'desk' | 'bookshelf' | 'tv' | 'sofa'
-  | 'plant' | 'exhibit' | 'bench' | 'weights' | 'platform';
+  | 'plant' | 'exhibit' | 'bench' | 'weights' | 'platform' | 'healmachine' | 'counter';
 
 type Decor = {
   type: DecorType;
@@ -773,6 +833,25 @@ function paintDecor(ctx: Ctx, d: Decor, kind: MapKind) {
       px(ctx, x, y, TILE, 3, '#a5947e');
       px(ctx, x, y + TILE * 2 - 3, TILE, 3, '#5f5344');
       break;
+    case 'counter':
+      // reception counter segment
+      px(ctx, x, y + 6, TILE, 10, '#b45309');
+      px(ctx, x, y + 6, TILE, 2, '#d97706');
+      px(ctx, x, y + 14, TILE, 2, '#7c4a12');
+      break;
+    case 'healmachine':
+      // a med-bay pod: dark casing, glass dome, two glowing restore orbs + red cross
+      px(ctx, x + 1, y + 3, 14, 12, '#334155');
+      px(ctx, x + 1, y + 3, 14, 2, '#475569');
+      px(ctx, x + 2, y + 5, 12, 7, '#93c5fd');
+      px(ctx, x + 4, y + 6, 3, 3, '#f8fafc');
+      px(ctx, x + 10, y + 6, 3, 3, '#f8fafc');
+      // red cross on the front
+      px(ctx, x + 6, y + 12, 4, 2, '#ef4444');
+      px(ctx, x + 7, y + 11, 2, 4, '#ef4444');
+      px(ctx, x + 2, y + 13, 2, 2, '#22d3ee');
+      px(ctx, x + 12, y + 13, 2, 2, '#22d3ee');
+      break;
   }
   void kind;
 }
@@ -798,19 +877,21 @@ type GameMap = {
   warps: Warp[];
 };
 
+// A north corridor at column 14 (between the Gallery and the Heal Center) opens
+// through the treeline to the DEBUG MEADOW route; the warp sits at (14,2).
 const TOWN_ROWS = [
-  'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
-  'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
-  'TTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGPGGGGGGGGGGGGGGGGGPGGGGGGTT',
-  'TTGGGGGGGPGGGGGGGGGGGGGGGGGPGGGGGGTT',
+  'TTTTTTTTTTTTTTPTTTTTTTTTTTTTTTTTTTTT',
+  'TTTTTTTTTTTTTTPTTTTTTTTTTTTTTTTTTTTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGPGGGGPGGGPGGGGGGGGPGGGGGGTT',
+  'TTGGGGGGGPGGGGPGGGPGGGGGGGGPGGGGGGTT',
   'TTGGPPPPPPPPPPPPPPPPPPPPPPPPPPPPGGTT',
   'TTGGPPPPPPPPPPPPPPPPPPPPPPPPPPPPGGTT',
   'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
@@ -835,13 +916,16 @@ const MAPS: Record<string, GameMap> = {
     rows: TOWN_ROWS,
     buildings: [
       { x: 5, y: 4, w: 9, h: 6, roof: '#2dd4bf', roofDark: '#14877a', wall: '#efe6d2', door: { x: 9, y: 9 } },
+      { x: 15, y: 4, w: 7, h: 6, roof: '#ef4444', roofDark: '#991b1b', wall: '#f1f5f9', door: { x: 18, y: 9 }, heal: true },
       { x: 23, y: 4, w: 9, h: 6, roof: '#818cf8', roofDark: '#4f46b8', wall: '#e8e2f2', door: { x: 27, y: 9 } },
       { x: 6, y: 15, w: 6, h: 5, roof: '#f87171', roofDark: '#b83f3f', wall: '#f3ead4', door: { x: 9, y: 19 } },
     ],
     decor: [
       { type: 'sign', x: 11, y: 10, solid: true, dialogueId: 'sign_gallery' },
+      { type: 'sign', x: 16, y: 10, solid: true, dialogueId: 'sign_heal' },
       { type: 'sign', x: 29, y: 10, solid: true, dialogueId: 'sign_gym' },
       { type: 'sign', x: 16, y: 21, solid: true, dialogueId: 'sign_welcome' },
+      { type: 'sign', x: 13, y: 3, solid: true, dialogueId: 'sign_meadow' },
       { type: 'mailbox', x: 7, y: 20, solid: true, dialogueId: 'mailbox' },
     ],
     npcs: [
@@ -853,8 +937,10 @@ const MAPS: Record<string, GameMap> = {
     ],
     warps: [
       { x: 9, y: 9, toMap: 'gallery', toX: 8, toY: 9, facing: 'up' },
+      { x: 18, y: 9, toMap: 'heal', toX: 5, toY: 7, facing: 'up' },
       { x: 27, y: 9, toMap: 'gym', toX: 7, toY: 9, facing: 'up' },
       { x: 9, y: 19, toMap: 'house', toX: 5, toY: 8, facing: 'up' },
+      { x: 14, y: 2, toMap: 'meadow', toX: 10, toY: 15, facing: 'up' },
     ],
   },
 
@@ -958,6 +1044,104 @@ const MAPS: Record<string, GameMap> = {
     ],
     warps: [{ x: 8, y: 10, toMap: 'town', toX: 9, toY: 10, facing: 'down' }],
   },
+
+  // ——— HEAL CENTER interior: talk to the NURSE to fully restore the party ———
+  heal: {
+    id: 'heal',
+    name: 'HEAL CENTER',
+    kind: 'gallery',
+    rows: [
+      'WWWWWWWWWWW',
+      'WWWWWWWWWWW',
+      'WFFFFFFFFFW',
+      'WFFFFFFFFFW',
+      'WFFFFFFFFFW',
+      'WFFFFFFFFFW',
+      'WFFFFFFFFFW',
+      'WFFFFFFFFFW',
+      'WWWWWMWWWWW',
+    ],
+    buildings: [],
+    decor: [
+      { type: 'healmachine', x: 5, y: 2, solid: true },
+      { type: 'plant', x: 1, y: 7, solid: true, dialogueId: 'plant' },
+      { type: 'plant', x: 9, y: 7, solid: true, dialogueId: 'plant' },
+    ],
+    npcs: [{ id: 'nurse', name: 'NURSE', palette: 'nurse', x: 5, y: 3, facing: 'down', important: true, dialogueId: 'npc_nurse' }],
+    warps: [{ x: 5, y: 8, toMap: 'town', toX: 18, toY: 10, facing: 'down' }],
+  },
+
+  // ——— DEBUG MEADOW (north route): tall grass with new low-level bugs ———
+  meadow: {
+    id: 'meadow',
+    name: 'DEBUG MEADOW',
+    kind: 'town',
+    rows: [
+      'TTTTTTTTTTPPTTTTTTTTTT',
+      'TTGGGGGGGGPPGGGGGGGGTT',
+      'TTGtttttGGPPGGtttttGTT',
+      'TTGtttttGGPPGGtttttGTT',
+      'TTGtttttGGPPGGtttttGTT',
+      'TTGGGGGGGGPPGGGGGGGGTT',
+      'TTGGGGGGGGPPGGGGGGGGTT',
+      'TTGtttttGGPPGGtttttGTT',
+      'TTGtttttGGPPGGtttttGTT',
+      'TTGtttttGGPPGGtttttGTT',
+      'TTGGGGGGGGPPGGGGGGGGTT',
+      'TTGGGGGGGGPPGGGGGGGGTT',
+      'TTGttttttGPPGttttttGTT',
+      'TTGttttttGPPGttttttGTT',
+      'TTGGGGGGGGPPGGGGGGGGTT',
+      'TTGGGGGGGGPPGGGGGGGGTT',
+      'TTGGGGGGGGPPGGGGGGGGTT',
+      'TTTTTTTTTTPPTTTTTTTTTT',
+    ],
+    buildings: [],
+    decor: [
+      { type: 'sign', x: 12, y: 16, solid: true, dialogueId: 'sign_meadow_in' },
+    ],
+    npcs: [{ id: 'hiker', name: 'HIKER', palette: 'hiker', x: 6, y: 6, facing: 'right', wander: { r: 1 }, dialogueId: 'npc_hiker' }],
+    warps: [
+      { x: 10, y: 17, toMap: 'town', toX: 14, toY: 3, facing: 'down' },
+      { x: 11, y: 17, toMap: 'town', toX: 14, toY: 3, facing: 'down' },
+      { x: 10, y: 0, toMap: 'forest', toX: 9, toY: 14, facing: 'up' },
+      { x: 11, y: 0, toMap: 'forest', toX: 10, toY: 14, facing: 'up' },
+    ],
+  },
+
+  // ——— TANGLED FOREST (deep route): dense trees, tougher bugs ———
+  forest: {
+    id: 'forest',
+    name: 'TANGLED FOREST',
+    kind: 'town',
+    rows: [
+      'TTTTTTTTTTTTTTTTTTTT',
+      'TTGGGGGGGGGGGGGGGGTT',
+      'TTGtttttGGGGtttttGTT',
+      'TTGtttttGGGGtttttGTT',
+      'TTGtttttGPPGtttttGTT',
+      'TTGGGGGGGPPGGGGGGGTT',
+      'TTTTGGGGGPPGGGGGTTTT',
+      'TTGGGGGGGPPGGGGGGGTT',
+      'TTGtttttGPPGtttttGTT',
+      'TTGtttttGPPGtttttGTT',
+      'TTGtttttGPPGtttttGTT',
+      'TTGGGGGGGPPGGGGGGGTT',
+      'TTGGGGGGGPPGGGGGGGTT',
+      'TTTTTTTTGPPGTTTTTTTT',
+      'TTTTTTTTTPPTTTTTTTTT',
+      'TTTTTTTTTPPTTTTTTTTT',
+    ],
+    buildings: [],
+    decor: [
+      { type: 'sign', x: 12, y: 12, solid: true, dialogueId: 'sign_forest' },
+    ],
+    npcs: [{ id: 'catcher', name: 'BUG CATCHER', palette: 'catcher', x: 7, y: 7, facing: 'right', wander: { r: 1 }, dialogueId: 'npc_catcher' }],
+    warps: [
+      { x: 9, y: 15, toMap: 'meadow', toX: 10, toY: 1, facing: 'down' },
+      { x: 10, y: 15, toMap: 'meadow', toX: 10, toY: 1, facing: 'down' },
+    ],
+  },
 };
 
 // Dev-time sanity checks: every map row must match its width, warps must land on open tiles.
@@ -974,7 +1158,7 @@ if (import.meta.env.DEV) {
    § 6 — DIALOGUE CONTENT (generated from portfolioData)
    ═══════════════════════════════════════════════════════════════════════════ */
 
-type DialogueAction = { label: string; href?: string; grantBadge?: string };
+type DialogueAction = { label: string; href?: string; grantBadge?: string; heal?: boolean };
 type DialogueSpec = { speaker: string; pages: string[]; actions?: DialogueAction[] };
 
 function paginate(text: string, max = 96): string[] {
@@ -1038,6 +1222,45 @@ function buildDialogues(hasBadge: (b: string) => boolean): Record<string, () => 
     sign_gym: () => ({
       speaker: 'SIGN',
       pages: ['SKILLS GYM — Where tech stacks are trained daily. The LEADER awaits challengers.'],
+    }),
+    sign_heal: () => ({
+      speaker: 'SIGN',
+      pages: ['♥ HEAL CENTER — Step inside and the NURSE will patch your skill party back to full HP, free of charge.'],
+    }),
+    sign_meadow: () => ({
+      speaker: 'SIGN',
+      pages: ['↑ NORTH — DEBUG MEADOW. Wild bugs roam the tall grass up ahead. Heal up before you go!'],
+    }),
+    sign_meadow_in: () => ({
+      speaker: 'SIGN',
+      pages: ['DEBUG MEADOW. Home of the OFF-BY-ONE and the MEMORY LEAK. The path north leads deeper into the TANGLED FOREST.'],
+    }),
+    sign_forest: () => ({
+      speaker: 'SIGN',
+      pages: ['TANGLED FOREST — Beware: STACK OVERFLOW and DEADLOCK lurk here. Tough catches, but worth filing to your BUGDEX!'],
+    }),
+
+    npc_nurse: () => ({
+      speaker: 'NURSE',
+      pages: ['Welcome to the HEAL CENTER! Shall I restore your skill party to full HP?'],
+      actions: [
+        { label: 'YES, PLEASE', heal: true },
+        { label: 'NO THANKS' },
+      ],
+    }),
+    npc_hiker: () => ({
+      speaker: 'HIKER',
+      pages: [
+        'Whew! Long climb up from town. The tall grass here is crawling with fresh bugs I have never seen down south.',
+        'Weaken them first, then lob a DEBUGGER from your BAG to file them into your BUGDEX!',
+      ],
+    }),
+    npc_catcher: () => ({
+      speaker: 'BUG CATCHER',
+      pages: [
+        'Heh! You made it to the TANGLED FOREST. The bugs here hit HARD — a STACK OVERFLOW nearly wiped my whole party.',
+        'If you black out, no worries: you wake up fully healed. But keep a HEAL CENTER trip handy anyway!',
+      ],
     }),
 
     mailbox: () => ({
@@ -1170,11 +1393,26 @@ type Move = { name: string; power: [number, number] };
 type BugSpecies = { id: string; name: string; color: string; accent: string; dark: string; maxHp: number; power: [number, number]; intro: string };
 
 const BUG_SPECIES: BugSpecies[] = [
+  // Town tall grass — the common starters
   { id: 'syntax', name: 'SYNTAX BUG', color: '#ef4444', accent: '#fecaca', dark: '#7f1d1d', maxHp: 26, power: [3, 7], intro: 'A wild SYNTAX BUG appeared!' },
   { id: 'null', name: 'NULL BUG', color: '#a78bfa', accent: '#ede9fe', dark: '#4c1d95', maxHp: 30, power: [4, 8], intro: 'A wild NULL BUG appeared out of nowhere!' },
   { id: 'merge', name: 'MERGE CONFLICT', color: '#22c55e', accent: '#dcfce7', dark: '#14532d', maxHp: 34, power: [4, 9], intro: 'A wild MERGE CONFLICT blocks the path!' },
   { id: 'race', name: 'RACE CONDITION', color: '#fbbf24', accent: '#fef9c3', dark: '#78350f', maxHp: 28, power: [3, 8], intro: 'A wild RACE CONDITION flickers into view!' },
+  // Debug Meadow (north route)
+  { id: 'offbyone', name: 'OFF-BY-ONE', color: '#22d3ee', accent: '#cffafe', dark: '#0e7490', maxHp: 24, power: [3, 7], intro: 'A wild OFF-BY-ONE skittered in — one step too far!' },
+  { id: 'memleak', name: 'MEMORY LEAK', color: '#84cc16', accent: '#ecfccb', dark: '#3f6212', maxHp: 33, power: [4, 8], intro: 'A wild MEMORY LEAK is slowly spreading!' },
+  // Tangled Forest (deep region — tougher)
+  { id: 'stackoverflow', name: 'STACK OVERFLOW', color: '#f97316', accent: '#fed7aa', dark: '#7c2d12', maxHp: 40, power: [5, 9], intro: 'A wild STACK OVERFLOW towers over you!' },
+  { id: 'deadlock', name: 'DEADLOCK', color: '#64748b', accent: '#e2e8f0', dark: '#1e293b', maxHp: 46, power: [5, 10], intro: 'A wild DEADLOCK blocks the way — nobody moves!' },
 ];
+
+// Which species can appear in each map's tall grass. Keeps regions distinct so
+// exploring new areas means meeting (and catching) new bugs.
+const ENCOUNTER_TABLES: Record<string, string[]> = {
+  town: ['syntax', 'null', 'race'],
+  meadow: ['offbyone', 'memleak', 'syntax', 'race'],
+  forest: ['stackoverflow', 'deadlock', 'merge', 'memleak'],
+};
 
 const SKILL_MOVES: Record<string, Move[]> = {
   PYTHON: [{ name: 'REFACTOR', power: [5, 9] }, { name: 'LIST COMPREHENSION', power: [4, 8] }, { name: 'ASYNC AWAIT', power: [6, 10] }],
@@ -1186,9 +1424,15 @@ const SKILL_MOVES: Record<string, Move[]> = {
 };
 const DEFAULT_MOVES: Move[] = [{ name: 'DEBUG', power: [4, 8] }];
 
+// Party HP persists between battles (damage carries over) so the HEAL CENTER
+// actually matters. Max HP scales with each skill's level.
+const skillMaxHp = (lv: number) => 20 + Math.round(lv / 2);
+const fullPartyHp = (): Record<string, number> =>
+  Object.fromEntries(portfolioData.skills.party.map((s) => [s.name, skillMaxHp(s.lv)]));
+
 type BattlePartyMember = { name: string; abbr: string; color: string; maxHp: number; hp: number; moves: Move[] };
 type BattlePhase = 'text' | 'menu' | 'fight' | 'party' | 'bag';
-type BattleNext = 'menu' | 'enemyTurn' | 'victory' | 'defeat' | 'runSuccess';
+type BattleNext = 'menu' | 'enemyTurn' | 'victory' | 'defeat' | 'runSuccess' | 'caught';
 type BattleState = {
   enemy: BugSpecies;
   enemyHp: number;
@@ -1202,6 +1446,11 @@ type BattleState = {
   cursor: number;
   hitEnemy: number;
   hitPlayer: number;
+  // Catch animation: throwSeq increments each DEBUGGER toss so BattleScreen can
+  // (re)play the throw→absorb→wobble sequence; catchWillSucceed tells it whether
+  // to settle (caught) or burst open (broke free) at the end.
+  throwSeq: number;
+  catchWillSucceed: boolean;
 };
 
 const BUG_W = 24;
@@ -1460,6 +1709,106 @@ const MATRIX_ART: Record<string, MatrixArt> = {
       '........................',
     ],
     palette: { O: '#1c1233', B: '#20232a', M: '#2b2f39', S: '#363b47', H: '#4b5464', D: '#2a7fa6', C: '#61dafb', E: '#d9f8ff' },
+  },
+  bug_offbyone: {
+    rows: [
+      '........................',
+      '...................1....',
+      '........O.........1.....',
+      '.......OCO....O.........',
+      '.......OCOOOOOCO........',
+      '......OHHLLCCCCDO.......',
+      '.....OHOWWOLCCCCDO......',
+      '.....OHWPPWLCCCCDO......',
+      '.....OLWPPWCCWPCDO......',
+      '......OOWWOCCCCDO.......',
+      '......OLCOTTMTODO.......',
+      '....OLCCCOMMMMODOLCO....',
+      '...OCC.OLLCCCCCDODO.....',
+      '..OLC..OHLLCCCCDO.......',
+      '..OCO...OLLCCCDO........',
+      '........OLCCCCDO........',
+      '......OCCCCCCCCDO.......',
+      '......OCO.OCO.OCO.......',
+      '......OCO.OCO.OCO.......',
+      '......OOO.OOO.OOO.......',
+    ],
+    palette: { '1': '#5eead4', O: '#0b3a44', D: '#0e7490', C: '#22d3ee', L: '#67e8f9', H: '#a5f3fc', W: '#ecfeff', P: '#083344', M: '#4d2436', T: '#f5feff' },
+  },
+  bug_memleak: {
+    rows: [
+      '........................',
+      '.........oooooo.........',
+      '.......oHHLLLggdo.......',
+      '......oHHLLLggggdo......',
+      '.....oHHHLLLggggddo.....',
+      '....oHHLLLLgggggdddo....',
+      '...oHLLggggggggggdddo...',
+      '...oLLggggggggggggddo...',
+      '...oLgooooggggoooogdo...',
+      '...oggwppwggggwppwgdo...',
+      '...oggdwwdggggdwwdgdo...',
+      '...oggggggggggggggddo...',
+      '...ogggggggoogggggddo...',
+      '...oggggggoggoggggddo...',
+      '...oggggggggggggddddo...',
+      '....oggggggggddddddo....',
+      '.....gd..gd..gd..gd.....',
+      '......d.......d..d......',
+      '.........oLgo...........',
+      '..........oo............',
+    ],
+    palette: { o: '#2f4d0f', d: '#4d7c0f', g: '#84cc16', L: '#a3e635', H: '#d9f99d', w: '#ecfccb', p: '#1a2e05' },
+  },
+  bug_stackoverflow: {
+    rows: [
+      '........................',
+      '..........OOOOOOOOOOO...',
+      '..........OhwwoowwssO.L.',
+      '..........OhOwoowOosOLL.',
+      '..........OooOwOwOssO.L.',
+      '.........OOOOOOOOOOOO...',
+      '.........OhhoooooosO....',
+      '.........OhooooooosO....',
+      '.........OssssssssdO....',
+      '.......OOOOOOOOOOOOO....',
+      '.......OhhoooooosO......',
+      '.......OhooooooosO......',
+      '.......OssssssssdO......',
+      '......OOOOOOOOOOOO......',
+      '......OhhoooooosO.......',
+      '......OhooooooosO.......',
+      '......OssssssssdO.......',
+      '......OOOOOOOOOOO.......',
+      '........ss...ss.........',
+      '........OO...OO.........',
+    ],
+    palette: { O: '#4a1e05', h: '#fed7aa', o: '#f97316', s: '#c2410c', d: '#7c2d12', w: '#fff7ed', L: '#fdba74' },
+  },
+  bug_deadlock: {
+    rows: [
+      '........................',
+      '........oooooooo........',
+      '.......ohhlssllgo.......',
+      '......ooollssllooo......',
+      '......olssoooosslo......',
+      '......osRrooooRrso......',
+      '......ogrgssssgrgo......',
+      '......ogohohohohgo......',
+      '...osgogssgssgssgogso...',
+      '..osglgggllsslgggglgso..',
+      '..ollhlggggssgggggllgo..',
+      '..osglgogglssgggggggso..',
+      '..ogggggssssssglllgggo..',
+      '..osggggggsssggoglglso..',
+      '...ogglggsollosgglggo...',
+      '....ogggsdykkydsgggo....',
+      '....oglgsdkddkdsglgo....',
+      '....osgggggssgggggso....',
+      '....oglggso..oglggso....',
+      '...oglggggo..ogggglgo...',
+    ],
+    palette: { o: '#1f2735', s: '#3d4a5f', g: '#64748b', l: '#94a3b8', h: '#cbd5e1', r: '#dc2626', R: '#f87171', d: '#7a6a2e', k: '#b3a04a', y: '#e6d98a' },
   },
 };
 
@@ -1726,6 +2075,7 @@ class SFX {
     osc.stop(t0 + dur + 0.02);
   }
   blip() { this.tone(1250, 0.035, 'square', 0.02); }
+  select() { this.tone(880, 0.03, 'square', 0.025); }
   confirm() { this.tone(660, 0.06); this.tone(990, 0.08, 'square', 0.04, 0.06); }
   bump() { this.tone(110, 0.07, 'triangle', 0.06); }
   door() { this.tone(520, 0.07); this.tone(330, 0.1, 'square', 0.04, 0.07); }
@@ -1734,6 +2084,129 @@ class SFX {
   save() { this.tone(784, 0.08); this.tone(1175, 0.14, 'square', 0.04, 0.09); }
   encounter() { [220, 180, 140].forEach((f, i) => this.tone(f, 0.1, 'square', 0.05, i * 0.09)); }
   hit() { this.tone(140, 0.05, 'square', 0.07); }
+  // Two-part attack: a quick sawtooth "whoosh" (wind-up) then a punchy low
+  // "crack" ~120ms later, timed to land with the lunge's contact frame.
+  attack() {
+    this.tone(720, 0.05, 'sawtooth', 0.03);
+    this.tone(520, 0.05, 'sawtooth', 0.03, 0.045);
+    this.tone(165, 0.09, 'square', 0.08, 0.12);
+    this.tone(90, 0.12, 'triangle', 0.06, 0.14);
+  }
+  faint() { [330, 262, 196, 131].forEach((f, i) => this.tone(f, 0.12, 'triangle', 0.05, i * 0.1)); }
+  catchStart() { this.tone(440, 0.06, 'square', 0.04); this.tone(392, 0.06, 'square', 0.04, 0.08); }
+  catchThrow() { this.tone(340, 0.05, 'square', 0.04); this.tone(520, 0.06, 'square', 0.04, 0.05); this.tone(720, 0.06, 'square', 0.04, 0.1); }
+  catchTick() { this.tone(900, 0.03, 'square', 0.045); this.tone(600, 0.03, 'square', 0.03, 0.02); }
+  catchWin() { [523, 659, 784, 1047, 784, 1047].forEach((f, i) => this.tone(f, 0.13, 'square', 0.05, i * 0.1)); }
+  catchFail() { this.tone(300, 0.1, 'square', 0.05); this.tone(180, 0.16, 'square', 0.05, 0.09); }
+
+  /* ——— Background music: original chiptune loops (square lead + triangle
+     bass), scheduled with a lookahead clock. `null` = rest. Semitone offsets
+     from each track's base frequency. ——— */
+  private musicTimer: number | null = null;
+  private musicTrack: 'overworld' | 'battle' | null = null;
+  private musicGain: GainNode | null = null;
+  private step = 0;
+  private nextNoteTime = 0;
+  private static readonly TRACKS = {
+    overworld: {
+      bpm: 112,
+      lead: 261.63, // C4
+      bass: 130.81, // C3
+      melody: [0, 4, 7, 4, 9, 7, 4, 0, 2, 5, 9, 5, 7, 4, 0, null],
+      bassline: [0, null, 7, null, 5, null, 12, null, 7, null, 14, null, 0, null, 7, null],
+    },
+    battle: {
+      bpm: 152,
+      lead: 220, // A3
+      bass: 110, // A2
+      melody: [0, 7, 3, 0, 7, 3, 0, -2, 0, 7, 10, 7, 8, 7, 5, 3],
+      bassline: [0, 0, 12, 0, 0, 0, 12, 0, -5, -5, 7, -5, -3, -3, 9, -3],
+    },
+  } as const;
+
+  private playAt(freq: number, dur: number, type: OscillatorType, vol: number, at: number) {
+    const ctx = this.ctx;
+    if (!ctx) return;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, at);
+    gain.gain.setValueAtTime(0.0001, at);
+    gain.gain.exponentialRampToValueAtTime(vol, at + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+    // Route music voices through the per-track master gain so stopMusic can
+    // silence the whole loop (including the ~130ms lookahead already queued)
+    // in one ramp; SFX one-shots still go straight to the destination.
+    osc.connect(gain).connect(this.musicGain ?? ctx.destination);
+    osc.start(at);
+    osc.stop(at + dur + 0.02);
+  }
+
+  private scheduler = () => {
+    const ctx = this.ctx;
+    if (!ctx || this.musicTrack === null || this.muted) return;
+    const t = SFX.TRACKS[this.musicTrack];
+    const stepDur = 60 / t.bpm / 2; // eighth-note grid
+    // If the tab was throttled, don't schedule a burst of notes in the past.
+    if (this.nextNoteTime < ctx.currentTime) this.nextNoteTime = ctx.currentTime + 0.02;
+    while (this.nextNoteTime < ctx.currentTime + 0.13) {
+      const i = this.step % t.melody.length;
+      const m = t.melody[i];
+      if (m !== null) this.playAt(t.lead * 2 ** (m / 12), stepDur * 0.92, 'square', 0.045, this.nextNoteTime);
+      const b = t.bassline[i];
+      if (b !== null) this.playAt(t.bass * 2 ** (b / 12), stepDur * 1.5, 'triangle', 0.05, this.nextNoteTime);
+      this.nextNoteTime += stepDur;
+      this.step += 1;
+    }
+  };
+
+  startMusic(track: 'overworld' | 'battle') {
+    if (this.muted) return;
+    const ctx = this.ensure();
+    if (!ctx) return;
+    if (this.musicTrack === track && this.musicTimer !== null) return;
+    this.stopMusic();
+    this.musicTrack = track;
+    this.musicGain = ctx.createGain();
+    this.musicGain.gain.setValueAtTime(0.9, ctx.currentTime);
+    this.musicGain.connect(ctx.destination);
+    this.step = 0;
+    this.nextNoteTime = ctx.currentTime + 0.06;
+    this.musicTimer = window.setInterval(this.scheduler, 25);
+  }
+
+  stopMusic() {
+    if (this.musicTimer !== null) {
+      window.clearInterval(this.musicTimer);
+      this.musicTimer = null;
+    }
+    this.musicTrack = null;
+    // Fade the master node to zero over 30ms so already-queued lookahead notes
+    // are cut cleanly (no click), then disconnect it.
+    const g = this.musicGain;
+    this.musicGain = null;
+    if (g && this.ctx) {
+      const now = this.ctx.currentTime;
+      try {
+        g.gain.cancelScheduledValues(now);
+        g.gain.setValueAtTime(g.gain.value, now);
+        g.gain.linearRampToValueAtTime(0, now + 0.03);
+      } catch {
+        /* ignore */
+      }
+      window.setTimeout(() => {
+        try {
+          g.disconnect();
+        } catch {
+          /* ignore */
+        }
+      }, 80);
+    }
+  }
+
+  get currentTrack() {
+    return this.musicTrack;
+  }
 }
 const sfx = new SFX();
 
@@ -1742,7 +2215,7 @@ const sfx = new SFX();
    ═══════════════════════════════════════════════════════════════════════════ */
 
 const SAVE_KEY = 'portfolio-town-save-v1';
-type SaveData = { map: string; x: number; y: number; facing: Dir; badges: string[]; muted: boolean; bugsDefeated: number };
+type SaveData = { map: string; x: number; y: number; facing: Dir; badges: string[]; muted: boolean; bugsDefeated: number; caughtBugs: string[]; partyHp?: Record<string, number> };
 
 function loadSave(): SaveData | null {
   try {
@@ -1914,33 +2387,42 @@ function DialogueBox({
   );
 }
 
-function PartyHUD({ onOpen }: { onOpen: () => void }) {
+function PartyHUD({ onOpen, partyHp }: { onOpen: () => void; partyHp: Record<string, number> }) {
+  const hurt = portfolioData.skills.party.some((s) => (partyHp[s.name] ?? skillMaxHp(s.lv)) < skillMaxHp(s.lv));
   return (
     <div className="absolute left-2 top-2 z-20 flex flex-col gap-1" aria-label="Skill party">
-      {portfolioData.skills.party.map((s) => (
-        <button
-          key={s.name}
-          onClick={onOpen}
-          className="group flex items-center gap-1.5 rpg-frame-dark px-1.5 py-1 hover:brightness-125 cursor-pointer"
-          title={`${s.name} — Lv.${s.lv} ${s.type}`}
-        >
-          <span
-            className="w-5 h-5 grid place-items-center text-[7px] border-2"
-            style={{ background: s.color, borderColor: '#10131c', color: '#10131c' }}
+      {portfolioData.skills.party.map((s) => {
+        const max = skillMaxHp(s.lv);
+        const hp = Math.max(0, Math.min(max, partyHp[s.name] ?? max));
+        const frac = (hp / max) * 100;
+        const fainted = hp <= 0;
+        return (
+          <button
+            key={s.name}
+            onClick={onOpen}
+            className={`group flex items-center gap-1.5 rpg-frame-dark px-1.5 py-1 hover:brightness-125 cursor-pointer ${fainted ? 'opacity-45' : ''}`}
+            title={`${s.name} — Lv.${s.lv} ${s.type} — HP ${hp}/${max}`}
           >
-            {s.abbr}
-          </span>
-          <span className="hidden md:flex flex-col w-20">
-            <span className="text-[7px] text-left leading-tight">{s.name} <span className="text-amber-300">Lv{s.lv}</span></span>
-            <span className="h-1.5 mt-0.5 w-full bg-[#10131c] border border-[#3d4663]">
-              <span
-                className="block h-full"
-                style={{ width: `${s.lv}%`, background: s.lv > 75 ? '#4ade80' : s.lv > 45 ? '#fbbf24' : '#f87171' }}
-              />
+            <span
+              className="w-5 h-5 grid place-items-center text-[7px] border-2"
+              style={{ background: s.color, borderColor: '#10131c', color: '#10131c' }}
+            >
+              {s.abbr}
             </span>
-          </span>
-        </button>
-      ))}
+            <span className="hidden md:flex flex-col w-20">
+              <span className="text-[7px] text-left leading-tight">
+                {s.name} {fainted ? <span className="text-red-400">KO</span> : <span className="text-amber-300">{hp}/{max}</span>}
+              </span>
+              <span className="h-1.5 mt-0.5 w-full bg-[#10131c] border border-[#3d4663]">
+                <span className="block h-full transition-all" style={{ width: `${frac}%`, background: frac > 50 ? '#4ade80' : frac > 20 ? '#fbbf24' : '#f87171' }} />
+              </span>
+            </span>
+          </button>
+        );
+      })}
+      {hurt && (
+        <div className="rpg-frame-dark px-1.5 py-1 text-[6px] text-red-300 md:w-[104px] leading-tight">♥ party hurt — visit HEAL CENTER</div>
+      )}
     </div>
   );
 }
@@ -1949,18 +2431,22 @@ function Backpack({
   onClose,
   badges,
   bugsDefeated,
+  caughtBugs,
   muted,
   onToggleMute,
   onSave,
+  onClassicView,
 }: {
   onClose: () => void;
   badges: string[];
   bugsDefeated: number;
+  caughtBugs: string[];
   muted: boolean;
   onToggleMute: () => void;
   onSave: () => void;
+  onClassicView: () => void;
 }) {
-  const tabs = ['PROFILE', 'SKILLS', 'PROJECTS', 'CONTACT'] as const;
+  const tabs = ['PROFILE', 'SKILLS', 'PROJECTS', 'BUGDEX', 'CONTACT'] as const;
   const [tab, setTab] = useState<(typeof tabs)[number]>('PROFILE');
   const cvHref = import.meta.env.BASE_URL + portfolioData.contact.cvFile;
   return (
@@ -2072,6 +2558,43 @@ function Backpack({
               ))}
             </div>
           )}
+          {tab === 'BUGDEX' && (
+            <div>
+              <p className="text-[9px]">
+                WILD BUGS PATCHED: <span className="text-amber-600">{caughtBugs.length}/{BUG_SPECIES.length}</span>
+              </p>
+              <p className="text-[8px] text-[#2b234088] mt-1">Weaken a wild bug in the tall grass, then toss a DEBUGGER from your BAG to file it here.</p>
+              <div className="grid grid-cols-2 gap-2 mt-3">
+                {BUG_SPECIES.map((s) => {
+                  const owned = caughtBugs.includes(s.id);
+                  return (
+                    <div key={s.id} className={`flex items-center gap-2 border-2 p-2 ${owned ? 'border-[#2b2340]' : 'border-[#2b234040]'}`}>
+                      <canvas
+                        ref={(el) => {
+                          const ctx = el?.getContext('2d');
+                          if (ctx && el && el.dataset.painted !== '1') {
+                            el.dataset.painted = '1';
+                            ctx.drawImage(getBugSprite(s), 0, 0);
+                            if (!owned) {
+                              // silhouette: darken un-filed entries
+                              ctx.globalCompositeOperation = 'source-atop';
+                              ctx.fillStyle = 'rgba(43,35,64,0.86)';
+                              ctx.fillRect(0, 0, BUG_W, BUG_H);
+                            }
+                          }
+                        }}
+                        width={BUG_W}
+                        height={BUG_H}
+                        className="pixelated shrink-0"
+                        style={{ width: BUG_W * 1.6, height: BUG_H * 1.6 }}
+                      />
+                      <span className="text-[8px] leading-tight">{owned ? s.name : '???'}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
           {tab === 'CONTACT' && (
             <div>
               <p>Open to backend roles, collaborations, and interesting challenges. Usually replies within a day.</p>
@@ -2095,6 +2618,9 @@ function Backpack({
           <button onClick={onToggleMute} className="px-2.5 py-1.5 text-[9px] border-2 border-[#2b2340] hover:bg-[#2b2340] hover:text-amber-300">
             {muted ? '🔇 SOUND: OFF' : '🔊 SOUND: ON'}
           </button>
+          <button onClick={onClassicView} className="px-2.5 py-1.5 text-[9px] border-2 border-[#2b2340] hover:bg-[#2b2340] hover:text-amber-300" title="Read as a plain page">
+            📄 CLASSIC VIEW
+          </button>
           <span className="ml-auto text-[8px] text-[#2b234066]">M / ESC to close</span>
         </div>
       </motion.div>
@@ -2102,7 +2628,192 @@ function Backpack({
   );
 }
 
-function TitleScreen({ hasSave, onStart }: { hasSave: boolean; onStart: (cont: boolean) => void }) {
+// Compact sound on/off toggle, reused on the title, HUD and battle screen so
+// audio can always be silenced from wherever the player is.
+function MuteButton({ muted, onToggle, className }: { muted: boolean; onToggle: () => void; className?: string }) {
+  return (
+    <button
+      onClick={onToggle}
+      aria-label={muted ? 'Unmute sound' : 'Mute sound'}
+      title={muted ? 'Sound off — click to unmute' : 'Sound on — click to mute'}
+      className={`rpg-frame-dark px-2.5 py-2 text-[11px] leading-none hover:brightness-125 ${className ?? ''}`}
+    >
+      {muted ? '🔇' : '🔊'}
+    </button>
+  );
+}
+
+// Recruiter escape hatch: a readable, non-game "classic" portfolio page over
+// the whole app. Uses a legible sans-serif for long-form copy (Press Start 2P
+// is exhausting past a headline), with pixel-styled section chips for accent.
+function ClassicView({ onClose }: { onClose: () => void }) {
+  const d = portfolioData;
+  const cvHref = import.meta.env.BASE_URL + d.contact.cvFile;
+  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+  // Move focus into the overlay on open and close it with Escape, so keyboard
+  // users aren't stranded tabbing through controls hidden behind it.
+  useEffect(() => {
+    closeBtnRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+  const Chip = ({ children }: { children: React.ReactNode }) => (
+    <span className="inline-block px-2 py-1 text-[9px] bg-[#2b2340] text-amber-300 border-2 border-[#f8f6ee] shadow-[2px_2px_0_rgba(11,15,20,0.4)]" style={{ fontFamily: "'Press Start 2P', monospace" }}>
+      {children}
+    </span>
+  );
+  return (
+    <motion.div
+      // Opaque on mount (no entrance opacity fade) so the game/title behind
+      // never bleeds through; only the exit fades back to the game.
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="absolute inset-0 z-[60] bg-[#0b0f14] overflow-y-auto rpg-scroll selectable"
+      style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif" }}
+      role="dialog"
+      aria-label="Classic portfolio view"
+    >
+      <div className="max-w-3xl mx-auto px-5 py-8 text-slate-200">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight">{d.name}</h1>
+            <p className="mt-1 text-amber-300 text-base sm:text-lg">{d.role}</p>
+            <p className="mt-1 text-slate-400 text-sm">{d.tagline}</p>
+          </div>
+          <button
+            ref={closeBtnRef}
+            onClick={onClose}
+            className="shrink-0 px-3 py-2 text-[9px] bg-[#1c2233] text-amber-300 border-2 border-[#3d4663] hover:brightness-125"
+            style={{ fontFamily: "'Press Start 2P', monospace" }}
+            aria-label="Close and return to the game"
+          >
+            ✕ GAME
+          </button>
+        </div>
+
+        <div className="mt-5 flex flex-wrap gap-3">
+          <a href={cvHref} download={d.contact.cvFile} className="px-4 py-2.5 rounded bg-amber-400 text-[#1a1526] font-semibold text-sm hover:bg-amber-300">
+            ⬇ Download CV (PDF)
+          </a>
+          <a href={`mailto:${d.contact.email}`} className="px-4 py-2.5 rounded border border-[#3d4663] text-slate-200 text-sm hover:bg-[#1c2233]">
+            ✉ {d.contact.email}
+          </a>
+          {d.contact.socials.map((s) => (
+            <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="px-4 py-2.5 rounded border border-[#3d4663] text-slate-200 text-sm hover:bg-[#1c2233]">
+              {s.label} ↗
+            </a>
+          ))}
+        </div>
+
+        <section className="mt-9">
+          <Chip>ABOUT</Chip>
+          <div className="mt-3 space-y-2 text-slate-300 text-sm leading-relaxed">
+            {d.about.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-9">
+          <Chip>EXPERIENCE</Chip>
+          <div className="mt-3 space-y-4">
+            {d.experience.map((e) => (
+              <div key={e.role + e.company} className="border-l-2 border-amber-400/60 pl-4">
+                <p className="text-white font-semibold text-sm">
+                  {e.role} <span className="text-slate-400 font-normal">— {e.company}</span>
+                </p>
+                <p className="text-slate-500 text-xs">{e.period}</p>
+                <p className="mt-1 text-slate-300 text-sm leading-relaxed">{e.summary}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-9">
+          <Chip>SKILLS</Chip>
+          <div className="mt-3 grid sm:grid-cols-3 gap-4">
+            {Object.entries(d.skills.groups).map(([k, g]) => (
+              <div key={k} className="rounded border border-[#3d4663] p-3">
+                <p className="text-white font-semibold text-sm capitalize">
+                  {k} <span className="text-amber-400 text-xs">· {g.level}</span>
+                </p>
+                <ul className="mt-2 space-y-1 text-slate-300 text-xs leading-relaxed">
+                  {g.items.map((it) => (
+                    <li key={it}>› {it}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {d.skills.badges.map((b) => (
+              <span key={b} className="px-2.5 py-1 rounded-full text-xs bg-[#1c2233] border border-[#3d4663] text-slate-300">
+                {b}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-9">
+          <Chip>PROJECTS</Chip>
+          <div className="mt-3 grid sm:grid-cols-2 gap-4">
+            {d.projects.map((p) => (
+              <div key={p.title} className="rounded border border-[#3d4663] p-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-sm border border-[#3d4663]" style={{ background: p.screenColor }} />
+                  <p className="text-white font-semibold text-sm">{p.title}</p>
+                </div>
+                <p className="text-slate-400 text-xs mt-0.5">{p.subtitle}</p>
+                <p className="mt-2 text-slate-300 text-sm leading-relaxed">{p.blurb}</p>
+                <ul className="mt-2 space-y-1 text-slate-400 text-xs leading-relaxed">
+                  {p.achievements.map((a) => (
+                    <li key={a}>• {a}</li>
+                  ))}
+                </ul>
+                <p className="mt-2 text-slate-500 text-xs">{p.tech.join(' · ')}</p>
+                <div className="mt-2 flex gap-3">
+                  {p.github && (
+                    <a href={p.github} target="_blank" rel="noopener noreferrer" className="text-amber-300 text-xs hover:underline">
+                      GitHub ↗
+                    </a>
+                  )}
+                  {p.live && (
+                    <a href={p.live} target="_blank" rel="noopener noreferrer" className="text-amber-300 text-xs hover:underline">
+                      Live demo ↗
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <p className="mt-10 text-center text-slate-500 text-xs">
+          Prefer the fun way? <button onClick={onClose} className="text-amber-300 hover:underline">Play the portfolio →</button>
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+function TitleScreen({
+  hasSave,
+  onStart,
+  onClassicView,
+  muted,
+  onToggleMute,
+}: {
+  hasSave: boolean;
+  onStart: (cont: boolean) => void;
+  onClassicView: () => void;
+  muted: boolean;
+  onToggleMute: () => void;
+}) {
   const options = hasSave ? ['CONTINUE', 'NEW GAME'] : ['NEW GAME'];
   const [idx, setIdx] = useState(0);
   const spriteRef = useRef<HTMLCanvasElement | null>(null);
@@ -2137,6 +2848,9 @@ function TitleScreen({ hasSave, onStart }: { hasSave: boolean; onStart: (cont: b
       transition={{ duration: 0.5 }}
       className="absolute inset-0 z-50 bg-[#0b0f14] grid place-items-center p-4"
     >
+      <div className="absolute right-3 top-3">
+        <MuteButton muted={muted} onToggle={onToggleMute} />
+      </div>
       <div className="text-center">
         <motion.p
           initial={{ y: -16, opacity: 0 }}
@@ -2183,6 +2897,12 @@ function TitleScreen({ hasSave, onStart }: { hasSave: boolean; onStart: (cont: b
         <p className="mt-4 text-[7px] text-slate-600 leading-relaxed">
           WASD / ARROWS — MOVE · E — INTERACT · SHIFT — RUN · M — BACKPACK
         </p>
+        <button
+          onClick={onClassicView}
+          className="mt-5 text-[8px] text-slate-500 hover:text-amber-300 underline underline-offset-4 decoration-dotted"
+        >
+          In a hurry? View as a classic CV page →
+        </button>
       </div>
     </motion.div>
   );
@@ -2237,6 +2957,74 @@ function DPad({ onDir, onStop, onA, onB }: { onDir: (d: Dir) => void; onStop: (d
   );
 }
 
+// A quick impact flourish over a struck fighter: an expanding ring + shards.
+function ImpactBurst({ color }: { color: string }) {
+  return (
+    <div className="absolute inset-0 grid place-items-center pointer-events-none" style={{ zIndex: 5 }}>
+      <motion.div
+        initial={{ scale: 0.2, opacity: 0.9 }}
+        animate={{ scale: 2.3, opacity: 0 }}
+        transition={{ duration: 0.32, ease: 'easeOut' }}
+        className="absolute w-10 h-10 rounded-full"
+        style={{ border: `3px solid ${color}` }}
+      />
+      {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+        const a = (i / 8) * Math.PI * 2;
+        return (
+          <motion.span
+            key={i}
+            initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+            animate={{ x: Math.cos(a) * 36, y: Math.sin(a) * 36, opacity: 0, scale: 0.4 }}
+            transition={{ duration: 0.38, ease: 'easeOut' }}
+            className="absolute w-2 h-2"
+            style={{ background: color }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+// The thrown DEBUGGER device (a little pixel gadget). Animation stage is driven
+// by the `phase` prop; it flies in from the player side, wobbles, then settles
+// or bursts. Rendered centered over the enemy sprite.
+function CatchDevice({ phase }: { phase: 'throw' | 'wobble' | 'done' | 'break' }) {
+  const anim =
+    phase === 'throw'
+      ? { x: 0, y: 0, scale: 1, rotate: 0, opacity: 1 }
+      : phase === 'wobble'
+        ? { x: 0, y: 8, scale: 1, rotate: [0, -16, 12, -8, 4, 0], opacity: 1 }
+        : phase === 'done'
+          ? { x: 0, y: 8, scale: [1, 1.25, 1], rotate: 0, opacity: 1 }
+          : { x: 0, y: 8, scale: 1.8, rotate: 0, opacity: 0 };
+  const duration = phase === 'throw' ? 0.42 : phase === 'wobble' ? 1.1 : phase === 'done' ? 0.28 : 0.3;
+  return (
+    <motion.div
+      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      style={{ zIndex: 6 }}
+      initial={{ x: -230, y: 190, scale: 0.5, rotate: -120, opacity: 1 }}
+      animate={anim}
+      transition={{ duration, ease: phase === 'throw' ? 'easeIn' : 'easeInOut' }}
+    >
+      <div className="w-8 h-8 rounded bg-[#1c2233] border-2 border-[#e2e8f0] grid place-items-center shadow-[2px_2px_0_rgba(0,0,0,0.45)]">
+        <span className="text-[8px] text-cyan-300" style={{ fontFamily: "'Press Start 2P', monospace" }}>
+          &lt;/&gt;
+        </span>
+      </div>
+      {phase === 'done' && (
+        <motion.span
+          initial={{ scale: 0, opacity: 1 }}
+          animate={{ scale: 1.6, opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="absolute -top-2 -right-2 text-amber-300 text-[10px]"
+        >
+          ✦
+        </motion.span>
+      )}
+    </motion.div>
+  );
+}
+
 function BattleScreen({
   battle,
   onAdvance,
@@ -2245,7 +3033,11 @@ function BattleScreen({
   onChooseMove,
   onSwitchActive,
   onUseCoffee,
+  onUseDebugger,
   onBack,
+  caughtBugs,
+  muted,
+  onToggleMute,
 }: {
   battle: BattleState;
   onAdvance: () => void;
@@ -2254,7 +3046,11 @@ function BattleScreen({
   onChooseMove: (i: number) => void;
   onSwitchActive: (i: number) => void;
   onUseCoffee: () => void;
+  onUseDebugger: () => void;
   onBack: () => void;
+  caughtBugs: string[];
+  muted: boolean;
+  onToggleMute: () => void;
 }) {
   const enemyCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const playerCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -2262,7 +3058,14 @@ function BattleScreen({
   const playerShakeRef = useRef<HTMLDivElement | null>(null);
   const prevHitEnemy = useRef(battle.hitEnemy);
   const prevHitPlayer = useRef(battle.hitPlayer);
+  const prevThrow = useRef(battle.throwSeq);
   const active = battle.party[battle.active];
+
+  // Impact burst on hit (star + shards over the struck fighter), keyed by seq.
+  const [impact, setImpact] = useState<{ seq: number; side: 'enemy' | 'player' } | null>(null);
+  // Catch animation stages, driven by throwSeq.
+  const [catchPhase, setCatchPhase] = useState<'idle' | 'throw' | 'wobble' | 'done' | 'break'>('idle');
+  const [enemyVisible, setEnemyVisible] = useState(true);
 
   useEffect(() => {
     const ctx = enemyCanvasRef.current?.getContext('2d');
@@ -2291,6 +3094,8 @@ function BattleScreen({
   useEffect(() => {
     if (battle.hitEnemy !== prevHitEnemy.current) {
       prevHitEnemy.current = battle.hitEnemy;
+      // the impact burst is timed ~150ms in, to land with the lunge's contact
+      window.setTimeout(() => setImpact({ seq: battle.hitEnemy, side: 'enemy' }), reducedMotion ? 0 : 150);
       if (!reducedMotion) {
         enemyShakeRef.current?.animate(
           [{ transform: 'translateX(0)' }, { transform: 'translateX(-6px)' }, { transform: 'translateX(6px)' }, { transform: 'translateX(-4px)' }, { transform: 'translateX(4px)' }, { transform: 'translateX(0)' }],
@@ -2304,6 +3109,7 @@ function BattleScreen({
   useEffect(() => {
     if (battle.hitPlayer !== prevHitPlayer.current) {
       prevHitPlayer.current = battle.hitPlayer;
+      window.setTimeout(() => setImpact({ seq: battle.hitPlayer + 100000, side: 'player' }), reducedMotion ? 0 : 150);
       if (!reducedMotion) {
         playerShakeRef.current?.animate(
           [{ transform: 'translateX(0)' }, { transform: 'translateX(6px)' }, { transform: 'translateX(-6px)' }, { transform: 'translateX(4px)' }, { transform: 'translateX(-4px)' }, { transform: 'translateX(0)' }],
@@ -2313,6 +3119,43 @@ function BattleScreen({
       }
     }
   }, [battle.hitPlayer]);
+
+  // Catch sequence: throw the device in, absorb the bug, wobble, then settle
+  // (success) or burst open with the bug reappearing (failure).
+  useEffect(() => {
+    if (battle.throwSeq === prevThrow.current) return;
+    prevThrow.current = battle.throwSeq;
+    const success = battle.catchWillSucceed;
+    if (reducedMotion) {
+      setEnemyVisible(!success ? true : false);
+      return;
+    }
+    const timers: number[] = [];
+    setCatchPhase('throw');
+    setEnemyVisible(true);
+    timers.push(
+      window.setTimeout(() => {
+        setEnemyVisible(false); // absorbed
+        setCatchPhase('wobble');
+        sfx.catchTick();
+      }, 440)
+    );
+    timers.push(window.setTimeout(() => sfx.catchTick(), 940));
+    timers.push(window.setTimeout(() => sfx.catchTick(), 1340));
+    timers.push(
+      window.setTimeout(() => {
+        if (success) {
+          setCatchPhase('done');
+        } else {
+          setCatchPhase('break');
+          setEnemyVisible(true); // wriggles back out
+          sfx.catchFail();
+          timers.push(window.setTimeout(() => setCatchPhase('idle'), 320));
+        }
+      }, 1640)
+    );
+    return () => timers.forEach((t) => window.clearTimeout(t));
+  }, [battle.throwSeq, battle.catchWillSucceed]);
 
   const pct = (hp: number, max: number) => Math.max(0, Math.min(100, (hp / max) * 100));
   const barColor = (p: number) => (p > 50 ? '#4ade80' : p > 20 ? '#fbbf24' : '#f87171');
@@ -2342,6 +3185,9 @@ function BattleScreen({
         height={180}
         className="pixelated absolute inset-0 w-full h-full"
       />
+      <div className="absolute left-2 top-2 z-20">
+        <MuteButton muted={muted} onToggle={onToggleMute} />
+      </div>
       <div className="relative flex-1 overflow-hidden">
         {/* Enemy platform */}
         <div className="absolute right-[13%] top-[19%] flex flex-col items-end gap-1.5">
@@ -2359,7 +3205,15 @@ function BattleScreen({
           <motion.div animate={reducedMotion ? undefined : { y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 1.7, ease: 'easeInOut' }}>
             <div ref={enemyShakeRef} className="relative">
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-4 rounded-[50%] bg-black/20" />
-              <canvas ref={enemyCanvasRef} width={BUG_W} height={BUG_H} className="pixelated" style={{ width: BUG_W * 4.5, height: BUG_H * 4.5 }} />
+              <canvas
+                ref={enemyCanvasRef}
+                width={BUG_W}
+                height={BUG_H}
+                className="pixelated"
+                style={{ width: BUG_W * 4.5, height: BUG_H * 4.5, opacity: enemyVisible ? 1 : 0, transition: 'opacity 0.2s' }}
+              />
+              {impact?.side === 'enemy' && <ImpactBurst key={impact.seq} color="#fff7cf" />}
+              {catchPhase !== 'idle' && <CatchDevice key={battle.throwSeq} phase={catchPhase} />}
             </div>
           </motion.div>
         </div>
@@ -2370,6 +3224,7 @@ function BattleScreen({
             <div ref={playerShakeRef} className="relative">
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-14 h-4 rounded-[50%] bg-black/20" />
               <canvas ref={playerCanvasRef} width={CREATURE_W} height={CREATURE_H} className="pixelated" style={{ width: CREATURE_W * 4.5, height: CREATURE_H * 4.5 }} />
+              {impact?.side === 'player' && <ImpactBurst key={impact.seq} color="#f87171" />}
             </div>
           </motion.div>
           <div className="rpg-frame px-2.5 py-1.5 text-[9px] min-w-[160px] order-1">
@@ -2453,7 +3308,10 @@ function BattleScreen({
         {battle.phase === 'bag' && (
           <div>
             <button onClick={onUseCoffee} className={`w-full mb-2 ${optionCls(battle.cursor === 0)}`}>☕ COFFEE — restore 40% HP</button>
-            <button onClick={onBack} className={`w-full ${optionCls(battle.cursor === 1)}`}>◀ BACK</button>
+            <button onClick={onUseDebugger} className={`w-full mb-2 ${optionCls(battle.cursor === 1)}`}>
+              🐞 DEBUGGER — try to patch &amp; catch{caughtBugs.includes(battle.enemy.id) ? ' (already filed)' : ''}
+            </button>
+            <button onClick={onBack} className={`w-full ${optionCls(battle.cursor === 2)}`}>◀ BACK</button>
           </div>
         )}
       </div>
@@ -2475,6 +3333,9 @@ const BOOT_SPAWNS: Record<string, Vec> = {
   town: { x: 9, y: 20 },
   gym: { x: 7, y: 9 },
   gallery: { x: 8, y: 9 },
+  heal: { x: 5, y: 6 },
+  meadow: { x: 10, y: 15 },
+  forest: { x: 9, y: 13 },
 };
 const BOOT: { map: string; x: number; y: number } | null = (() => {
   if (typeof window === 'undefined') return null;
@@ -2633,6 +3494,13 @@ function Game() {
   const [battle, setBattle] = useState<BattleState | null>(null);
   const [battleFlash, setBattleFlash] = useState(false);
   const [bugsDefeated, setBugsDefeated] = useState(0);
+  const [caughtBugs, setCaughtBugs] = useState<string[]>([]);
+  const [partyHp, setPartyHp] = useState<Record<string, number>>(() => fullPartyHp());
+  // `?classic=1` opens the readable CV page directly — a shareable deep-link
+  // for recruiters who'd rather not play through the game.
+  const [classicView, setClassicView] = useState(
+    () => typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('classic') === '1'
+  );
 
   const touchMode = useMemo(
     () => typeof window !== 'undefined' && (navigator.maxTouchPoints > 0 || 'ontouchstart' in window) && window.matchMedia('(pointer: coarse)').matches,
@@ -2669,8 +3537,14 @@ function Game() {
   battleRef.current = battle;
   const bugsDefeatedRef = useRef(bugsDefeated);
   bugsDefeatedRef.current = bugsDefeated;
+  const caughtBugsRef = useRef(caughtBugs);
+  caughtBugsRef.current = caughtBugs;
+  const partyHpRef = useRef(partyHp);
+  partyHpRef.current = partyHp;
+  const classicViewRef = useRef(classicView);
+  classicViewRef.current = classicView;
 
-  blockedRef.current = phase !== 'playing' || dialogue !== null || menuOpen || fade || battle !== null;
+  blockedRef.current = phase !== 'playing' || dialogue !== null || menuOpen || fade || battle !== null || classicView;
 
   const dialogues = useMemo(() => buildDialogues((b) => badgesRef.current.includes(b)), []);
 
@@ -2753,9 +3627,14 @@ function Game() {
     (a: DialogueAction) => {
       if (a.grantBadge) grantBadge(a.grantBadge);
       if (a.href) window.open(a.href, a.href.startsWith('mailto:') ? '_self' : '_blank', 'noopener');
+      if (a.heal) {
+        setPartyHp(fullPartyHp());
+        sfx.catchWin();
+        showToast('♥ Your skill party was restored to full HP!');
+      }
       setDialogue(null);
     },
-    [grantBadge]
+    [grantBadge, showToast]
   );
 
   const advanceDialogue = useCallback(() => {
@@ -2842,11 +3721,19 @@ function Game() {
   const ENCOUNTER_CHANCE = 0.14;
 
   const startBattle = useCallback(() => {
-    const species = BUG_SPECIES[Math.floor(rngRef.current() * BUG_SPECIES.length)];
+    const table = ENCOUNTER_TABLES[mapRef.current.id] ?? ENCOUNTER_TABLES.town;
+    const pool = table.map((id) => BUG_SPECIES.find((s) => s.id === id)).filter((s): s is BugSpecies => !!s);
+    const species = pool[Math.floor(rngRef.current() * pool.length)];
+    const persisted = partyHpRef.current;
+    // If somehow the whole party is down, start everyone at full (defeat already
+    // full-heals, so this is just a safety net against an unwinnable encounter).
+    const anyAlive = portfolioData.skills.party.some((s) => (persisted[s.name] ?? skillMaxHp(s.lv)) > 0);
     const party: BattlePartyMember[] = portfolioData.skills.party.map((s) => {
-      const maxHp = 20 + Math.round(s.lv / 2);
-      return { name: s.name, abbr: s.abbr, color: s.color, maxHp, hp: maxHp, moves: SKILL_MOVES[s.name] ?? DEFAULT_MOVES };
+      const maxHp = skillMaxHp(s.lv);
+      const hp = anyAlive ? Math.max(0, Math.min(maxHp, persisted[s.name] ?? maxHp)) : maxHp;
+      return { name: s.name, abbr: s.abbr, color: s.color, maxHp, hp, moves: SKILL_MOVES[s.name] ?? DEFAULT_MOVES };
     });
+    const active = Math.max(0, party.findIndex((m) => m.hp > 0));
     sfx.encounter();
     setBattleFlash(true);
     window.setTimeout(() => setBattleFlash(false), 180);
@@ -2854,7 +3741,7 @@ function Game() {
       enemy: species,
       enemyHp: species.maxHp,
       party,
-      active: 0,
+      active,
       phase: 'text',
       msgs: [species.intro],
       msgIdx: 0,
@@ -2863,6 +3750,8 @@ function Game() {
       cursor: 0,
       hitEnemy: 0,
       hitPlayer: 0,
+      throwSeq: 0,
+      catchWillSucceed: false,
     });
   }, []);
 
@@ -2870,6 +3759,15 @@ function Game() {
     if (FORCE_BATTLE && phase === 'playing') startBattle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);
+
+  // Persist the surviving battle HP back to the overworld party record.
+  const commitBattleHp = useCallback((party: BattlePartyMember[]) => {
+    setPartyHp((prev) => {
+      const next = { ...prev };
+      for (const m of party) next[m.name] = m.hp;
+      return next;
+    });
+  }, []);
 
   const runBattleTransition = useCallback(
     (b: BattleState) => {
@@ -2882,8 +3780,9 @@ function Game() {
           const activeMember = b.party[b.active];
           const hp = Math.max(0, activeMember.hp - dmg);
           const party = b.party.map((m, i) => (i === b.active ? { ...m, hp } : m));
-          sfx.hit();
+          sfx.attack();
           if (hp === 0) {
+            sfx.faint();
             const aliveIdx = party.findIndex((m) => m.hp > 0);
             const baseMsgs = [`${b.enemy.name} hits ${activeMember.name} for ${dmg}!`, `${activeMember.name} can't continue!`];
             if (aliveIdx === -1) {
@@ -2916,16 +3815,28 @@ function Game() {
           return;
         }
         case 'victory':
+          commitBattleHp(b.party);
           setBugsDefeated((n) => n + 1);
           sfx.badge();
           showToast(`★ Squashed the ${b.enemy.name}!`);
           setBattle(null);
           return;
+        case 'caught':
+          commitBattleHp(b.party);
+          setCaughtBugs((prev) => (prev.includes(b.enemy.id) ? prev : [...prev, b.enemy.id]));
+          sfx.catchWin();
+          showToast(`✔ ${b.enemy.name} patched & filed to your BUGDEX!`);
+          setBattle(null);
+          return;
         case 'defeat':
-          showToast('Your skills retreat to patch things up. No harm done!');
+          // Whiting-out fully restores the party (matches the "no harm done"
+          // copy) so a wipe can never soft-lock the player.
+          setPartyHp(fullPartyHp());
+          showToast('Your skills black out and recover fully. Find a HEAL CENTER next time!');
           setBattle(null);
           return;
         case 'runSuccess':
+          commitBattleHp(b.party);
           showToast('Got away safely!');
           setBattle(null);
           return;
@@ -2933,7 +3844,7 @@ function Game() {
           setBattle({ ...b, phase: 'menu', cursor: 0 });
       }
     },
-    [showToast]
+    [showToast, commitBattleHp]
   );
 
   const advanceBattleText = useCallback(() => {
@@ -2959,7 +3870,7 @@ function Game() {
     if (!move) return;
     const dmg = randInt(rngRef.current, move.power[0], move.power[1]);
     const enemyHp = Math.max(0, b.enemyHp - dmg);
-    sfx.hit();
+    sfx.attack();
     if (enemyHp <= 0) {
       setBattle({
         ...b,
@@ -2993,6 +3904,46 @@ function Game() {
     const party = b.party.map((m, i) => (i === b.active ? { ...m, hp: Math.min(m.maxHp, m.hp + heal) } : m));
     sfx.confirm();
     setBattle({ ...b, party, phase: 'text', msgs: [`Drank a COFFEE! ${active.name} recovered ${heal} HP!`], msgIdx: 0, typed: false, next: 'enemyTurn' });
+  }, []);
+
+  // Throw a DEBUGGER to catch (patch) the wild bug. Classic-style catch rate:
+  // the weaker the bug's remaining HP, the higher the chance. Already-filed
+  // species are near-guaranteed. On failure the bug gets its turn.
+  const useDebugger = useCallback(() => {
+    const b = battleRef.current;
+    if (!b || b.phase !== 'bag') return;
+    const frac = b.enemyHp / b.enemy.maxHp;
+    const already = caughtBugsRef.current.includes(b.enemy.id);
+    const chance = already ? 0.9 : Math.max(0.15, Math.min(0.92, 0.3 + 0.6 * (1 - frac)));
+    const caught = rngRef.current() < chance;
+    sfx.catchThrow();
+    // throwSeq++ triggers the throw→absorb→wobble animation in BattleScreen;
+    // catchWillSucceed tells it how to end. Result SFX: the win jingle plays in
+    // runBattleTransition('caught') (battle unmounts, so it must live in logic);
+    // the fail buzz plays from the animation (battle stays mounted on failure).
+    if (caught) {
+      setBattle({
+        ...b,
+        phase: 'text',
+        msgs: ['You tossed a DEBUGGER...', '. . . . . .', `Gotcha! The ${b.enemy.name} was patched!`],
+        msgIdx: 0,
+        typed: false,
+        next: 'caught',
+        throwSeq: b.throwSeq + 1,
+        catchWillSucceed: true,
+      });
+    } else {
+      setBattle({
+        ...b,
+        phase: 'text',
+        msgs: ['You tossed a DEBUGGER...', `Argh! The ${b.enemy.name} wriggled free!`],
+        msgIdx: 0,
+        typed: false,
+        next: 'enemyTurn',
+        throwSeq: b.throwSeq + 1,
+        catchWillSucceed: false,
+      });
+    }
   }, []);
 
   const switchActive = useCallback((idx: number) => {
@@ -3039,6 +3990,8 @@ function Game() {
         if (go.includes(e.key)) advanceBattleText();
         return;
       }
+      // cursor-move blip for the interactive menus
+      if ([...up, ...down, ...left, ...right].includes(e.key)) sfx.select();
       if (b.phase === 'menu') {
         if (up.includes(e.key)) setBattle({ ...b, cursor: b.cursor >= 2 ? b.cursor - 2 : b.cursor });
         else if (down.includes(e.key)) setBattle({ ...b, cursor: b.cursor < 2 ? b.cursor + 2 : b.cursor });
@@ -3065,15 +4018,16 @@ function Game() {
       }
       if (b.phase === 'bag') {
         if (up.includes(e.key)) setBattle({ ...b, cursor: Math.max(0, b.cursor - 1) });
-        else if (down.includes(e.key)) setBattle({ ...b, cursor: Math.min(1, b.cursor + 1) });
+        else if (down.includes(e.key)) setBattle({ ...b, cursor: Math.min(2, b.cursor + 1) });
         else if (go.includes(e.key)) {
           if (b.cursor === 0) useCoffee();
+          else if (b.cursor === 1) useDebugger();
           else setBattle({ ...b, phase: 'menu', cursor: 0 });
         } else if (back.includes(e.key)) setBattle({ ...b, phase: 'menu', cursor: 0 });
         return;
       }
     },
-    [advanceBattleText, chooseMove, selectMenuOption, switchActive, useCoffee]
+    [advanceBattleText, chooseMove, selectMenuOption, switchActive, useCoffee, useDebugger]
   );
 
   /* ——— Landing on a tile ——— */
@@ -3119,6 +4073,9 @@ function Game() {
     };
     const onKeyDown = (e: KeyboardEvent) => {
       if (phaseRef.current === 'title') return; // TitleScreen handles its own keys
+      // Classic view sits above the game: let the browser scroll it natively
+      // and never let game keys mutate the world behind it.
+      if (classicViewRef.current) return;
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) e.preventDefault();
 
       // Battle takes over all input while active — no pausing mid-fight.
@@ -3233,6 +4190,20 @@ function Game() {
     const iv = window.setInterval(() => setAnimFrame((f) => (f + 1) % 2), 600);
     return () => window.clearInterval(iv);
   }, [mapId]);
+
+  // Background music: overworld theme while exploring, battle theme during an
+  // encounter; silent on the title screen, the classic CV overlay, or when
+  // muted. The cleanup stops the scheduler on unmount / HMR so the interval and
+  // its WebAudio voices never orphan (and two loops can't stack on Fast Refresh).
+  const inBattle = battle !== null;
+  useEffect(() => {
+    if (phase !== 'playing' || muted || classicView) {
+      sfx.stopMusic();
+      return;
+    }
+    sfx.startMusic(inBattle ? 'battle' : 'overworld');
+    return () => sfx.stopMusic();
+  }, [phase, muted, inBattle, classicView]);
 
   /* ——— Resume NPC wandering after a conversation ends ——— */
   useEffect(() => {
@@ -3351,6 +4322,10 @@ function Game() {
   /* ——— Start / save / load ——— */
   const startGame = useCallback(
     (cont: boolean) => {
+      // The title screen lingers for its 0.5s exit fade after the classic-view
+      // link is clicked; ignore any stray keypress that reaches it so the game
+      // can't boot up behind the overlay.
+      if (classicViewRef.current) return;
       const save = cont ? loadSave() : null;
       if (save) {
         playerRef.current = makeEntity(save.x, save.y, save.facing);
@@ -3358,9 +4333,12 @@ function Game() {
         setMuted(save.muted);
         sfx.muted = save.muted;
         setBugsDefeated(save.bugsDefeated ?? 0);
+        setCaughtBugs(save.caughtBugs ?? []);
+        setPartyHp({ ...fullPartyHp(), ...(save.partyHp ?? {}) });
         setMapId(save.map);
       } else {
         playerRef.current = makeEntity(5, 5, 'down');
+        setPartyHp(fullPartyHp());
         setMapId('house');
         window.setTimeout(() => {
           const make = dialogues.intro;
@@ -3382,6 +4360,8 @@ function Game() {
       badges: badgesRef.current,
       muted: sfx.muted,
       bugsDefeated: bugsDefeatedRef.current,
+      caughtBugs: caughtBugsRef.current,
+      partyHp: partyHpRef.current,
     };
     try {
       localStorage.setItem(SAVE_KEY, JSON.stringify(data));
@@ -3502,17 +4482,20 @@ function Game() {
       </div>
 
       {/* ——— HUD ——— */}
-      {phase === 'playing' && (
+      {phase === 'playing' && !classicView && (
         <>
-          <PartyHUD onOpen={() => setMenuOpen(true)} />
+          <PartyHUD onOpen={() => setMenuOpen(true)} partyHp={partyHp} />
           <div className="absolute right-2 top-2 z-20 flex flex-col items-end gap-1.5">
-            <button
-              onClick={() => setMenuOpen(true)}
-              className="rpg-frame-dark px-3 py-2 text-[9px] text-amber-300 hover:brightness-125"
-              aria-label="Open backpack menu"
-            >
-              🎒 BACKPACK <span className="hidden sm:inline text-slate-400">[M]</span>
-            </button>
+            <div className="flex items-center gap-1.5">
+              <MuteButton muted={muted} onToggle={toggleMute} />
+              <button
+                onClick={() => setMenuOpen(true)}
+                className="rpg-frame-dark px-3 py-2 text-[9px] text-amber-300 hover:brightness-125"
+                aria-label="Open backpack menu"
+              >
+                🎒 BACKPACK <span className="hidden sm:inline text-slate-400">[M]</span>
+              </button>
+            </div>
             {badges.length > 0 && (
               <div className="rpg-frame-dark px-2 py-1 text-[8px] text-amber-300" title={badges.join(', ')}>
                 ★ ×{badges.length}
@@ -3588,9 +4571,14 @@ function Game() {
                 onClose={() => setMenuOpen(false)}
                 badges={badges}
                 bugsDefeated={bugsDefeated}
+                caughtBugs={caughtBugs}
                 muted={muted}
                 onToggleMute={toggleMute}
                 onSave={saveGame}
+                onClassicView={() => {
+                  setMenuOpen(false);
+                  setClassicView(true);
+                }}
               />
             )}
           </AnimatePresence>
@@ -3606,7 +4594,11 @@ function Game() {
                 onChooseMove={chooseMove}
                 onSwitchActive={switchActive}
                 onUseCoffee={useCoffee}
+                onUseDebugger={useDebugger}
                 onBack={() => setBattle((cur) => (cur ? { ...cur, phase: 'menu', cursor: 0 } : cur))}
+                caughtBugs={caughtBugs}
+                muted={muted}
+                onToggleMute={toggleMute}
               />
             )}
           </AnimatePresence>
@@ -3634,8 +4626,16 @@ function Game() {
       {/* ——— Battle-start flash ——— */}
       {battleFlash && <div className="absolute inset-0 z-[55] bg-white pointer-events-none" />}
 
-      {/* ——— Title ——— */}
-      <AnimatePresence>{phase === 'title' && <TitleScreen hasSave={hasSave} onStart={startGame} />}</AnimatePresence>
+      {/* ——— Title (hidden while the classic view is open, so it can't bleed
+             through the overlay's entrance fade) ——— */}
+      <AnimatePresence>
+        {phase === 'title' && !classicView && (
+          <TitleScreen hasSave={hasSave} onStart={startGame} onClassicView={() => setClassicView(true)} muted={muted} onToggleMute={toggleMute} />
+        )}
+      </AnimatePresence>
+
+      {/* ——— Classic (recruiter) view — sits above everything, including title ——— */}
+      <AnimatePresence>{classicView && <ClassicView onClose={() => setClassicView(false)} />}</AnimatePresence>
     </div>
   );
 }
