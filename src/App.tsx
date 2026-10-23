@@ -9,13 +9,13 @@ import { motion, AnimatePresence, useMotionValue, useMotionTemplate, animate as 
 
 const portfolioData = {
   name: 'Çağıl Dişbudak',
-  role: 'Backend-focused Software Engineer',
-  tagline: 'Building scalable backend systems & resilient infrastructure.',
+  role: 'Software Engineer · Backend, Full Stack & Game Dev',
+  tagline: 'Python backends, React interfaces and the occasional game — 4+ years of shipping.',
 
   about: [
-    'Backend engineer crafting reliable systems with a playful touch.',
-    'I love shaping APIs, data flows, and infrastructure that scale, while sprinkling in delightful UX.',
-    'When not building services, I tinker with animations and micro-interactions.',
+    'Software engineer with 4+ years of Python backends and React interfaces for EV charging, EV route planning and web search.',
+    'I build REST APIs, JWT auth, role-based access control and event-driven OCPP integrations with Django REST Framework, FastAPI and Flask, then ship them as containers on Docker and Kubernetes.',
+    'Games are the other half: C# and Unity at TaleWorlds, an Android runner, a real-time multiplayer board game, and this town.',
   ],
 
   contact: {
@@ -38,35 +38,90 @@ const portfolioData = {
       { name: 'REACT', abbr: 'RX', lv: 63, type: 'FRONTEND', color: '#2dd4bf' },
     ],
     groups: {
-      backend: { level: 'Expert', items: ['Python (Django/FastAPI)', 'Java (Spring Boot)', 'System Design', 'PostgreSQL/Redis'] },
-      devops: { level: 'Solid', items: ['Docker & Kubernetes', 'CI/CD Pipelines', 'AWS Services', 'Datadog/Prometheus'] },
-      frontend: { level: 'Functional', items: ['React & TypeScript', 'Tailwind CSS', 'Next.js', 'Modern UI/UX Principles'] },
+      backend: { level: 'Expert', items: ['Python (Django · DRF · FastAPI · Flask)', 'REST APIs, JWT & RBAC', 'OCPP & event-driven webhooks', 'Elasticsearch & Redis'] },
+      devops: { level: 'Solid', items: ['Docker & Kubernetes', 'CI/CD pipelines', 'Microservices', 'Monitoring & incident support'] },
+      frontend: { level: 'Functional', items: ['React & TypeScript', 'Admin dashboards', 'Map & route views', 'HTML5 & CSS'] },
+      gamedev: { level: 'Hands-on', items: ['C# & Unity', 'Real-time multiplayer', 'Android builds', 'Canvas pixel art'] },
     },
     competencies: [
-      'Scalable Backend Systems',
-      'Microservices Architecture',
-      'Database Design & Optimization',
-      'RESTful & GraphQL API Development',
-      'Cloud Infrastructure (AWS/GCP)',
-      'Containerization & Orchestration',
+      'REST API design with Django REST Framework, FastAPI & Flask',
+      'JWT authentication & role-based access control',
+      'Event-driven OCPP & webhook integrations',
+      'Microservices on Docker & Kubernetes',
+      'Search & caching with Elasticsearch and Redis',
+      'React & TypeScript dashboards and map views',
     ],
-    badges: ['Python', 'Django', 'Java', 'Spring Boot', 'Docker', 'Kubernetes', 'PostgreSQL', 'Redis', 'AWS', 'CI/CD'],
+    badges: ['Python', 'Django', 'DRF', 'FastAPI', 'Flask', 'React', 'TypeScript', 'Docker', 'Kubernetes', 'Elasticsearch', 'Redis', 'CI/CD', 'C#', 'Unity'],
   },
 
-  // ⚠️ FILL ME IN — this is placeholder text. Add your real roles here (newest
-  // first). Everything that reads work history is driven by this array: the
-  // RECRUITER NPC in town, the BACKPACK > PROFILE tab, and the EXPERIENCE
-  // section of the classic CV view (?classic=1). Add as many entries as you
-  // like — the UI renders each one automatically. Delete this placeholder.
+  // Work history, newest first. Drives the CAREER HALL plaques, the RECRUITER
+  // NPC, the BACKPACK > PROFILE tab and the classic CV view (?classic=1).
+  // `color` paints the company's plaque in the CAREER HALL.
   experience: [
     {
-      role: 'Your Role', // e.g. 'Backend Engineer'
-      company: 'Your Company', // e.g. 'Acme Corp'
-      period: '20XX — Present', // e.g. 'Jan 2023 — Present'
-      summary: 'One or two sentences on what you built, owned, or scaled here.',
+      role: 'Software Engineer',
+      company: 'Electrinn',
+      period: 'Nov 2025 — Present',
+      summary: 'Django REST Framework APIs and React dashboards for EV charge-point management.',
+      highlights: [
+        'Develop DRF endpoints for charge-point management: station CRUD and detail views, ownership, claiming with ownership validation, station status and user sessions.',
+        'Implement multi-user access control with 4 operations (grant, revoke, drop, user removal) and a 5-step access-request lifecycle.',
+        'Secure every station and account operation with JWT (Bearer) authentication and role-based permission checks.',
+        'Handle OCPP events from chargers through event-driven webhook endpoints.',
+        'Build React and TypeScript admin dashboards, user-facing screens and map and route views on top of these APIs.',
+        'Containerize microservices with Docker, run them on Kubernetes and take part in deployment and configuration work.',
+      ],
+      color: '#22c55e',
     },
-    // { role: '...', company: '...', period: '...', summary: '...' },
+    {
+      role: 'Software Engineer',
+      company: 'Üstünova Mühendislik ve ARGE',
+      period: 'Nov 2024 — Nov 2025',
+      summary: 'Server side of Chargepick, a live EV route-planning application.',
+      highlights: [
+        'Developed the server side of Chargepick, a live EV route-planning application.',
+        'Created route-optimization algorithms that plan charging-stop frequency and duration from battery state of charge.',
+        'Exposed real-time route and charging data through RESTful APIs built with FastAPI and Django.',
+        'Integrated external map and location APIs for accurate navigation and station suggestions.',
+        'Partnered with frontend and research teams on EV charging optimization.',
+      ],
+      color: '#f59e0b',
+    },
+    {
+      role: 'Software Engineer',
+      company: 'Huawei · Petal Search',
+      period: 'Jul 2022 — Nov 2024',
+      summary: 'Python and Flask APIs for the Petal Search box, with Elasticsearch and Redis.',
+      highlights: [
+        "Built RESTful APIs with Python and Flask for the Petal Search box, part of Huawei's search engine.",
+        'Wrote Elasticsearch indexing and query logic for the product.',
+        'Added a Redis caching layer to speed up response times.',
+        'Authored unit and integration tests to keep releases reliable.',
+        'Provided production support through monitoring, debugging and incident resolution.',
+        'Shipped joint projects with frontend, QA and data teams through CI/CD pipelines.',
+      ],
+      color: '#ef4444',
+    },
+    {
+      role: 'Game Developer Intern',
+      company: 'TaleWorlds Entertainment',
+      period: 'Aug 2021 — Sep 2021',
+      summary: 'Developed games with C# and Unity in a 4-person team.',
+      highlights: ['Developed games with C# and Unity in a 4-person team.'],
+      color: '#a78bfa',
+    },
+    {
+      role: 'Software Engineer Intern',
+      company: 'Labris Networks',
+      period: 'Jul 2020 — Aug 2020',
+      summary: 'Web development with Python and Django.',
+      highlights: ['Worked on web development with Python and Django.'],
+      color: '#38bdf8',
+    },
   ],
+
+  education: [{ degree: 'B.Sc. Computer Engineering', school: 'Çankaya University', period: '2017 — 2022' }],
+  languages: ['Turkish — Native', 'English — C1 (Advanced)', 'German — A1 (Beginner)'],
 
   projects: [
     {
@@ -84,6 +139,48 @@ const portfolioData = {
       screenColor: '#38bdf8',
     },
     {
+      title: 'Portfolio Town',
+      subtitle: 'Pixel-Art RPG Portfolio (you are standing in it)',
+      tech: ['React', 'TypeScript', 'Canvas 2D', 'Web Audio'],
+      github: 'https://github.com/CagilDisbudak/PortfolioPage',
+      live: 'https://cagildisbudak.github.io/PortfolioPage/',
+      blurb: 'A playable top-down RPG town as a portfolio: walk into buildings, talk to NPCs, battle and catch software bugs, and read the CV along the way.',
+      achievements: [
+        'Every sprite, tile and creature is drawn on canvas from hand-authored string matrices, with no image files.',
+        'Tile-based movement, wandering NPCs, line-of-sight trainers, turn-based battles and a catch mechanic.',
+        'Original chiptune loops scheduled with the Web Audio API.',
+        'A plain classic CV view (?classic=1) for visitors in a hurry.',
+      ],
+      screenColor: '#2dd4bf',
+    },
+    {
+      title: 'Platform Runner',
+      subtitle: 'Mobile Platform-Runner Game',
+      tech: ['Unity', 'C#', 'Android'],
+      github: 'https://github.com/CagilDisbudak/Platform-Runner',
+      live: '',
+      blurb: 'A mobile platform-runner built in Unity with C#, featuring a player character and NPCs, shipped as an Android APK.',
+      achievements: [
+        'Built the player character and NPC behaviour in Unity with C#.',
+        'Packaged and shipped the game as an Android APK.',
+      ],
+      screenColor: '#fb923c',
+    },
+    {
+      title: 'BookSwap',
+      subtitle: 'Book Swap & Donation Platform',
+      tech: ['Django', 'React', 'Docker'],
+      github: 'https://github.com/CagilDisbudak/BookSwap',
+      live: '',
+      blurb: 'A full-stack platform for swapping or donating books securely, with user registration, book requests and approvals, donation options and in-app chat.',
+      achievements: [
+        'Built the Django backend for user registration, book listings, swap requests and approvals.',
+        'Added donation options alongside swaps.',
+        'Implemented in-app chat between swapping users, with a React frontend.',
+      ],
+      screenColor: '#fbbf24',
+    },
+    {
       title: 'MoviePage',
       subtitle: 'Movie Discovery Interface',
       tech: ['TypeScript', 'React', 'TMDB API'],
@@ -97,20 +194,6 @@ const portfolioData = {
       screenColor: '#f472b6',
     },
     {
-      title: 'BookSwap',
-      subtitle: 'Peer-to-Peer Book Exchange Platform',
-      tech: ['JavaScript', 'HTML/CSS', 'LocalStorage'],
-      github: 'https://github.com/CagilDisbudak/BookSwap',
-      live: '',
-      blurb: 'A fully functional book exchange platform enabling users to list, discover, and swap books locally.',
-      achievements: [
-        'Designed a responsive UI with a focus on ease of use for non-technical users.',
-        'Implemented local storage caching to persist user preferences without a backend.',
-        'Optimized asset loading for sub-1s initial render time on mobile devices.',
-      ],
-      screenColor: '#fbbf24',
-    },
-    {
       title: 'Decentralized Voting',
       subtitle: 'Blockchain-based Voting System',
       tech: ['JavaScript', 'Solidity', 'Web3.js'],
@@ -122,6 +205,16 @@ const portfolioData = {
         'Integrated Web3 wallet connection flows for secure user authentication.',
       ],
       screenColor: '#a78bfa',
+    },
+    {
+      title: 'BIST 30 Prediction',
+      subtitle: 'Stock Index Forecasting',
+      tech: ['Python', 'TensorFlow', 'Jupyter'],
+      github: 'https://github.com/CagilDisbudak/BIST30-Prediction',
+      live: '',
+      blurb: 'Forecasting BIST 30 stock index data with machine-learning models.',
+      achievements: ['Trained and compared machine-learning models on historical BIST 30 index data.'],
+      screenColor: '#f87171',
     },
     {
       title: 'Plant Pathology 2020',
@@ -144,12 +237,6 @@ const portfolioData = {
     'A note inside one book reads: "Ship boring tech. Save the excitement for the UX."',
     'There is a well-worn copy of "Designing Data-Intensive Applications" here.',
   ],
-
-  testimonials: [
-    { name: 'Tech Lead', content: 'Exceptional backend engineering skills. The microservices architecture implemented was robust and scalable.' },
-    { name: 'Project Manager', content: 'Reliable, efficient, and always delivers high-quality code.' },
-    { name: 'CTO', content: 'Built our entire backend infrastructure from scratch. The system handles scale beautifully.' },
-  ],
 };
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -160,6 +247,11 @@ type Dir = 'up' | 'down' | 'left' | 'right';
 type Vec = { x: number; y: number };
 
 const TILE = 16; // native pixels per tile
+// Everything is painted at HD "fine" pixels per art pixel: tiles carry detail
+// finer than their 16px grid (thin seams, grain, blades) and sprites are
+// Scale3x-upscaled, so the world looks sharper at the same on-screen size.
+const HD = 3;
+const F = 1 / HD; // one fine pixel, in art pixels
 const WALK_MS = 190; // ms per tile, walking (GBA-like cadence)
 const RUN_MS = 110; // ms per tile, holding Shift / B
 const NPC_MS = 260; // NPCs stroll slower
@@ -171,6 +263,7 @@ const DELTA: Record<Dir, Vec> = {
   left: { x: -1, y: 0 },
   right: { x: 1, y: 0 },
 };
+const OPPOSITE: Record<Dir, Dir> = { up: 'down', down: 'up', left: 'right', right: 'left' };
 
 // Deterministic pseudo-random (no Math.random — keeps screenshots/replays stable).
 function mulberry32(seed: number) {
@@ -332,6 +425,7 @@ const PALETTES: Record<string, Palette> = {
   nurse: { A: '#f8fafc', H: '#ec4899', S: '#fcd9ae', C: '#f9a8d4', D: '#ec4899', P: '#f1f5f9', B: '#db2777' },
   hiker: { A: '#ea580c', H: '#3f2d1e', S: '#e7b287', C: '#a16207', D: '#854d0e', P: '#3f6212', B: '#422006' },
   catcher: { A: '#eab308', H: '#422006', S: '#f3c396', C: '#4d7c0f', D: '#3f6212', P: '#a16207', B: '#422006' },
+  mentor: { A: '#9ca3af', H: '#d1d5db', S: '#e7b287', C: '#1e3a8a', D: '#172f6e', P: '#374151', B: '#1f2937' },
 };
 
 const spriteCache = new Map<string, HTMLCanvasElement>();
@@ -365,9 +459,11 @@ function getSpriteFrame(paletteId: string, facing: Dir, frame: number): HTMLCanv
       ctx.fillRect(x, y, 1, 1);
     }
   }
-  paintTopLightShade(ctx, SPRITE_W, SPRITE_H);
-  spriteCache.set(key, c);
-  return c;
+  // returned at HD resolution: SPRITE_W*HD x SPRITE_H*HD
+  const hd = upscale3(c);
+  paintTopLightShade(hd.getContext('2d')!, hd.width, hd.height);
+  spriteCache.set(key, hd);
+  return hd;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -397,6 +493,54 @@ function paintTopLightShade(ctx: Ctx, w: number, h: number) {
   ctx.restore();
 }
 
+// AdvanceMAME Scale3x: triples a pixel-art canvas, turning diagonal stair-steps
+// into smoother edges without inventing new colours. Sprites are drawn at art
+// resolution, upscaled with this, then shaded at the higher resolution.
+function upscale3(src: HTMLCanvasElement): HTMLCanvasElement {
+  const w = src.width, h = src.height;
+  const s = new Uint32Array(src.getContext('2d')!.getImageData(0, 0, w, h).data.buffer);
+  const out = document.createElement('canvas');
+  out.width = w * 3;
+  out.height = h * 3;
+  const octx = out.getContext('2d')!;
+  const img = octx.createImageData(w * 3, h * 3);
+  const d = new Uint32Array(img.data.buffer);
+  const at = (x: number, y: number) => s[Math.min(h - 1, Math.max(0, y)) * w + Math.min(w - 1, Math.max(0, x))];
+  const W3 = w * 3;
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const A = at(x - 1, y - 1), B = at(x, y - 1), C = at(x + 1, y - 1);
+      const D = at(x - 1, y), E = s[y * w + x], R = at(x + 1, y);
+      const G = at(x - 1, y + 1), H = at(x, y + 1), I = at(x + 1, y + 1);
+      let e0 = E, e1 = E, e2 = E, e3 = E, e5 = E, e6 = E, e7 = E, e8 = E;
+      if (B !== H && D !== R) {
+        e0 = D === B ? D : E;
+        e1 = (D === B && E !== C) || (B === R && E !== A) ? B : E;
+        e2 = B === R ? R : E;
+        e3 = (D === B && E !== G) || (D === H && E !== A) ? D : E;
+        e5 = (B === R && E !== I) || (H === R && E !== C) ? R : E;
+        e6 = D === H ? D : E;
+        e7 = (D === H && E !== I) || (H === R && E !== G) ? H : E;
+        e8 = H === R ? R : E;
+      }
+      const o = y * 3 * W3 + x * 3;
+      d[o] = e0; d[o + 1] = e1; d[o + 2] = e2;
+      d[o + W3] = e3; d[o + W3 + 1] = E; d[o + W3 + 2] = e5;
+      d[o + 2 * W3] = e6; d[o + 2 * W3 + 1] = e7; d[o + 2 * W3 + 2] = e8;
+    }
+  }
+  octx.putImageData(img, 0, 0);
+  return out;
+}
+
+// Paints in fine pixels (HD per art pixel) with the origin at art (x, y), so
+// tile painters can add detail thinner than one art pixel.
+type Put = (fx: number, fy: number, w: number, h: number, c: string) => void;
+function fine(ctx: Ctx, x: number, y: number, draw: (put: Put) => void) {
+  draw((fx, fy, w, h, c) => px(ctx, x + fx * F, y + fy * F, w * F, h * F, c));
+}
+const FT = TILE * HD; // a tile, in fine pixels
+
 // Generic matrix renderer for hand-authored pixel art: rows of palette chars,
 // '.' = transparent. Used by the tree, battle creatures and wild bugs — richer
 // shading than stacking fillRect blocks, and each piece stays hand-editable.
@@ -419,73 +563,107 @@ function paintGrass(ctx: Ctx, tx: number, ty: number) {
   // Classic GBA route-grass checkerboard: two flat greens alternating per tile.
   px(ctx, x, y, TILE, TILE, (tx + ty) % 2 === 0 ? '#79c860' : '#71bd58');
   const r = hash2(tx, ty);
-  // sparse blade specks, deterministic per tile
-  for (let i = 0; i < 4; i++) {
-    const rx = Math.floor(hash2(tx * 7 + i, ty * 13 + i) * 14) + 1;
-    const ry = Math.floor(hash2(tx * 17 + i, ty * 5 - i) * 14) + 1;
-    px(ctx, x + rx, y + ry, 2, 1, '#6ab54f');
-  }
-  if (r > 0.97) {
-    // occasional wildflower
-    const fx = x + 6, fy = y + 6;
-    const col = r > 0.985 ? '#fef3c7' : '#fda4af';
-    px(ctx, fx, fy - 1, 2, 1, col);
-    px(ctx, fx, fy + 1, 2, 1, col);
-    px(ctx, fx - 1, fy, 1, 2, col);
-    px(ctx, fx + 2, fy, 1, 2, col);
-    px(ctx, fx, fy, 2, 2, '#fbbf24');
-  } else if (r > 0.93) {
-    // small rock cluster
-    px(ctx, x + 5, y + 8, 5, 3, '#8a8a7a');
-    px(ctx, x + 5, y + 8, 5, 1, '#9c9c8c');
-    px(ctx, x + 6, y + 10, 3, 1, '#6f6f61');
-  } else if (r > 0.88) {
-    // bare dirt patch
-    px(ctx, x + 4, y + 5, 8, 6, '#b5905c');
-    px(ctx, x + 5, y + 6, 2, 1, '#9c7a4c');
-    px(ctx, x + 9, y + 8, 2, 1, '#9c7a4c');
-  }
+  fine(ctx, x, y, (put) => {
+    // short tufts: two dark strokes with a sunlit tip, deterministic per tile
+    for (let i = 0; i < 6; i++) {
+      const bx = 2 + Math.floor(hash2(tx * 7 + i, ty * 13 + i) * 42);
+      const by = 3 + Math.floor(hash2(tx * 17 + i, ty * 5 - i) * 40);
+      put(bx, by, 1, 3, '#5fa847');
+      put(bx + 2, by + 1, 1, 2, '#5fa847');
+      put(bx, by - 1, 1, 1, '#94d97a');
+    }
+    if (r > 0.97) {
+      // wildflower: four petals round a yellow eye, on a short stem
+      const col = r > 0.985 ? '#fef3c7' : '#fda4af';
+      const cx = 18, cy = 16;
+      put(cx + 1, cy + 6, 1, 6, '#4f9a3a');
+      put(cx + 2, cy + 9, 3, 1, '#4f9a3a');
+      put(cx, cy - 3, 3, 3, col);
+      put(cx, cy + 3, 3, 3, col);
+      put(cx - 3, cy, 3, 3, col);
+      put(cx + 3, cy, 3, 3, col);
+      put(cx, cy, 3, 3, '#fbbf24');
+      put(cx, cy, 1, 1, '#fde68a');
+    } else if (r > 0.93) {
+      // small rock cluster
+      fineStone(put, 14, 22, 12, 8);
+      fineStone(put, 25, 27, 7, 5);
+    } else if (r > 0.88) {
+      // bare dirt patch with ragged edges and a few dark specks
+      put(13, 16, 22, 16, '#b5905c');
+      put(11, 19, 2, 10, '#b5905c');
+      put(35, 18, 2, 11, '#b5905c');
+      put(16, 14, 15, 2, '#b5905c');
+      put(15, 32, 17, 2, '#b5905c');
+      put(14, 16, 8, 1, '#c6a372');
+      put(17, 20, 3, 2, '#9c7a4c');
+      put(28, 25, 3, 2, '#9c7a4c');
+      put(22, 29, 2, 1, '#9c7a4c');
+    }
+  });
+}
+
+// A pebble in fine pixels: rounded body, lit top edge, dark underside, shadow.
+function fineStone(put: Put, x: number, y: number, w: number, h: number) {
+  put(x + 1, y, w - 2, h, '#8a8a7a');
+  put(x, y + 1, w, h - 2, '#8a8a7a');
+  put(x + 1, y, w - 3, 2, '#a6a696');
+  put(x + 2, y + h - 1, w - 3, 1, '#6f6f61');
+  put(x + 1, y + h, w - 1, 1, 'rgba(30,61,40,0.25)');
 }
 
 function paintPath(ctx: Ctx, tx: number, ty: number, rows: string[]) {
   const x = tx * TILE, y = ty * TILE;
   px(ctx, x, y, TILE, TILE, '#e5cf9a');
-  for (let i = 0; i < 5; i++) {
-    const rx = Math.floor(hash2(tx * 11 + i, ty * 3 + i) * 14) + 1;
-    const ry = Math.floor(hash2(tx * 5 - i, ty * 19 + i) * 14) + 1;
-    px(ctx, x + rx, y + ry, 1, 1, '#d3b87e');
-  }
-  px(ctx, x, y, TILE, 1, '#d8c188');
-  // Neighbor-aware edge trim: where the path meets grass, a darker rim plus a
-  // bright inner line — reads as a slightly sunken dirt road instead of a
-  // hard-cut sand rectangle.
   const isP = (xx: number, yy: number) => rows[yy]?.[xx] === 'P';
-  if (!isP(tx, ty - 1)) {
-    px(ctx, x, y, TILE, 2, '#c4a76e');
-    px(ctx, x, y + 2, TILE, 1, '#f2e2b6');
-  }
-  if (!isP(tx, ty + 1)) {
-    px(ctx, x, y + TILE - 2, TILE, 2, '#c4a76e');
-    px(ctx, x, y + TILE - 3, TILE, 1, '#d8c188');
-  }
-  if (!isP(tx - 1, ty)) {
-    px(ctx, x, y, 2, TILE, '#c4a76e');
-    px(ctx, x + 2, y, 1, TILE, '#f2e2b6');
-  }
-  if (!isP(tx + 1, ty)) {
-    px(ctx, x + TILE - 2, y, 2, TILE, '#c4a76e');
-  }
-  const r2 = hash2(tx * 31, ty * 13);
-  if (r2 > 0.94) {
-    // small pebble cluster
-    px(ctx, x + 6, y + 7, 2, 2, '#c2a877');
-    px(ctx, x + 9, y + 9, 2, 1, '#c2a877');
-  } else if (r2 > 0.9) {
-    // hairline crack
-    px(ctx, x + 4, y + 5, 1, 3, '#c9b077');
-    px(ctx, x + 5, y + 8, 4, 1, '#c9b077');
-    px(ctx, x + 9, y + 6, 1, 3, '#c9b077');
-  }
+  fine(ctx, x, y, (put) => {
+    // packed-earth grain: scattered dark and pale specks
+    for (let i = 0; i < 14; i++) {
+      const gx = 1 + Math.floor(hash2(tx * 11 + i, ty * 3 + i) * 45);
+      const gy = 1 + Math.floor(hash2(tx * 5 - i, ty * 19 + i) * 45);
+      put(gx, gy, i % 3 === 0 ? 2 : 1, 1, i % 2 ? '#d3b87e' : '#f0dfb3');
+    }
+    // Neighbor-aware edge trim: where the path meets grass, a darker rim plus
+    // a bright inner line (a slightly sunken dirt road), with grass tufts
+    // leaning over the top edge.
+    const tuft = (fx: number, fy: number) => {
+      put(fx, fy, 1, 3, '#5fa847');
+      put(fx + 2, fy + 1, 1, 2, '#6ab54f');
+    };
+    if (!isP(tx, ty - 1)) {
+      put(0, 0, FT, 5, '#c4a76e');
+      put(0, 5, FT, 1, '#b39760');
+      put(0, 6, FT, 2, '#f2e2b6');
+      for (let i = 0; i < 3; i++) tuft(4 + Math.floor(hash2(tx * 13 + i, ty * 7) * 40), 2);
+    }
+    if (!isP(tx, ty + 1)) {
+      put(0, FT - 6, FT, 6, '#c4a76e');
+      put(0, FT - 7, FT, 1, '#d8c188');
+    }
+    if (!isP(tx - 1, ty)) {
+      put(0, 0, 5, FT, '#c4a76e');
+      put(5, 0, 1, FT, '#b39760');
+      put(6, 0, 2, FT, '#f2e2b6');
+    }
+    if (!isP(tx + 1, ty)) {
+      put(FT - 6, 0, 6, FT, '#c4a76e');
+      put(FT - 7, 0, 1, FT, '#d8c188');
+    }
+    const r2 = hash2(tx * 31, ty * 13);
+    if (r2 > 0.94) {
+      // small pebble cluster
+      put(18, 21, 5, 4, '#c2a877');
+      put(18, 21, 4, 1, '#d9c296');
+      put(27, 27, 5, 3, '#c2a877');
+      put(27, 27, 3, 1, '#d9c296');
+    } else if (r2 > 0.9) {
+      // hairline crack
+      put(12, 15, 1, 7, '#c9b077');
+      put(13, 22, 10, 1, '#c9b077');
+      put(23, 17, 1, 6, '#c9b077');
+      put(24, 16, 3, 1, '#c9b077');
+    }
+  });
 }
 
 // Hand-authored 16x24 tree: rounded 4-tone canopy, shaded trunk. The extra
@@ -528,12 +706,27 @@ const TREE_PALETTE: Record<string, string> = {
   u: '#96613a',
 };
 
+// The tree matrix is drawn once per orientation and stamped with drawImage:
+// outdoor maps paint thousands of trees (including the forest ring).
+const treeSpriteCache: HTMLCanvasElement[] = [];
+function getTreeSprite(mirror: boolean): HTMLCanvasElement {
+  const i = mirror ? 1 : 0;
+  if (!treeSpriteCache[i]) {
+    const c = document.createElement('canvas');
+    c.width = TILE;
+    c.height = TREE_ROWS.length;
+    drawMatrix(c.getContext('2d')!, TREE_ROWS, TREE_PALETTE, 0, 0, mirror);
+    treeSpriteCache[i] = upscale3(c);
+  }
+  return treeSpriteCache[i];
+}
+
 function paintTree(ctx: Ctx, tx: number, ty: number) {
   const x = tx * TILE, y = ty * TILE;
   paintGrass(ctx, tx, ty);
   // soft contact shadow so the trunk sits IN the grass rather than on it
   px(ctx, x + 3, y + 13, 10, 2, 'rgba(30,61,40,0.25)');
-  drawMatrix(ctx, TREE_ROWS, TREE_PALETTE, x, y - 8, hash2(tx * 3, ty * 5) > 0.5);
+  ctx.drawImage(getTreeSprite(hash2(tx * 3, ty * 5) > 0.5), x, y - 8, TILE, TREE_ROWS.length);
 }
 
 function paintWater(ctx: Ctx, tx: number, ty: number, frame: number, rows: string[]) {
@@ -541,100 +734,233 @@ function paintWater(ctx: Ctx, tx: number, ty: number, frame: number, rows: strin
   // Checkerboard water base (swaps with the animation frame, GBA-style ripple).
   const checker = (tx + ty + frame) % 2 === 0;
   px(ctx, x, y, TILE, TILE, checker ? '#3f97d9' : '#3d8fcc');
-  const off = frame % 2 === 0 ? 0 : 2;
-  for (let i = 0; i < 3; i++) {
-    const rx = Math.floor(hash2(tx * 3 + i, ty * 7 + i) * 10) + 2;
-    const ry = ((Math.floor(hash2(tx * 9 + i, ty * 2 + i) * 12) + off) % 12) + 2;
-    px(ctx, x + rx, y + ry, 3, 1, '#7cc0ec');
-  }
-  // Neighbor-aware shoreline: sandy lip + animated foam dashes where the pond
-  // touches land, dark depth line along the bottom and inner sides.
   const isW = (xx: number, yy: number) => rows[yy]?.[xx] === 'W';
-  const foamShift = frame % 2 === 0 ? 0 : 3;
-  if (!isW(tx, ty - 1)) {
-    px(ctx, x, y, TILE, 2, '#e5cf9a');
-    px(ctx, x, y + 2, TILE, 1, '#bfe6f4');
-    for (let fx = foamShift; fx < TILE; fx += 6) px(ctx, x + fx, y + 3, 3, 1, '#e8f6fb');
-  } else {
-    px(ctx, x, y, TILE, 1, '#5fb0e6');
-  }
-  if (!isW(tx, ty + 1)) {
-    px(ctx, x, y + TILE - 2, TILE, 2, '#2b6ea6');
-    px(ctx, x, y + TILE - 3, TILE, 1, '#357fbd');
-  }
-  if (!isW(tx - 1, ty)) {
-    px(ctx, x, y, 2, TILE, '#357fbd');
-    px(ctx, x + 2, y + foamShift + 4, 1, 2, '#bfe6f4');
-  }
-  if (!isW(tx + 1, ty)) {
-    px(ctx, x + TILE - 2, y, 2, TILE, '#357fbd');
-    px(ctx, x + TILE - 3, y + (TILE - foamShift - 6), 1, 2, '#bfe6f4');
-  }
-  if (hash2(tx * 53, ty * 29) > 0.92) {
-    // lily pad, gently bobs with the water animation frame
-    const ly = y + 6 + (frame % 2 === 0 ? 0 : 1);
-    px(ctx, x + 5, ly, 6, 5, '#3f8f4f');
-    px(ctx, x + 6, ly + 1, 4, 3, '#4aa85c');
-    px(ctx, x + 7, ly + 2, 2, 1, '#2f7a3d');
-  }
+  const off = frame % 2 === 0 ? 0 : 6;
+  const foamShift = frame % 2 === 0 ? 0 : 9;
+  fine(ctx, x, y, (put) => {
+    // ripples: a bright crest over a darker trough, drifting with the frame
+    for (let i = 0; i < 4; i++) {
+      const rx = 4 + Math.floor(hash2(tx * 3 + i, ty * 7 + i) * 32);
+      const ry = 5 + ((Math.floor(hash2(tx * 9 + i, ty * 2 + i) * 36) + off) % 36);
+      put(rx, ry, 8, 1, '#7cc0ec');
+      put(rx + 2, ry - 1, 4, 1, '#a9daf6');
+      put(rx + 1, ry + 1, 6, 1, '#3681bd');
+    }
+    // Neighbor-aware shoreline: sandy lip + animated foam dashes where the
+    // pond touches land, dark depth line along the bottom and inner sides.
+    if (!isW(tx, ty - 1)) {
+      put(0, 0, FT, 5, '#e5cf9a');
+      put(0, 5, FT, 1, '#c9b07a');
+      put(0, 6, FT, 2, '#bfe6f4');
+      for (let fx = foamShift; fx < FT; fx += 18) put(fx, 9, 8, 1, '#e8f6fb');
+    } else {
+      put(0, 0, FT, 1, '#5fb0e6');
+    }
+    if (!isW(tx, ty + 1)) {
+      put(0, FT - 6, FT, 6, '#2b6ea6');
+      put(0, FT - 8, FT, 2, '#357fbd');
+    }
+    if (!isW(tx - 1, ty)) {
+      put(0, 0, 5, FT, '#357fbd');
+      put(6, foamShift + 12, 1, 6, '#bfe6f4');
+    }
+    if (!isW(tx + 1, ty)) {
+      put(FT - 5, 0, 5, FT, '#357fbd');
+      put(FT - 7, FT - foamShift - 18, 1, 6, '#bfe6f4');
+    }
+    if (hash2(tx * 53, ty * 29) > 0.92) {
+      // lily pad with a notch and a lit rim, gently bobbing with the frame
+      const ly = 18 + (frame % 2 === 0 ? 0 : 2);
+      put(14, ly + 1, 20, 13, '#3f8f4f');
+      put(16, ly, 16, 15, '#3f8f4f');
+      put(17, ly + 2, 14, 10, '#4aa85c');
+      put(24, ly, 2, 7, checker ? '#3f97d9' : '#3d8fcc'); // notch
+      put(17, ly + 1, 6, 1, '#6cc47c');
+      put(19, ly + 14, 11, 1, '#2f7a3d');
+    }
+  });
 }
 
 function paintTallGrass(ctx: Ctx, tx: number, ty: number) {
   const x = tx * TILE, y = ty * TILE;
   px(ctx, x, y, TILE, TILE, '#57a844');
-  for (let b = 0; b < 5; b++) {
-    const bx = x + 1 + b * 3;
-    px(ctx, bx, y + 4, 2, 11, '#3c8a31');
-    px(ctx, bx + 1, y + 2, 1, 4, '#2f7a27');
-  }
-  px(ctx, x, y + 14, TILE, 2, '#478f38');
-  if (hash2(tx * 71, ty * 41) > 0.9) {
-    // a small flower peeking through the blades
-    px(ctx, x + 7, y + 3, 2, 2, '#fef3c7');
-  }
+  fine(ctx, x, y, (put) => {
+    put(0, FT - 6, FT, 6, '#478f38'); // shade at the roots
+    // two rows of tapering blades (back row darker), each with a lit edge and tip
+    for (let row = 0; row < 2; row++) {
+      for (let b = 0; b < 8; b++) {
+        const bx = 1 + b * 6 + row * 3 + Math.floor(hash2(tx * 9 + b, ty * 3 + row) * 2);
+        const top = (row ? 10 : 3) + Math.floor(hash2(tx * 5 + b, ty * 11 + row) * 6);
+        const body = row ? '#3c8a31' : '#2f7a27';
+        put(bx, top + 3, 3, FT - top - 6, body);
+        put(bx + 1, top, 1, 3, body);
+        put(bx + 2, top + 4, 1, FT - top - 12, row ? '#4c9c3c' : '#3c8a31');
+        put(bx + 1, top, 1, 1, row ? '#7bc561' : '#5aa548');
+      }
+    }
+    if (hash2(tx * 71, ty * 41) > 0.9) {
+      // a small flower peeking through the blades
+      put(21, 8, 3, 3, '#fef3c7');
+      put(22, 9, 1, 1, '#fbbf24');
+    }
+  });
 }
 
 function paintFloor(ctx: Ctx, tx: number, ty: number, kind: string) {
   const x = tx * TILE, y = ty * TILE;
-  const base = kind === 'gym' ? '#cbb9a2' : kind === 'gallery' ? '#ded7c8' : '#dcb079';
-  const line = kind === 'gym' ? '#b7a48c' : kind === 'gallery' ? '#c9c1b0' : '#c49a64';
-  px(ctx, x, y, TILE, TILE, base);
-  px(ctx, x, y + 15, TILE, 1, line); // plank seams
-  if ((tx + ty) % 2 === 0) px(ctx, x + 8, y, 1, TILE, line);
-  else px(ctx, x, y, 1, TILE, line);
+  fine(ctx, x, y, (put) => {
+    if (kind === 'gallery') {
+      // pale stone slabs: grout on two edges, a lit edge opposite, a faint vein
+      put(0, 0, FT, FT, '#ded7c8');
+      put(0, FT - 1, FT, 1, '#c3baa8');
+      put(FT - 1, 0, 1, FT, '#c3baa8');
+      put(0, 0, FT - 1, 1, '#ebe6da');
+      put(0, 0, 1, FT - 1, '#ebe6da');
+      const v = hash2(tx * 7, ty * 3);
+      const vy = 8 + Math.floor(v * 24);
+      for (let i = 0; i < 6; i++) put(5 + i * 6, vy + ((i * 3) % 7), 5, 1, '#d2cab8');
+      return;
+    }
+    if (kind === 'office') {
+      // carpet tiles: a fine two-tone weave, seams where the tiles meet
+      put(0, 0, FT, FT, '#b9c3d1');
+      for (let fy = 0; fy < FT; fy += 2) {
+        for (let fx = (fy / 2) % 2 === 0 ? 0 : 2; fx < FT; fx += 4) put(fx, fy, 2, 2, '#b1bbca');
+      }
+      put(0, FT - 1, FT, 1, '#a1acbd');
+      put(FT - 1, 0, 1, FT, '#a1acbd');
+      return;
+    }
+    // wooden boards (house, gym): four per tile, a lit top edge and a dark seam
+    // per board, staggered butt joints, grain streaks and the odd knot
+    const gym = kind === 'gym';
+    const base = gym ? '#cbb9a2' : '#dcb079';
+    const seam = gym ? '#ad9a82' : '#b8895a';
+    const lit = gym ? '#d8c8b3' : '#e8c08a';
+    const grain = gym ? '#c0ad94' : '#cf9f68';
+    put(0, 0, FT, FT, base);
+    for (let p = 0; p < 4; p++) {
+      const py = p * 12;
+      put(0, py, FT, 1, lit);
+      put(0, py + 11, FT, 1, seam);
+      const joint = 4 + Math.floor(hash2(tx * 5 + p, ty * 11) * 40);
+      put(joint, py, 1, 11, seam);
+      put(joint + 1, py + 1, 1, 10, lit);
+      for (let g = 0; g < 2; g++) {
+        const gx = Math.floor(hash2(tx * 13 + p, ty * 7 + g) * 36);
+        put(gx, py + 3 + g * 4, 6 + Math.floor(hash2(tx + g, ty * 3 + p) * 8), 1, grain);
+      }
+      if (hash2(tx * 29 + p, ty * 17) > 0.93) {
+        put(20, py + 4, 3, 3, seam);
+        put(21, py + 5, 1, 1, grain);
+      }
+    }
+  });
 }
 
-function paintWall(ctx: Ctx, tx: number, ty: number, kind: string, isFace: boolean) {
+// isFace: the wall's front (floor below it). lip: a wall top directly above a
+// front, which gets a lit edge. edgeL / edgeR: the side meets floor there.
+function paintWall(ctx: Ctx, tx: number, ty: number, kind: string, isFace: boolean, lip: boolean, edgeL: boolean, edgeR: boolean) {
   const x = tx * TILE, y = ty * TILE;
-  const tone = kind === 'gym' ? ['#5b6478', '#6d7890', '#49505f'] : kind === 'gallery' ? ['#7a6a58', '#8d7c68', '#5f5344'] : ['#8a6f4d', '#9c805c', '#6d5639'];
-  if (isFace) {
-    px(ctx, x, y, TILE, TILE, tone[1]);
-    px(ctx, x, y + 12, TILE, 4, tone[2]); // baseboard
-    px(ctx, x, y, TILE, 2, tone[0]);
-  } else {
-    px(ctx, x, y, TILE, TILE, tone[0]);
-    px(ctx, x, y + 14, TILE, 2, tone[2]);
-  }
+  const tone =
+    kind === 'gym' ? ['#5b6478', '#6d7890', '#49505f']
+    : kind === 'gallery' ? ['#7a6a58', '#8d7c68', '#5f5344']
+    : kind === 'office' ? ['#3f4c63', '#55637e', '#2f3a4d']
+    : ['#8a6f4d', '#9c805c', '#6d5639'];
+  fine(ctx, x, y, (put) => {
+    if (isFace) {
+      // wallpaper with thin pale stripes, a chair rail, a darker dado and a baseboard
+      put(0, 0, FT, FT, tone[1]);
+      for (let sx = 2; sx < FT; sx += 8) put(sx, 7, 2, 19, shade(tone[1], 0.08));
+      put(0, 0, FT, 6, tone[0]);
+      put(0, 6, FT, 1, shade(tone[0], -0.25)); // cornice shadow
+      put(0, 26, FT, 1, shade(tone[1], 0.25)); // chair rail: lit top, body, shadow
+      put(0, 27, FT, 2, shade(tone[1], -0.1));
+      put(0, 29, FT, 1, shade(tone[1], -0.3));
+      put(0, 30, FT, 6, shade(tone[1], -0.07));
+      for (let sx = 7; sx < FT; sx += 16) put(sx, 31, 1, 4, shade(tone[1], -0.2)); // dado panel joints
+      put(0, 36, FT, 12, tone[2]); // baseboard
+      put(0, 36, FT, 1, shade(tone[2], 0.25));
+      put(0, FT - 1, FT, 1, shade(tone[2], -0.3));
+    } else {
+      // wall top seen from above: a flat cap with faint texture, a lit lip
+      // over the front wall and a lit inner edge where a side meets the floor
+      put(0, 0, FT, FT, tone[0]);
+      for (let i = 0; i < 3; i++) put(Math.floor(hash2(tx * 3 + i, ty * 5) * 40), 6 + i * 12, 7, 1, shade(tone[0], -0.08));
+      if (lip) {
+        put(0, FT - 7, FT, 1, shade(tone[0], 0.18));
+        put(0, FT - 6, FT, 6, tone[2]);
+      }
+      if (edgeR) {
+        put(FT - 3, 0, 1, FT, shade(tone[0], 0.18));
+        put(FT - 2, 0, 2, FT, tone[2]);
+      }
+      if (edgeL) {
+        put(2, 0, 1, FT, shade(tone[0], 0.18));
+        put(0, 0, 2, FT, tone[2]);
+      }
+    }
+  });
 }
 
-function paintRug(ctx: Ctx, tx: number, ty: number, kind: string) {
+// Rugs are neighbour-aware: adjacent 'R' tiles form one rug with a border,
+// gold pinstripe and fringe only on its outer edges, and a diamond per tile.
+function paintRug(ctx: Ctx, tx: number, ty: number, kind: string, rows: string[]) {
   const x = tx * TILE, y = ty * TILE;
   paintFloor(ctx, tx, ty, kind);
-  const main = kind === 'gym' ? '#4f7cd1' : '#c2564b';
-  const trim = kind === 'gym' ? '#3a5ea6' : '#9c4038';
-  px(ctx, x + 1, y + 1, 14, 14, main);
-  px(ctx, x + 1, y + 1, 14, 2, trim);
-  px(ctx, x + 1, y + 13, 14, 2, trim);
+  const main = kind === 'gym' ? '#4f7cd1' : kind === 'office' ? '#2f5d9e' : '#c2564b';
+  const trim = kind === 'gym' ? '#3a5ea6' : kind === 'office' ? '#23497d' : '#9c4038';
+  const gold = '#e8c170';
+  const isR = (xx: number, yy: number) => rows[yy]?.[xx] === 'R';
+  const up = isR(tx, ty - 1), down = isR(tx, ty + 1), left = isR(tx - 1, ty), right = isR(tx + 1, ty);
+  fine(ctx, x, y, (put) => {
+    const x0 = left ? 0 : 4, x1 = right ? FT : FT - 4;
+    const y0 = up ? 0 : 5, y1 = down ? FT : FT - 5;
+    put(x0, y0, x1 - x0, y1 - y0, main);
+    if (!up) {
+      put(x0, y0, x1 - x0, 5, trim);
+      put(x0 + (left ? 0 : 6), y0 + 6, x1 - x0 - (left ? 0 : 6) - (right ? 0 : 6), 1, gold);
+      for (let fx = x0 + 1; fx < x1 - 1; fx += 3) put(fx, y0 - 3, 1, 3, '#efe3c6');
+    }
+    if (!down) {
+      put(x0, y1 - 5, x1 - x0, 5, trim);
+      put(x0 + (left ? 0 : 6), y1 - 7, x1 - x0 - (left ? 0 : 6) - (right ? 0 : 6), 1, gold);
+      for (let fx = x0 + 1; fx < x1 - 1; fx += 3) put(fx, y1, 1, 3, '#efe3c6');
+    }
+    if (!left) {
+      put(x0, y0, 5, y1 - y0, trim);
+      put(x0 + 6, y0 + (up ? 0 : 6), 1, y1 - y0 - (up ? 0 : 6) - (down ? 0 : 6), gold);
+    }
+    if (!right) {
+      put(x1 - 5, y0, 5, y1 - y0, trim);
+      put(x1 - 7, y0 + (up ? 0 : 6), 1, y1 - y0 - (up ? 0 : 6) - (down ? 0 : 6), gold);
+    }
+    // diamond outline with a dark centre
+    const c = 24;
+    for (let i = 0; i <= 5; i++) {
+      put(c - i, c - 5 + i, 1, 1, gold);
+      put(c + i, c - 5 + i, 1, 1, gold);
+      put(c - i, c + 5 - i, 1, 1, gold);
+      put(c + i, c + 5 - i, 1, 1, gold);
+    }
+    put(c - 1, c - 1, 3, 3, trim);
+  });
 }
 
 function paintMat(ctx: Ctx, tx: number, ty: number) {
   const x = tx * TILE, y = ty * TILE;
-  px(ctx, x, y, TILE, TILE, '#3e4757');
-  px(ctx, x + 2, y + 2, 12, 12, '#59657c');
-  px(ctx, x + 4, y + 4, 8, 8, '#6f7d99');
+  fine(ctx, x, y, (put) => {
+    // woven door mat: dark border, a lighter field with weave rows, a lit inner square
+    put(0, 0, FT, FT, '#3e4757');
+    put(6, 6, 36, 36, '#59657c');
+    for (let wy = 8; wy < 40; wy += 3) put(7, wy, 34, 1, '#4f5a6f');
+    put(12, 12, 24, 24, '#6f7d99');
+    for (let wx = 13; wx < 36; wx += 3) put(wx, 13, 1, 22, '#66748f');
+    put(12, 12, 24, 1, '#8592ad');
+  });
 }
 
-type MapKind = 'town' | 'house' | 'gym' | 'gallery';
+type MapKind = 'town' | 'house' | 'gym' | 'gallery' | 'office';
 
 function paintTerrainTile(ctx: Ctx, ch: string, tx: number, ty: number, kind: MapKind, frame: number, rows: string[]) {
   if (kind === 'town') {
@@ -648,11 +974,12 @@ function paintTerrainTile(ctx: Ctx, ch: string, tx: number, ty: number, kind: Ma
   }
   switch (ch) {
     case 'W': {
+      const open = (ch2: string | undefined) => ch2 !== undefined && ch2 !== 'W';
       const below = rows[ty + 1]?.[tx];
-      paintWall(ctx, tx, ty, kind, below !== undefined && below !== 'W');
+      paintWall(ctx, tx, ty, kind, open(below), below === 'W' && open(rows[ty + 2]?.[tx]), open(rows[ty]?.[tx - 1]), open(rows[ty]?.[tx + 1]));
       return;
     }
-    case 'R': paintRug(ctx, tx, ty, kind); return;
+    case 'R': paintRug(ctx, tx, ty, kind, rows); return;
     case 'M': paintMat(ctx, tx, ty); return;
     default: paintFloor(ctx, tx, ty, kind); return;
   }
@@ -670,13 +997,25 @@ function paintBuilding(ctx: Ctx, b: Building) {
   const x = b.x * TILE, y = b.y * TILE, w = b.w * TILE, h = b.h * TILE;
   const wallRows = 2 * TILE;
   const roofH = h - wallRows;
-  // roof
+  const W = w * HD; // building width in fine pixels
+  // roof: shingle courses, each with a dark lower edge, a lit top line and
+  // staggered gaps between shingles
   px(ctx, x, y, w, roofH, b.roof);
-  for (let ry = 4; ry < roofH; ry += 4) px(ctx, x, y + ry, w, 1, b.roofDark);
+  fine(ctx, x, y, (put) => {
+    for (let ry = 9, row = 0; ry < roofH * HD - 6; ry += 9, row++) {
+      put(0, ry, W, 2, b.roofDark);
+      put(0, ry + 2, W, 1, shade(b.roof, 0.18));
+      for (let gx = (row % 2) * 9 + 4; gx < W; gx += 18) put(gx, ry - 7, 1, 7, shade(b.roof, -0.14));
+    }
+  });
   // ridge cap: dark crown with a bright sunlit line beneath it
   px(ctx, x - 1, y, w + 2, 3, b.roofDark);
   px(ctx, x, y + 3, w, 1, '#ffffff50' as string);
   px(ctx, x - 2, y + roofH - 4, w + 4, 4, b.roofDark); // eaves overhang
+  fine(ctx, x - 2, y + roofH - 4, (put) => {
+    put(0, 0, W + 12, 1, shade(b.roofDark, 0.2));
+    put(0, 11, W + 12, 1, shade(b.roofDark, -0.3));
+  });
   px(ctx, x, y, 2, roofH, b.roofDark);
   px(ctx, x + w - 2, y, 2, roofH, b.roofDark);
   if (b.heal) {
@@ -689,18 +1028,36 @@ function paintBuilding(ctx: Ctx, b: Building) {
     const armT = 6;
     px(ctx, cx + (cw - armT) / 2, cy, armT, ch, '#e23b3b'); // vertical bar
     px(ctx, cx, cy + (ch - armT) / 2, cw, armT, '#e23b3b'); // horizontal bar
-    px(ctx, cx + (cw - armT) / 2, cy, armT, 2, '#f87171'); // little highlight
+    fine(ctx, cx - 2, cy - 2, (put) => {
+      put(0, 0, (cw + 4) * HD, 1, '#e2e8f0');
+      put(0, (ch + 4) * HD - 1, (cw + 4) * HD, 1, '#cbd5e1');
+      put(((cw - armT) / 2 + 2) * HD, 6, armT * HD, 2, '#f87171'); // little highlight
+      put(((cw - armT) / 2 + 2) * HD + armT * HD - 2, 6, 2, ch * HD, '#b91c1c');
+    });
   } else {
-    // chimney with a lazy puff of smoke drifting above the ridge
+    // brick chimney with a lazy puff of smoke drifting above the ridge
     const chimX = x + w - 10;
     px(ctx, chimX, y - 6, 6, 10, b.roofDark);
     px(ctx, chimX + 1, y - 6, 4, 8, b.roof);
-    px(ctx, chimX + 1, y - 9, 2, 2, 'rgba(226,232,240,0.65)');
-    px(ctx, chimX + 2, y - 12, 3, 3, 'rgba(241,245,249,0.55)');
+    fine(ctx, chimX + 1, y - 6, (put) => {
+      for (let by = 3; by < 24; by += 4) put(0, by, 12, 1, shade(b.roof, -0.2));
+      for (let by = 0; by < 24; by += 8) put(6, by, 1, 4, shade(b.roof, -0.2));
+      put(0, 0, 12, 1, shade(b.roof, 0.25));
+    });
+    fine(ctx, chimX, y - 13, (put) => {
+      put(3, 9, 6, 6, 'rgba(226,232,240,0.6)');
+      put(4, 8, 4, 1, 'rgba(226,232,240,0.6)');
+      put(7, 0, 8, 8, 'rgba(241,245,249,0.5)');
+      put(8, -1, 6, 1, 'rgba(241,245,249,0.5)');
+    });
   }
-  // walls
+  // walls: clapboard siding with a shadow line every few fine pixels
   const wy = y + roofH;
   px(ctx, x, wy, w, wallRows, b.wall);
+  fine(ctx, x, wy, (put) => {
+    for (let sy = 6; sy < wallRows * HD - 9; sy += 7) put(0, sy, W, 1, shade(b.wall, -0.07));
+    put(0, 0, W, 2, 'rgba(0,0,0,0.18)'); // shade under the eaves
+  });
   px(ctx, x, wy + wallRows - 3, w, 3, '#00000035');
   px(ctx, x, wy, 2, wallRows, '#00000025');
   px(ctx, x + w - 2, wy, 2, wallRows, '#00000025');
@@ -710,31 +1067,60 @@ function paintBuilding(ctx: Ctx, b: Building) {
     const wxp = cx * TILE + 4;
     px(ctx, wxp - 1, wy + 4, 10, 10, '#241d33');
     px(ctx, wxp, wy + 5, 8, 8, '#9fd8f0');
-    px(ctx, wxp, wy + 5, 8, 3, '#c9ecf9');
-    px(ctx, wxp + 3, wy + 5, 2, 8, '#241d33');
+    fine(ctx, wxp, wy + 5, (put) => {
+      put(0, 0, 24, 9, '#c9ecf9'); // brighter sky in the upper panes
+      put(3, 13, 2, 2, '#e8f7fd'); // glare: two short diagonal strokes
+      put(5, 11, 2, 2, '#e8f7fd');
+      put(7, 9, 2, 2, '#e8f7fd');
+      put(15, 15, 2, 2, '#e8f7fd');
+      put(17, 13, 2, 2, '#e8f7fd');
+      put(9, 0, 6, 24, '#241d33'); // mullion
+      put(0, 11, 24, 2, '#241d33'); // transom
+      put(0, 22, 24, 2, '#7dc4e4');
+    });
     // flower box under the sill
     px(ctx, wxp - 2, wy + 14, 12, 3, '#8a5a2b');
-    px(ctx, wxp - 2, wy + 14, 12, 1, '#a06c36');
-    px(ctx, wxp - 1, wy + 12, 2, 2, '#f87171');
-    px(ctx, wxp + 3, wy + 12, 2, 2, '#fbbf24');
-    px(ctx, wxp + 7, wy + 12, 2, 2, '#f87171');
+    fine(ctx, wxp - 2, wy + 12, (put) => {
+      put(0, 6, 36, 1, '#a06c36');
+      put(0, 14, 36, 1, '#5b3a1e');
+      const blooms = ['#f87171', '#fbbf24', '#f87171', '#f9a8d4', '#fbbf24'];
+      for (let i = 0; i < 5; i++) {
+        const fx = 3 + i * 7;
+        put(fx + 1, 3, 1, 3, '#3c8a31');
+        put(fx, 0, 3, 3, blooms[i]);
+        put(fx + 1, 1, 1, 1, '#fde68a');
+      }
+    });
   }
-  // door (fills its tile)
+  // door: frame, two inset panels, a brass knob and a stone step
   const dx = b.door.x * TILE, dy = b.door.y * TILE;
   px(ctx, dx, dy - 4, TILE, 4, '#241d33');
   px(ctx, dx + 1, dy, 14, TILE, '#241d33');
   px(ctx, dx + 3, dy + 2, 10, 14, '#6b4423');
-  px(ctx, dx + 3, dy + 2, 10, 2, '#845733');
-  px(ctx, dx + 11, dy + 8, 2, 2, '#e5cf9a');
+  fine(ctx, dx + 3, dy + 2, (put) => {
+    put(0, 0, 30, 4, '#845733');
+    put(4, 7, 22, 14, '#5b3a1e');
+    put(5, 8, 20, 12, '#74492a');
+    put(4, 25, 22, 14, '#5b3a1e');
+    put(5, 26, 20, 12, '#74492a');
+    put(5, 8, 20, 1, '#8a5a2b');
+    put(5, 26, 20, 1, '#8a5a2b');
+    put(24, 18, 4, 4, '#e5cf9a');
+    put(24, 18, 2, 2, '#fff3c4');
+  });
   // welcome mat on the ground just outside the door
   px(ctx, dx + 2, dy + TILE, TILE - 4, 3, '#8a5a2b');
-  px(ctx, dx + 3, dy + TILE + 1, TILE - 6, 1, '#a06c36');
+  fine(ctx, dx + 2, dy + TILE, (put) => {
+    put(3, 3, 30, 1, '#a06c36');
+    for (let fx = 2; fx < 36; fx += 4) put(fx, 8, 2, 1, '#6b4423');
+  });
 }
 
 /* Decor painters — furniture, signs, exhibits. Painted onto the map canvas. */
 type DecorType =
   | 'sign' | 'mailbox' | 'bed' | 'desk' | 'bookshelf' | 'tv' | 'sofa'
-  | 'plant' | 'exhibit' | 'bench' | 'weights' | 'platform' | 'healmachine' | 'counter';
+  | 'plant' | 'exhibit' | 'bench' | 'weights' | 'platform' | 'healmachine' | 'counter'
+  | 'plaque' | 'diploma' | 'fence' | 'flowers';
 
 type Decor = {
   type: DecorType;
@@ -742,117 +1128,347 @@ type Decor = {
   solid?: boolean;
   color?: string;
   dialogueId?: string; // key into the dialogue registry
+  label?: string; // interact hint, e.g. 'VIEW: DRAGMATE' (falls back to DECOR_HINTS)
 };
 
+// Default interact-hint verbs per decor type; exhibits and plaques set their own label.
+const DECOR_HINTS: Partial<Record<DecorType, string>> = {
+  sign: 'READ: SIGN',
+  mailbox: 'CHECK: MAILBOX',
+  desk: 'USE: PC',
+  bookshelf: 'BROWSE: BOOKSHELF',
+  tv: 'WATCH: TV',
+  diploma: 'READ: DIPLOMA',
+};
+
+// All decor is drawn in fine pixels from its tile's top-left; negative fy
+// reaches up into the tile above (tall furniture, wall-mounted frames).
 function paintDecor(ctx: Ctx, d: Decor, kind: MapKind) {
   const x = d.x * TILE, y = d.y * TILE;
-  switch (d.type) {
-    case 'sign':
-      px(ctx, x + 7, y + 8, 2, 7, '#6b4423');
-      px(ctx, x + 2, y + 2, 12, 7, '#8a5a2b');
-      px(ctx, x + 3, y + 3, 10, 5, '#c89858');
-      px(ctx, x + 4, y + 4, 8, 1, '#7a4c22');
-      px(ctx, x + 4, y + 6, 6, 1, '#7a4c22');
-      break;
-    case 'mailbox':
-      px(ctx, x + 7, y + 8, 2, 7, '#57534e');
-      px(ctx, x + 3, y + 2, 10, 7, '#dc2626');
-      px(ctx, x + 3, y + 2, 10, 2, '#f87171');
-      px(ctx, x + 11, y + 4, 2, 3, '#fbbf24');
-      break;
-    case 'bed':
-      px(ctx, x + 1, y + 1, 14, 30, '#8a5a2b');
-      px(ctx, x + 2, y + 2, 12, 28, '#e2e8f0');
-      px(ctx, x + 2, y + 2, 12, 8, '#f8fafc');
-      px(ctx, x + 2, y + 12, 12, 18, '#38bdf8');
-      px(ctx, x + 2, y + 12, 12, 2, '#0ea5e9');
-      break;
-    case 'desk':
-      px(ctx, x + 1, y + 6, 30, 9, '#8a5a2b');
-      px(ctx, x + 1, y + 6, 30, 2, '#a06c36');
-      px(ctx, x + 3, y - 4, 12, 10, '#241d33'); // monitor
-      px(ctx, x + 4, y - 3, 10, 7, '#38bdf8');
-      px(ctx, x + 5, y - 2, 6, 1, '#e0f2fe');
-      px(ctx, x + 5, y, 8, 1, '#e0f2fe');
-      px(ctx, x + 20, y + 1, 8, 5, '#475569'); // books
-      break;
-    case 'bookshelf':
-      px(ctx, x + 1, y - 6, 14, 21, '#6b4423');
-      px(ctx, x + 2, y - 5, 12, 5, '#241d33');
-      px(ctx, x + 2, y + 2, 12, 5, '#241d33');
-      px(ctx, x + 2, y + 9, 12, 5, '#241d33');
-      const cols = ['#dc2626', '#2563eb', '#16a34a', '#f59e0b'];
-      for (let s = 0; s < 3; s++)
-        for (let i = 0; i < 4; i++)
-          px(ctx, x + 3 + i * 3, y - 4 + s * 7, 2, 4, cols[(i + s) % 4]);
-      break;
-    case 'tv':
-      px(ctx, x + 1, y + 3, 14, 10, '#241d33');
-      px(ctx, x + 2, y + 4, 12, 7, '#94a3b8');
-      px(ctx, x + 3, y + 5, 4, 2, '#e2e8f0');
-      px(ctx, x + 5, y + 13, 6, 2, '#0f172a');
-      break;
-    case 'sofa':
-      px(ctx, x + 1, y + 4, 14, 10, '#b91c1c');
-      px(ctx, x + 1, y + 4, 14, 3, '#dc2626');
-      px(ctx, x + 1, y + 2, 3, 12, '#991b1b');
-      px(ctx, x + 12, y + 2, 3, 12, '#991b1b');
-      break;
-    case 'plant':
-      px(ctx, x + 5, y + 9, 6, 6, '#b45309');
-      px(ctx, x + 4, y + 9, 8, 2, '#92400e');
-      px(ctx, x + 4, y + 1, 8, 8, '#16a34a');
-      px(ctx, x + 6, y - 1, 4, 4, '#22c55e');
-      px(ctx, x + 2, y + 4, 3, 4, '#15803d');
-      px(ctx, x + 11, y + 4, 3, 4, '#15803d');
-      break;
-    case 'exhibit': {
-      // pedestal + glowing project screen
-      px(ctx, x + 2, y + 10, 12, 6, '#8d7c68');
-      px(ctx, x + 2, y + 10, 12, 2, '#a5947e');
-      px(ctx, x + 1, y - 6, 14, 16, '#241d33');
-      px(ctx, x + 2, y - 5, 12, 12, d.color ?? '#38bdf8');
-      px(ctx, x + 3, y - 4, 10, 3, '#ffffff88' as string);
-      px(ctx, x + 3, y + 1, 7, 1, '#ffffffaa' as string);
-      px(ctx, x + 3, y + 3, 9, 1, '#ffffff66' as string);
-      break;
+  fine(ctx, x, y, (put) => {
+    switch (d.type) {
+      case 'sign':
+        // post with a lit edge, a framed board, a grained face, two nails, two "words"
+        put(19, 44, 10, 2, 'rgba(30,61,40,0.3)');
+        put(21, 24, 6, 21, '#6b4423');
+        put(21, 24, 2, 21, '#8a5a2b');
+        put(6, 6, 36, 21, '#6b4423');
+        put(7, 7, 34, 19, '#8a5a2b');
+        put(9, 9, 30, 15, '#c89858');
+        put(9, 9, 30, 1, '#dcb070');
+        put(9, 16, 30, 1, '#bd8c4e');
+        put(12, 12, 24, 2, '#7a4c22');
+        put(12, 18, 17, 2, '#7a4c22');
+        put(8, 8, 2, 2, '#4a2e17');
+        put(38, 8, 2, 2, '#4a2e17');
+        break;
+      case 'mailbox':
+        put(19, 44, 10, 2, 'rgba(30,61,40,0.3)');
+        put(21, 24, 6, 21, '#57534e');
+        put(21, 24, 2, 21, '#78716c');
+        put(10, 6, 28, 2, '#991b1b'); // rounded top
+        put(9, 8, 30, 18, '#991b1b');
+        put(10, 8, 28, 16, '#dc2626');
+        put(11, 7, 26, 1, '#f87171');
+        put(10, 8, 28, 3, '#f87171');
+        put(12, 17, 14, 1, '#7f1d1d'); // letter slot
+        put(36, 9, 2, 12, '#57534e'); // flag
+        put(38, 9, 6, 5, '#fbbf24');
+        put(38, 9, 6, 1, '#fde68a');
+        break;
+      case 'bed':
+        // wooden frame and headboard, pillow with a crease, folded-back blanket
+        put(3, 0, 42, 93, '#6b4423');
+        put(4, 1, 40, 91, '#8a5a2b');
+        put(4, 1, 40, 7, '#a06c36');
+        put(4, 8, 40, 1, '#5b3a1e');
+        put(7, 10, 34, 80, '#e2e8f0');
+        put(9, 12, 30, 14, '#f8fafc');
+        put(10, 12, 28, 1, '#ffffff');
+        put(9, 25, 30, 1, '#cbd5e1');
+        put(23, 15, 1, 8, '#e2e8f0');
+        put(7, 33, 34, 57, '#38bdf8');
+        put(7, 33, 34, 5, '#7dd3fc');
+        put(7, 38, 34, 1, '#0ea5e9');
+        put(7, 52, 34, 2, '#0ea5e9');
+        put(7, 70, 34, 2, '#0ea5e9');
+        put(39, 39, 2, 51, '#0284c7');
+        put(4, 90, 40, 3, '#5b3a1e');
+        break;
+      case 'desk': {
+        // desk with drawers, a monitor showing syntax-coloured code, keyboard, mug
+        put(3, 18, 90, 27, '#5b3a1e');
+        put(4, 18, 88, 25, '#8a5a2b');
+        put(4, 18, 88, 5, '#a06c36');
+        put(4, 23, 88, 1, '#5b3a1e');
+        for (const dx2 of [8, 66]) {
+          put(dx2, 28, 22, 13, '#6b4423');
+          put(dx2 + 1, 29, 20, 11, '#8a5a2b');
+          put(dx2 + 1, 29, 20, 1, '#a06c36');
+          put(dx2 + 8, 34, 5, 1, '#d4a017');
+        }
+        put(9, -12, 36, 27, '#241d33');
+        put(10, -11, 34, 1, '#3b3352');
+        put(12, -9, 30, 20, '#0f172a');
+        const code: Array<[number, number, number, string]> = [
+          [14, -7, 7, '#f472b6'], [23, -7, 10, '#e2e8f0'],
+          [17, -4, 5, '#38bdf8'], [24, -4, 13, '#a3e635'],
+          [17, -1, 12, '#e2e8f0'],
+          [14, 2, 6, '#fbbf24'], [22, 2, 9, '#38bdf8'],
+          [17, 5, 10, '#e2e8f0'], [14, 8, 4, '#f472b6'],
+        ];
+        for (const [cx, cy, cw, cc] of code) put(cx, cy, cw, 1, cc);
+        put(20, 8, 2, 1, '#e2e8f0'); // cursor
+        put(24, 15, 6, 3, '#241d33'); // stand
+        put(19, 17, 16, 2, '#334155');
+        put(50, 12, 26, 6, '#334155'); // keyboard
+        put(50, 12, 26, 1, '#475569');
+        for (let k = 0; k < 6; k++) {
+          put(52 + k * 4, 14, 3, 1, '#94a3b8');
+          put(53 + k * 4, 16, 3, 1, '#94a3b8');
+        }
+        put(80, 8, 7, 10, '#f8fafc'); // mug
+        put(87, 10, 2, 5, '#f8fafc');
+        put(81, 9, 5, 1, '#78350f');
+        put(80, 17, 7, 1, '#cbd5e1');
+        break;
+      }
+      case 'bookshelf': {
+        // case, three shelves of books in varied widths and heights, each with
+        // a lit spine edge and a dark band
+        put(3, -18, 42, 64, '#5b3a1e');
+        put(4, -17, 40, 62, '#6b4423');
+        put(4, -17, 40, 2, '#8a5a2b');
+        const books = ['#dc2626', '#2563eb', '#16a34a', '#f59e0b', '#7c3aed', '#0891b2', '#e2e8f0'];
+        for (let s = 0; s < 3; s++) {
+          const sy = -15 + s * 21;
+          put(6, sy, 36, 15, '#241d33');
+          let bx = 7;
+          for (let i = 0; bx < 40; i++) {
+            const bw = 3 + Math.floor(hash2(d.x * 7 + i, s * 13 + d.y) * 3);
+            const bh = 10 + Math.floor(hash2(d.x * 3 + s, i * 5) * 5);
+            const col = books[(i * 3 + s + d.x) % books.length];
+            const w2 = Math.min(bw, 41 - bx);
+            put(bx, sy + 15 - bh, w2, bh, col);
+            put(bx, sy + 15 - bh, 1, bh, shade(col, 0.3));
+            put(bx, sy + 15 - bh + 3, w2, 1, shade(col, -0.3));
+            bx += bw + 1;
+          }
+          put(4, sy + 15, 40, 2, '#8a5a2b');
+          put(4, sy + 17, 40, 1, '#4a2e17');
+        }
+        break;
+      }
+      case 'tv':
+        // CRT with rounded casing, scanlines, a glare and a red power light
+        put(4, 9, 40, 30, '#241d33');
+        put(3, 10, 42, 28, '#241d33');
+        put(4, 10, 40, 1, '#3b3352');
+        put(7, 12, 34, 22, '#94a3b8');
+        for (let sy = 13; sy < 34; sy += 2) put(7, sy, 34, 1, '#8796ab');
+        put(9, 14, 10, 2, '#e2e8f0');
+        put(9, 16, 4, 2, '#e2e8f0');
+        put(37, 35, 3, 2, '#ef4444');
+        put(15, 39, 18, 4, '#0f172a');
+        put(12, 43, 24, 2, '#0f172a');
+        break;
+      case 'sofa':
+        // backrest, two seat cushions, rounded arms, little wooden legs
+        put(3, 12, 42, 31, '#7f1d1d');
+        put(4, 13, 40, 28, '#b91c1c');
+        put(4, 13, 40, 8, '#dc2626');
+        put(4, 21, 40, 1, '#991b1b');
+        put(23, 22, 1, 15, '#991b1b');
+        put(10, 23, 8, 1, '#ef4444');
+        put(28, 23, 8, 1, '#ef4444');
+        put(3, 7, 10, 36, '#991b1b');
+        put(4, 6, 8, 1, '#991b1b');
+        put(4, 7, 8, 2, '#b91c1c');
+        put(35, 7, 10, 36, '#991b1b');
+        put(36, 6, 8, 1, '#991b1b');
+        put(36, 7, 8, 2, '#b91c1c');
+        put(5, 43, 3, 3, '#3f2d1e');
+        put(40, 43, 3, 3, '#3f2d1e');
+        break;
+      case 'plant': {
+        // tapered clay pot with a lit rim, leaves with pale midribs
+        put(15, 30, 18, 15, '#b45309');
+        put(29, 31, 3, 13, '#92400e');
+        put(17, 35, 14, 2, '#c2620f');
+        put(16, 44, 16, 1, '#7c2d12');
+        put(13, 27, 22, 4, '#92400e');
+        put(13, 27, 22, 1, '#d97706');
+        const leaf = (lx: number, ly: number, lw: number, lh: number, c: string, vein: string) => {
+          put(lx + 1, ly, lw - 2, lh, c);
+          put(lx, ly + 1, lw, lh - 2, c);
+          put(lx + Math.floor(lw / 2), ly + 2, 1, lh - 4, vein);
+        };
+        leaf(5, 12, 11, 12, '#15803d', '#22c55e');
+        leaf(32, 12, 11, 12, '#15803d', '#22c55e');
+        leaf(11, 2, 12, 17, '#16a34a', '#4ade80');
+        leaf(25, 2, 12, 17, '#16a34a', '#4ade80');
+        leaf(18, -4, 12, 19, '#22c55e', '#86efac');
+        put(14, 23, 20, 4, '#15803d');
+        break;
+      }
+      case 'exhibit': {
+        // pedestal + framed project screen with a title bar, text lines, a thumbnail
+        const col = d.color ?? '#38bdf8';
+        put(6, 30, 36, 18, '#8d7c68');
+        put(6, 30, 36, 4, '#a5947e');
+        put(38, 34, 4, 14, '#7a6a58');
+        put(6, 46, 36, 2, '#6f604f');
+        put(3, -18, 42, 48, '#241d33');
+        put(4, -17, 40, 1, '#3b3352');
+        put(6, -15, 36, 36, col);
+        put(6, -15, 36, 1, shade(col, 0.35));
+        put(9, -12, 30, 4, shade(col, 0.45));
+        put(9, -5, 21, 1, '#ffffffaa' as string);
+        put(9, -1, 25, 1, '#ffffff88' as string);
+        put(9, 3, 17, 1, '#ffffff88' as string);
+        put(9, 7, 23, 1, '#ffffff66' as string);
+        put(30, 11, 9, 7, shade(col, -0.25));
+        put(9, 14, 12, 3, '#ffffffaa' as string);
+        break;
+      }
+      case 'bench':
+        put(4, 41, 40, 2, 'rgba(0,0,0,0.12)');
+        put(5, 25, 5, 16, '#6b4423');
+        put(38, 25, 5, 16, '#6b4423');
+        put(3, 14, 42, 4, '#8a5a2b');
+        put(3, 14, 42, 1, '#a06c36');
+        put(3, 19, 42, 4, '#8a5a2b');
+        put(3, 19, 42, 1, '#a06c36');
+        put(3, 23, 42, 2, '#5b3a1e');
+        break;
+      case 'weights':
+        put(3, 22, 42, 6, '#475569');
+        put(3, 22, 42, 2, '#64748b');
+        put(3, 12, 9, 27, '#334155');
+        put(4, 13, 2, 25, '#475569');
+        put(36, 12, 9, 27, '#334155');
+        put(37, 13, 2, 25, '#475569');
+        put(12, 20, 3, 10, '#94a3b8');
+        put(33, 20, 3, 10, '#94a3b8');
+        put(15, 33, 18, 9, '#64748b');
+        put(15, 33, 18, 2, '#94a3b8');
+        break;
+      case 'platform':
+        // the gym leader's dais: lit front edge, side bevels, a star inlay
+        put(0, 0, FT, FT * 2, '#8d7c68');
+        put(0, 0, FT, 9, '#a5947e');
+        put(0, 9, FT, 1, '#b8a891');
+        put(0, 0, 1, FT * 2, '#6f604f');
+        put(FT - 1, 0, 1, FT * 2, '#6f604f');
+        put(0, FT * 2 - 10, FT, 1, '#76695a');
+        put(0, FT * 2 - 9, FT, 9, '#5f5344');
+        put(20, 40, 8, 8, '#f59e0b');
+        put(22, 37, 4, 14, '#f59e0b');
+        put(17, 42, 14, 4, '#f59e0b');
+        put(23, 40, 2, 2, '#fde68a');
+        break;
+      case 'counter':
+        // reception counter segment with panel joints
+        put(0, 18, FT, 30, '#b45309');
+        put(0, 18, FT, 6, '#d97706');
+        put(0, 24, FT, 1, '#92400e');
+        for (let cx = 0; cx < FT; cx += 12) put(cx, 27, 1, 13, '#92400e');
+        put(0, 42, FT, 6, '#7c4a12');
+        break;
+      case 'healmachine':
+        // med-bay pod: dark casing, glass dome with glare, two restore orbs, red cross
+        put(3, 9, 42, 36, '#1e293b');
+        put(4, 10, 40, 34, '#334155');
+        put(4, 10, 40, 4, '#475569');
+        put(6, 15, 36, 21, '#93c5fd');
+        put(6, 15, 36, 1, '#bfdbfe');
+        put(8, 17, 2, 12, '#dbeafe');
+        put(12, 18, 9, 9, '#f8fafc');
+        put(13, 19, 3, 3, '#ffffff');
+        put(27, 18, 9, 9, '#f8fafc');
+        put(28, 19, 3, 3, '#ffffff');
+        put(18, 36, 12, 6, '#ef4444');
+        put(21, 33, 6, 12, '#ef4444');
+        put(21, 33, 6, 1, '#f87171');
+        put(6, 39, 6, 6, '#22d3ee');
+        put(36, 39, 6, 6, '#22d3ee');
+        break;
+      case 'plaque': {
+        // framed career plaque on a wall face: company-colour header band,
+        // text lines, a small logo square and a brass nameplate
+        const col = d.color ?? '#3b5b92';
+        put(3, -12, 42, 42, '#4a3018');
+        put(4, -11, 40, 1, '#6b4a2a');
+        put(6, -9, 36, 36, '#f3ead4');
+        put(6, -9, 36, 9, col);
+        put(6, -9, 36, 1, shade(col, 0.3));
+        put(6, 0, 36, 1, shade(col, -0.3));
+        put(10, 4, 22, 1, '#8d7c68');
+        put(10, 8, 26, 1, '#b8a98f');
+        put(10, 11, 20, 1, '#b8a98f');
+        put(10, 14, 24, 1, '#b8a98f');
+        put(10, 18, 14, 1, '#b8a98f');
+        put(31, 17, 7, 6, shade(col, -0.1));
+        put(18, 30, 12, 5, '#b8860b');
+        put(18, 30, 12, 1, '#f4d03f');
+        break;
+      }
+      case 'diploma':
+        put(9, -3, 30, 30, '#3f2d1e');
+        put(10, -2, 28, 1, '#5b4430');
+        put(12, 0, 24, 24, '#fdf6e3');
+        put(17, 4, 14, 1, '#7a6a58');
+        put(15, 8, 18, 1, '#b8a98f');
+        put(15, 11, 16, 1, '#b8a98f');
+        put(15, 14, 18, 1, '#b8a98f');
+        put(14, 19, 8, 1, '#7a6a58');
+        put(27, 17, 6, 6, '#dc2626'); // wax seal and ribbon tails
+        put(28, 18, 2, 2, '#f87171');
+        put(28, 23, 2, 4, '#b91c1c');
+        put(31, 23, 2, 3, '#b91c1c');
+        break;
+      case 'fence':
+        // white picket fence segment: two rails behind three pointed pickets
+        put(0, 18, FT, 5, '#b08a5a');
+        put(0, 18, FT, 1, '#c9a576');
+        put(0, 33, FT, 5, '#b08a5a');
+        put(0, 33, FT, 1, '#c9a576');
+        for (const fx of [3, 18, 33]) {
+          put(fx, 9, 12, 36, '#8a6f4d');
+          put(fx + 2, 6, 8, 3, '#8a6f4d');
+          put(fx + 4, 4, 4, 2, '#8a6f4d');
+          put(fx + 1, 9, 10, 35, '#efe3c6');
+          put(fx + 3, 7, 6, 2, '#efe3c6');
+          put(fx + 5, 5, 2, 2, '#efe3c6');
+          put(fx + 9, 9, 2, 35, '#d6c8a8');
+        }
+        put(0, 45, FT, 3, 'rgba(30,61,40,0.25)');
+        break;
+      case 'flowers': {
+        // raised bed: dark soil with a lit rim, six blooms on stems with a leaf each
+        put(3, 9, 42, 36, '#4a2e17');
+        put(4, 10, 40, 34, '#6b4423');
+        put(4, 10, 40, 2, '#8a5a2b');
+        for (let i = 0; i < 5; i++) put(6 + i * 8, 38 - (i % 2) * 4, 2, 1, '#5b3a1e');
+        const blooms = ['#f87171', '#fbbf24', '#f9a8d4', '#fef3c7'];
+        for (let i = 0; i < 6; i++) {
+          const row = Math.floor(i / 3);
+          const fx = 9 + (i % 3) * 12 + row * 6;
+          const fy = 16 + row * 14;
+          put(fx + 1, fy + 3, 1, 8, '#3c8a31');
+          put(fx + 2, fy + 7, 3, 2, '#4f9a3a');
+          const col = blooms[(i + d.x) % blooms.length];
+          put(fx, fy - 3, 3, 3, col);
+          put(fx, fy + 3, 3, 2, col);
+          put(fx - 3, fy, 3, 3, col);
+          put(fx + 3, fy, 3, 3, col);
+          put(fx, fy, 3, 3, '#fbbf24');
+          put(fx, fy, 1, 1, '#fde68a');
+        }
+        break;
+      }
     }
-    case 'bench':
-      px(ctx, x + 1, y + 5, 14, 4, '#8a5a2b');
-      px(ctx, x + 1, y + 9, 2, 5, '#6b4423');
-      px(ctx, x + 13, y + 9, 2, 5, '#6b4423');
-      break;
-    case 'weights':
-      px(ctx, x + 1, y + 7, 14, 3, '#475569');
-      px(ctx, x + 1, y + 4, 3, 9, '#334155');
-      px(ctx, x + 12, y + 4, 3, 9, '#334155');
-      px(ctx, x + 5, y + 11, 6, 3, '#64748b');
-      break;
-    case 'platform':
-      px(ctx, x, y, TILE, TILE * 2, '#8d7c68');
-      px(ctx, x, y, TILE, 3, '#a5947e');
-      px(ctx, x, y + TILE * 2 - 3, TILE, 3, '#5f5344');
-      break;
-    case 'counter':
-      // reception counter segment
-      px(ctx, x, y + 6, TILE, 10, '#b45309');
-      px(ctx, x, y + 6, TILE, 2, '#d97706');
-      px(ctx, x, y + 14, TILE, 2, '#7c4a12');
-      break;
-    case 'healmachine':
-      // a med-bay pod: dark casing, glass dome, two glowing restore orbs + red cross
-      px(ctx, x + 1, y + 3, 14, 12, '#334155');
-      px(ctx, x + 1, y + 3, 14, 2, '#475569');
-      px(ctx, x + 2, y + 5, 12, 7, '#93c5fd');
-      px(ctx, x + 4, y + 6, 3, 3, '#f8fafc');
-      px(ctx, x + 10, y + 6, 3, 3, '#f8fafc');
-      // red cross on the front
-      px(ctx, x + 6, y + 12, 4, 2, '#ef4444');
-      px(ctx, x + 7, y + 11, 2, 4, '#ef4444');
-      px(ctx, x + 2, y + 13, 2, 2, '#22d3ee');
-      px(ctx, x + 12, y + 13, 2, 2, '#22d3ee');
-      break;
-  }
+  });
   void kind;
 }
 
@@ -867,6 +1483,7 @@ type NPCDef = {
   wander?: { r: number };
   important?: boolean;
   dialogueId: string;
+  trainer?: string; // key into TRAINERS: talking (or being spotted) starts a trainer battle
 };
 type GameMap = {
   id: string; name: string; kind: MapKind;
@@ -879,34 +1496,64 @@ type GameMap = {
 
 // A north corridor at column 14 (between the Gallery and the Heal Center) opens
 // through the treeline to the DEBUG MEADOW route; the warp sits at (14,2).
+// The east end (columns 34-43) holds the CAREER HALL and a small flower garden.
 const TOWN_ROWS = [
-  'TTTTTTTTTTTTTTPTTTTTTTTTTTTTTTTTTTTT',
-  'TTTTTTTTTTTTTTPTTTTTTTTTTTTTTTTTTTTT',
-  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGPGGGGPGGGPGGGGGGGGPGGGGGGTT',
-  'TTGGGGGGGPGGGGPGGGPGGGGGGGGPGGGGGGTT',
-  'TTGGPPPPPPPPPPPPPPPPPPPPPPPPPPPPGGTT',
-  'TTGGPPPPPPPPPPPPPPPPPPPPPPPPPPPPGGTT',
-  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGPGGWWWWWGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGPGGWWWWWGGGGGGGGGGGGTT',
-  'TTGGGGGGGGGGGGPGGWWWWWGGtttttttGGGTT',
-  'TTGGGGGGGGGGGGPGGWWWWWGGtttttttGGGTT',
-  'TTGGGGGGGPPPPPPGGGGGGGGGtttttttGGGTT',
-  'TTGGGGGGGGGGGGGGGGGGGGGGtttttttGGGTT',
-  'TTGGGGGGGGGGGGGGGGGGGGGGtttttttGGGTT',
-  'TTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
-  'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
-  'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
+  'TTTTTTTTTTTTTTPTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
+  'TTTTTTTTTTTTTTPTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGPGGGGPGGGPGGGGGGGGPGGGGGGGGGPGGGGGGTT',
+  'TTGGGGGGGPGGGGPGGGPGGGGGGGGPGGGGGGGGGPGGGGGGTT',
+  'TTGGPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPGGTT',
+  'TTGGPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGWWWWWGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGWWWWWGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGWWWWWGGtttttttGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGPGGWWWWWGGtttttttGGGGGGGGGGGGGTT',
+  'TTGGGGGGGPPPPPPGGGGGGGGGtttttttGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGGGGGGGGGGGtttttttGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGGGGGGGGGGGtttttttGGGGGGGGGGGGGTT',
+  'TTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGTT',
+  'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
+  'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
 ];
+
+// Plain interior: two wall rows on top, a door mat ('M') in the bottom wall,
+// an optional rug rectangle. Used by rooms whose width follows the data.
+function roomRows(w: number, h: number, doorX: number, rug?: { x: number; y: number; w: number; h: number }): string[] {
+  const rows: string[] = [];
+  for (let y = 0; y < h; y++) {
+    if (y < 2) {
+      rows.push('W'.repeat(w));
+    } else if (y === h - 1) {
+      rows.push('W'.repeat(doorX) + 'M' + 'W'.repeat(w - doorX - 1));
+    } else {
+      let r = 'W';
+      for (let x = 1; x < w - 1; x++) {
+        const onRug = rug && x >= rug.x && x < rug.x + rug.w && y >= rug.y && y < rug.y + rug.h;
+        r += onRug ? 'R' : 'F';
+      }
+      rows.push(r + 'W');
+    }
+  }
+  return rows;
+}
+
+// One exhibit per project / one plaque per job, two tiles apart, so both rooms
+// grow with portfolioData instead of overflowing a fixed width.
+const GALLERY_W = Math.max(17, 3 + portfolioData.projects.length * 2);
+const GALLERY_DOOR = Math.floor(GALLERY_W / 2);
+const CAREER_W = Math.max(11, 3 + portfolioData.experience.length * 2);
+const CAREER_H = 10;
+const CAREER_DOOR = Math.floor(CAREER_W / 2);
 
 const MAPS: Record<string, GameMap> = {
   town: {
@@ -919,14 +1566,22 @@ const MAPS: Record<string, GameMap> = {
       { x: 15, y: 4, w: 7, h: 6, roof: '#ef4444', roofDark: '#991b1b', wall: '#f1f5f9', door: { x: 18, y: 9 }, heal: true },
       { x: 23, y: 4, w: 9, h: 6, roof: '#818cf8', roofDark: '#4f46b8', wall: '#e8e2f2', door: { x: 27, y: 9 } },
       { x: 6, y: 15, w: 6, h: 5, roof: '#f87171', roofDark: '#b83f3f', wall: '#f3ead4', door: { x: 9, y: 19 } },
+      { x: 34, y: 4, w: 8, h: 6, roof: '#3b5b92', roofDark: '#1f3a66', wall: '#e6e9ef', door: { x: 37, y: 9 } },
     ],
     decor: [
       { type: 'sign', x: 11, y: 10, solid: true, dialogueId: 'sign_gallery' },
       { type: 'sign', x: 16, y: 10, solid: true, dialogueId: 'sign_heal' },
       { type: 'sign', x: 29, y: 10, solid: true, dialogueId: 'sign_gym' },
+      { type: 'sign', x: 39, y: 10, solid: true, dialogueId: 'sign_career' },
       { type: 'sign', x: 16, y: 21, solid: true, dialogueId: 'sign_welcome' },
       { type: 'sign', x: 13, y: 3, solid: true, dialogueId: 'sign_meadow' },
       { type: 'mailbox', x: 7, y: 20, solid: true, dialogueId: 'mailbox' },
+      // east-end garden: two flower beds behind a picket fence
+      ...[35, 36, 37, 38, 39, 40, 41].flatMap((x): Decor[] => [
+        { type: 'flowers', x, y: 16, solid: true },
+        { type: 'flowers', x, y: 17, solid: true },
+        { type: 'fence', x, y: 18, solid: true },
+      ]),
     ],
     npcs: [
       { id: 'guide', name: 'GUIDE', palette: 'guide', x: 12, y: 19, facing: 'down', wander: { r: 2 }, important: true, dialogueId: 'npc_guide' },
@@ -936,9 +1591,10 @@ const MAPS: Record<string, GameMap> = {
       { id: 'kid', name: 'KID', palette: 'kid', x: 26, y: 21, facing: 'down', wander: { r: 3 }, dialogueId: 'npc_kid' },
     ],
     warps: [
-      { x: 9, y: 9, toMap: 'gallery', toX: 8, toY: 9, facing: 'up' },
+      { x: 9, y: 9, toMap: 'gallery', toX: GALLERY_DOOR, toY: 9, facing: 'up' },
       { x: 18, y: 9, toMap: 'heal', toX: 5, toY: 7, facing: 'up' },
       { x: 27, y: 9, toMap: 'gym', toX: 7, toY: 9, facing: 'up' },
+      { x: 37, y: 9, toMap: 'career', toX: CAREER_DOOR, toY: CAREER_H - 2, facing: 'up' },
       { x: 9, y: 19, toMap: 'house', toX: 5, toY: 8, facing: 'up' },
       { x: 14, y: 2, toMap: 'meadow', toX: 10, toY: 15, facing: 'up' },
     ],
@@ -967,6 +1623,7 @@ const MAPS: Record<string, GameMap> = {
       { type: 'bookshelf', x: 4, y: 2, solid: true, dialogueId: 'bookshelf' },
       { type: 'desk', x: 7, y: 2, solid: true, dialogueId: 'pc' },
       { type: 'desk', x: 8, y: 2, solid: true, dialogueId: 'pc' },
+      { type: 'diploma', x: 6, y: 1, dialogueId: 'diploma' }, // hangs on the wall face
       { type: 'tv', x: 2, y: 5, solid: true, dialogueId: 'tv' },
       { type: 'sofa', x: 2, y: 6, solid: true, dialogueId: 'sofa' },
       { type: 'plant', x: 9, y: 8, solid: true, dialogueId: 'plant' },
@@ -999,7 +1656,7 @@ const MAPS: Record<string, GameMap> = {
       { type: 'weights', x: 13, y: 2, solid: true, dialogueId: 'weights' },
     ],
     npcs: [
-      { id: 'leader', name: 'GYM LEADER', palette: 'leader', x: 7, y: 2, facing: 'down', important: true, dialogueId: 'npc_leader' },
+      { id: 'leader', name: 'GYM LEADER', palette: 'leader', x: 7, y: 2, facing: 'down', important: true, dialogueId: 'npc_leader_done', trainer: 'leader' },
       { id: 'sensei', name: 'BACKEND SENSEI', palette: 'sensei', x: 4, y: 5, facing: 'right', wander: { r: 1 }, important: true, dialogueId: 'npc_sensei' },
       { id: 'sergeant', name: 'DEVOPS SGT.', palette: 'sergeant', x: 10, y: 5, facing: 'left', wander: { r: 1 }, important: true, dialogueId: 'npc_sergeant' },
       { id: 'rookie', name: 'FRONTEND ROOKIE', palette: 'rookie', x: 7, y: 7, facing: 'down', wander: { r: 1 }, dialogueId: 'npc_rookie' },
@@ -1011,38 +1668,52 @@ const MAPS: Record<string, GameMap> = {
     id: 'gallery',
     name: 'PROJECT GALLERY',
     kind: 'gallery',
-    rows: [
-      'WWWWWWWWWWWWWWWWW',
-      'WWWWWWWWWWWWWWWWW',
-      'WFFFFFFFFFFFFFFFW',
-      'WFFFFFFFFFFFFFFFW',
-      'WFFFFFFFFFFFFFFFW',
-      'WFFFFFFFFFFFFFFFW',
-      'WFFFFFFFFFFFFFFFW',
-      'WFFFFFFFFFFFFFFFW',
-      'WFFFFFFFFFFFFFFFW',
-      'WFFFFFFFFFFFFFFFW',
-      'WWWWWWWWMWWWWWWWW',
-    ],
+    rows: roomRows(GALLERY_W, 11, GALLERY_DOOR),
     buildings: [],
     decor: [
-      ...portfolioData.projects.map((p, i) => ({
-        type: 'exhibit' as DecorType,
-        x: 2 + i * 3,
+      ...portfolioData.projects.map((p, i): Decor => ({
+        type: 'exhibit',
+        x: 2 + i * 2,
         y: 2,
         solid: true,
         color: p.screenColor,
         dialogueId: `project_${i}`,
+        label: `VIEW: ${p.title.toUpperCase()}`,
       })),
       { type: 'bench', x: 4, y: 7, solid: true },
-      { type: 'bench', x: 12, y: 7, solid: true },
+      { type: 'bench', x: GALLERY_W - 5, y: 7, solid: true },
       { type: 'plant', x: 1, y: 9, solid: true },
-      { type: 'plant', x: 15, y: 9, solid: true },
+      { type: 'plant', x: GALLERY_W - 2, y: 9, solid: true },
     ],
     npcs: [
       { id: 'curator_in', name: 'CURATOR', palette: 'curator', x: 11, y: 5, facing: 'down', wander: { r: 2 }, important: true, dialogueId: 'npc_curator_in' },
     ],
-    warps: [{ x: 8, y: 10, toMap: 'town', toX: 9, toY: 10, facing: 'down' }],
+    warps: [{ x: GALLERY_DOOR, y: 10, toMap: 'town', toX: 9, toY: 10, facing: 'down' }],
+  },
+
+  // ——— CAREER HALL: one wall plaque per job in portfolioData.experience ———
+  career: {
+    id: 'career',
+    name: 'CAREER HALL',
+    kind: 'office',
+    rows: roomRows(CAREER_W, CAREER_H, CAREER_DOOR, { x: CAREER_DOOR - 1, y: 4, w: 3, h: 4 }),
+    buildings: [],
+    decor: [
+      ...portfolioData.experience.map((e, i): Decor => ({
+        type: 'plaque',
+        x: 2 + i * 2,
+        y: 1, // on the wall face; read it from the floor tile below
+        color: e.color,
+        dialogueId: `job_${i}`,
+        label: `READ: ${e.company.split(' ')[0].toUpperCase()}`,
+      })),
+      { type: 'plant', x: 1, y: CAREER_H - 2, solid: true, dialogueId: 'plant' },
+      { type: 'plant', x: CAREER_W - 2, y: CAREER_H - 2, solid: true, dialogueId: 'plant' },
+    ],
+    npcs: [
+      { id: 'mentor', name: 'MENTOR', palette: 'mentor', x: CAREER_W - 3, y: 5, facing: 'left', wander: { r: 1 }, important: true, dialogueId: 'npc_mentor' },
+    ],
+    warps: [{ x: CAREER_DOOR, y: CAREER_H - 1, toMap: 'town', toX: 37, toY: 10, facing: 'down' }],
   },
 
   // ——— HEAL CENTER interior: talk to the NURSE to fully restore the party ———
@@ -1100,7 +1771,8 @@ const MAPS: Record<string, GameMap> = {
     decor: [
       { type: 'sign', x: 12, y: 16, solid: true, dialogueId: 'sign_meadow_in' },
     ],
-    npcs: [{ id: 'hiker', name: 'HIKER', palette: 'hiker', x: 6, y: 6, facing: 'right', wander: { r: 1 }, dialogueId: 'npc_hiker' }],
+    // The HIKER watches the north path: walk past at row 6 and they come over to battle.
+    npcs: [{ id: 'hiker', name: 'HIKER', palette: 'hiker', x: 6, y: 6, facing: 'right', dialogueId: 'npc_hiker', trainer: 'hiker' }],
     warps: [
       { x: 10, y: 17, toMap: 'town', toX: 14, toY: 3, facing: 'down' },
       { x: 11, y: 17, toMap: 'town', toX: 14, toY: 3, facing: 'down' },
@@ -1136,13 +1808,68 @@ const MAPS: Record<string, GameMap> = {
     decor: [
       { type: 'sign', x: 12, y: 12, solid: true, dialogueId: 'sign_forest' },
     ],
-    npcs: [{ id: 'catcher', name: 'BUG CATCHER', palette: 'catcher', x: 7, y: 7, facing: 'right', wander: { r: 1 }, dialogueId: 'npc_catcher' }],
+    npcs: [{ id: 'catcher', name: 'BUG CATCHER', palette: 'catcher', x: 7, y: 7, facing: 'right', dialogueId: 'npc_catcher', trainer: 'catcher' }],
     warps: [
       { x: 9, y: 15, toMap: 'meadow', toX: 10, toY: 1, facing: 'down' },
       { x: 10, y: 15, toMap: 'meadow', toX: 10, toY: 1, facing: 'down' },
     ],
   },
 };
+
+function isSolid(m: GameMap, x: number, y: number): boolean {
+  if (x < 0 || y < 0 || y >= m.rows.length || x >= m.rows[0].length) return true;
+  const ch = m.rows[y][x];
+  if (m.kind === 'town') {
+    if (ch === 'T' || ch === 'W') return true;
+  } else if (ch === 'W') {
+    return true;
+  }
+  for (const b of m.buildings) {
+    if (x >= b.x && x < b.x + b.w && y >= b.y && y < b.y + b.h) {
+      return !(x === b.door.x && y === b.door.y);
+    }
+  }
+  for (const dec of m.decor) {
+    if (dec.solid && dec.x === x && dec.y === y) return true;
+  }
+  return false;
+}
+
+/* Zoom: device pixels per art pixel. 2-5 CSS px per art pixel so about 24x16
+   tiles fit, rounded to a whole number of device pixels so every art pixel is
+   the same size on screen (Retina, 125% Windows scaling...). */
+const isOutdoor = (m: GameMap) => m.kind === 'town';
+
+function zoomFor(vw: number, vh: number, dpr: number): number {
+  const css = Math.max(2, Math.min(5, Math.floor(Math.min(vw / (24 * TILE), vh / (16 * TILE))) || 2));
+  return Math.round(css * dpr);
+}
+
+// Outdoor maps get a ring of forest this many tiles deep, so a screen wider
+// than the map shows trees instead of the void.
+const OUTDOOR_PAD = 12;
+
+// Pads a map with trees; a path that runs off an edge keeps going into the
+// ring so route exits still read as roads.
+function padRows(rows: string[], pad: number): string[] {
+  const h = rows.length;
+  const w = rows[0].length;
+  const out: string[] = [];
+  for (let y = -pad; y < h + pad; y++) {
+    let r = '';
+    for (let x = -pad; x < w + pad; x++) {
+      if (x >= 0 && x < w && y >= 0 && y < h) {
+        r += rows[y][x];
+        continue;
+      }
+      const cx = Math.min(w - 1, Math.max(0, x));
+      const cy = Math.min(h - 1, Math.max(0, y));
+      r += rows[cy][cx] === 'P' && (x === cx || y === cy) ? 'P' : 'T';
+    }
+    out.push(r);
+  }
+  return out;
+}
 
 // Dev-time sanity checks: every map row must match its width, warps must land on open tiles.
 if (import.meta.env.DEV) {
@@ -1151,6 +1878,11 @@ if (import.meta.env.DEV) {
     m.rows.forEach((r, i) => {
       if (r.length !== w) console.error(`[maps] ${m.id} row ${i} has length ${r.length}, expected ${w}`);
     });
+    for (const wp of m.warps) {
+      const to = MAPS[wp.toMap];
+      if (!to) console.error(`[maps] ${m.id} warp at ${wp.x},${wp.y} points to missing map ${wp.toMap}`);
+      else if (isSolid(to, wp.toX, wp.toY)) console.error(`[maps] ${m.id} warp at ${wp.x},${wp.y} lands on solid ${wp.toMap} ${wp.toX},${wp.toY}`);
+    }
   }
 }
 
@@ -1158,7 +1890,7 @@ if (import.meta.env.DEV) {
    § 6 — DIALOGUE CONTENT (generated from portfolioData)
    ═══════════════════════════════════════════════════════════════════════════ */
 
-type DialogueAction = { label: string; href?: string; grantBadge?: string; heal?: boolean };
+type DialogueAction = { label: string; href?: string; grantBadge?: string; heal?: boolean; startTrainer?: string };
 type DialogueSpec = { speaker: string; pages: string[]; actions?: DialogueAction[] };
 
 function paginate(text: string, max = 96): string[] {
@@ -1180,7 +1912,14 @@ const flatten = (texts: string[], max = 96) => texts.flatMap((t) => paginate(t, 
 
 const d = portfolioData;
 
-function buildDialogues(hasBadge: (b: string) => boolean): Record<string, () => DialogueSpec> {
+function buildDialogues(): Record<string, () => DialogueSpec> {
+  const jobDialogues: Record<string, () => DialogueSpec> = {};
+  d.experience.forEach((e, i) => {
+    jobDialogues[`job_${i}`] = () => ({
+      speaker: e.company.toUpperCase(),
+      pages: flatten([`${e.role.toUpperCase()} — ${e.period}.`, ...e.highlights.map((h) => `* ${h}`)]),
+    });
+  });
   const projectDialogues: Record<string, () => DialogueSpec> = {};
   d.projects.forEach((p, i) => {
     projectDialogues[`project_${i}`] = () => ({
@@ -1201,13 +1940,14 @@ function buildDialogues(hasBadge: (b: string) => boolean): Record<string, () => 
 
   return {
     ...projectDialogues,
+    ...jobDialogues,
 
     intro: () => ({
       speaker: 'NARRATOR',
       pages: [
         `Welcome to PORTFOLIO TOWN! This whole world is the portfolio of ${d.name} — ${d.role}.`,
         'Walk with WASD or ARROW KEYS. Hold SHIFT to run. Press E to talk, read and interact.',
-        'Exit the house to explore. Visit the SKILLS GYM, browse the PROJECT GALLERY, and check the MAILBOX to get in touch!',
+        'Exit the house to explore. Want a route? Press M: the BACKPACK has a TASKS list, and the CV.',
       ],
     }),
 
@@ -1226,6 +1966,10 @@ function buildDialogues(hasBadge: (b: string) => boolean): Record<string, () => 
     sign_heal: () => ({
       speaker: 'SIGN',
       pages: ['♥ HEAL CENTER — Step inside and the NURSE will patch your skill party back to full HP, free of charge.'],
+    }),
+    sign_career: () => ({
+      speaker: 'SIGN',
+      pages: ['CAREER HALL — Every job so far, one plaque each. Newest on the left.'],
     }),
     sign_meadow: () => ({
       speaker: 'SIGN',
@@ -1280,19 +2024,39 @@ function buildDialogues(hasBadge: (b: string) => boolean): Record<string, () => 
       speaker: 'GUIDE',
       pages: [
         `Hey! You must be new here. This is PORTFOLIO TOWN — everything you see is the work of ${d.name}.`,
-        'The RED-ROOF house is home base. The TEAL roof up north is the PROJECT GALLERY, and the PURPLE roof is the SKILLS GYM.',
-        'Talk to everyone! Oh — and press M anytime to open the BACKPACK menu. The CV is in there.',
+        'The RED-ROOF house is home base. Up north: the TEAL roof is the PROJECT GALLERY, the PURPLE roof the SKILLS GYM.',
+        'The NAVY roof at the east end is the CAREER HALL, where the work history hangs on the wall.',
+        'Talk to everyone! Oh — and press M anytime to open the BACKPACK. The CV is in there.',
       ],
     }),
 
-    npc_recruiter: () => ({
-      speaker: 'RECRUITER',
+    npc_recruiter: () => {
+      const cur = d.experience[0];
+      return {
+        speaker: 'RECRUITER',
+        pages: flatten([
+          'Psst... looking for the work history?',
+          `Right now: ${cur.role} at ${cur.company} (${cur.period}). ${cur.summary}`,
+          `Every role has its own plaque in the CAREER HALL, east end of town. The full CV is in the BACKPACK, or write to ${d.contact.email}.`,
+        ]),
+      };
+    },
+
+    npc_mentor: () => ({
+      speaker: 'MENTOR',
       pages: flatten([
-        'Psst... I have the scoop on the work history around here.',
-        ...d.experience.map((e) => `${e.role} @ ${e.company} (${e.period}): ${e.summary}`),
-        `Want details? The full CV is in the BACKPACK menu, or grab it from the mailbox owner at ${d.contact.email}.`,
+        `${d.name} has 4+ years in software: backend APIs, web search, EV charging and route planning, plus game development.`,
+        `There are ${d.experience.length} plaques on this wall, newest on the left. Stand below one and press E to read it.`,
       ]),
     }),
+
+    diploma: () => {
+      const ed = d.education[0];
+      return {
+        speaker: 'DIPLOMA',
+        pages: [`${ed.degree.toUpperCase()} — ${ed.school}, ${ed.period}.`, `Languages: ${d.languages.join(', ')}.`],
+      };
+    },
 
     npc_curator_out: () => ({
       speaker: 'CURATOR',
@@ -1341,24 +2105,23 @@ function buildDialogues(hasBadge: (b: string) => boolean): Record<string, () => 
       ]),
     }),
 
-    npc_leader: () =>
-      hasBadge('BACKEND BADGE')
-        ? {
-            speaker: 'GYM LEADER',
-            pages: [
-              'You already hold the BACKEND BADGE. Wear it well.',
-              `Remember the core disciplines: ${d.skills.competencies.slice(0, 3).join(', ')}...`,
-            ],
-          }
-        : {
-            speaker: 'GYM LEADER',
-            pages: flatten([
-              `So, a challenger. I am the leader of this gym, and my specialty is what this whole town runs on: ${d.role.toUpperCase()}.`,
-              `My championship team: ${d.skills.competencies.join(', ')}.`,
-              'You listened all the way through... impressive stamina. Very well — take this!',
-            ]),
-            actions: [{ label: 'ACCEPT THE BACKEND BADGE', grantBadge: 'BACKEND BADGE' }, { label: 'CLOSE' }],
-          },
+    // Shown only before the leader is beaten; afterwards TRAINERS.leader.after is used.
+    npc_leader: () => ({
+      speaker: 'GYM LEADER',
+      pages: flatten([
+        'So, a challenger. This gym trains what the whole town runs on: BACKEND ENGINEERING.',
+        `The disciplines here: ${d.skills.competencies.join('; ')}.`,
+        'Talk is cheap. My team is three bugs straight out of a bad on-call week. Beat them and the BACKEND BADGE is yours.',
+      ]),
+      actions: [{ label: 'ACCEPT CHALLENGE', startTrainer: 'leader' }, { label: 'NOT YET' }],
+    }),
+    npc_leader_done: () => ({
+      speaker: 'GYM LEADER',
+      pages: [
+        'You already hold the BACKEND BADGE. Wear it well.',
+        'Remember: boring tech, good tests, and a rollback plan. That is how incidents end early.',
+      ],
+    }),
 
     pc: () => ({
       speaker: `${d.name.split(' ')[0].toUpperCase()}'S PC`,
@@ -1371,8 +2134,9 @@ function buildDialogues(hasBadge: (b: string) => boolean): Record<string, () => 
     tv: () => ({
       speaker: 'TV',
       pages: flatten([
-        'A documentary about teamwork is on. People are sharing their reviews:',
-        ...d.testimonials.map((t) => `"${t.content}" — ${t.name}`),
+        'The evening news is on. Tonight: a career in headlines.',
+        ...d.experience.map((e) => `${e.company.toUpperCase()}, ${e.period}: ${e.summary}`),
+        'More details at the CAREER HALL, east end of town.',
       ]),
     }),
     sofa: () => ({ speaker: 'SOFA', pages: ['A comfy spot for debugging marathons. The cushions have permanent dents.'] }),
@@ -1390,21 +2154,81 @@ function buildDialogues(hasBadge: (b: string) => boolean): Record<string, () => 
    ═══════════════════════════════════════════════════════════════════════════ */
 
 type Move = { name: string; power: [number, number] };
-type BugSpecies = { id: string; name: string; color: string; accent: string; dark: string; maxHp: number; power: [number, number]; intro: string };
+// weakTo lists party skill types (BACKEND / DEVOPS / DATA / FRONTEND) that hit
+// this bug for 1.5x damage, so picking the right skill from PARTY pays off.
+type BugSpecies = { id: string; name: string; color: string; accent: string; dark: string; maxHp: number; power: [number, number]; intro: string; weakTo?: string[] };
 
 const BUG_SPECIES: BugSpecies[] = [
   // Town tall grass — the common starters
-  { id: 'syntax', name: 'SYNTAX BUG', color: '#ef4444', accent: '#fecaca', dark: '#7f1d1d', maxHp: 26, power: [3, 7], intro: 'A wild SYNTAX BUG appeared!' },
-  { id: 'null', name: 'NULL BUG', color: '#a78bfa', accent: '#ede9fe', dark: '#4c1d95', maxHp: 30, power: [4, 8], intro: 'A wild NULL BUG appeared out of nowhere!' },
-  { id: 'merge', name: 'MERGE CONFLICT', color: '#22c55e', accent: '#dcfce7', dark: '#14532d', maxHp: 34, power: [4, 9], intro: 'A wild MERGE CONFLICT blocks the path!' },
-  { id: 'race', name: 'RACE CONDITION', color: '#fbbf24', accent: '#fef9c3', dark: '#78350f', maxHp: 28, power: [3, 8], intro: 'A wild RACE CONDITION flickers into view!' },
+  { id: 'syntax', name: 'SYNTAX BUG', color: '#ef4444', accent: '#fecaca', dark: '#7f1d1d', maxHp: 26, power: [3, 7], intro: 'A wild SYNTAX BUG appeared!', weakTo: ['BACKEND'] },
+  { id: 'null', name: 'NULL BUG', color: '#a78bfa', accent: '#ede9fe', dark: '#4c1d95', maxHp: 30, power: [4, 8], intro: 'A wild NULL BUG appeared out of nowhere!', weakTo: ['DATA'] },
+  { id: 'merge', name: 'MERGE CONFLICT', color: '#22c55e', accent: '#dcfce7', dark: '#14532d', maxHp: 34, power: [4, 9], intro: 'A wild MERGE CONFLICT blocks the path!', weakTo: ['DEVOPS'] },
+  { id: 'race', name: 'RACE CONDITION', color: '#fbbf24', accent: '#fef9c3', dark: '#78350f', maxHp: 28, power: [3, 8], intro: 'A wild RACE CONDITION flickers into view!', weakTo: ['DATA'] },
   // Debug Meadow (north route)
-  { id: 'offbyone', name: 'OFF-BY-ONE', color: '#22d3ee', accent: '#cffafe', dark: '#0e7490', maxHp: 24, power: [3, 7], intro: 'A wild OFF-BY-ONE skittered in — one step too far!' },
-  { id: 'memleak', name: 'MEMORY LEAK', color: '#84cc16', accent: '#ecfccb', dark: '#3f6212', maxHp: 33, power: [4, 8], intro: 'A wild MEMORY LEAK is slowly spreading!' },
+  { id: 'offbyone', name: 'OFF-BY-ONE', color: '#22d3ee', accent: '#cffafe', dark: '#0e7490', maxHp: 24, power: [3, 7], intro: 'A wild OFF-BY-ONE skittered in — one step too far!', weakTo: ['FRONTEND'] },
+  { id: 'memleak', name: 'MEMORY LEAK', color: '#84cc16', accent: '#ecfccb', dark: '#3f6212', maxHp: 33, power: [4, 8], intro: 'A wild MEMORY LEAK is slowly spreading!', weakTo: ['BACKEND'] },
   // Tangled Forest (deep region — tougher)
-  { id: 'stackoverflow', name: 'STACK OVERFLOW', color: '#f97316', accent: '#fed7aa', dark: '#7c2d12', maxHp: 40, power: [5, 9], intro: 'A wild STACK OVERFLOW towers over you!' },
-  { id: 'deadlock', name: 'DEADLOCK', color: '#64748b', accent: '#e2e8f0', dark: '#1e293b', maxHp: 46, power: [5, 10], intro: 'A wild DEADLOCK blocks the way — nobody moves!' },
+  { id: 'stackoverflow', name: 'STACK OVERFLOW', color: '#f97316', accent: '#fed7aa', dark: '#7c2d12', maxHp: 40, power: [5, 9], intro: 'A wild STACK OVERFLOW towers over you!', weakTo: ['DEVOPS'] },
+  { id: 'deadlock', name: 'DEADLOCK', color: '#64748b', accent: '#e2e8f0', dark: '#1e293b', maxHp: 46, power: [5, 10], intro: 'A wild DEADLOCK blocks the way — nobody moves!', weakTo: ['DATA'] },
 ];
+
+// The GYM LEADER's team. Never found in tall grass and can't be caught, so
+// they stay out of the BUGDEX; ?sheet=1 shows them in their own row.
+const BOSS_SPECIES: BugSpecies[] = [
+  { id: 'scopecreep', name: 'SCOPE CREEP', color: '#7c3aed', accent: '#ddd6fe', dark: '#1e1033', maxHp: 34, power: [5, 9], intro: '', weakTo: ['FRONTEND', 'DATA'] },
+  { id: 'outage', name: 'PROD OUTAGE', color: '#dc2626', accent: '#fee2e2', dark: '#2a0a0a', maxHp: 40, power: [5, 9], intro: '', weakTo: ['BACKEND'] },
+  { id: 'monolith', name: 'LEGACY MONOLITH', color: '#8b90a0', accent: '#c9ccd6', dark: '#1f2430', maxHp: 46, power: [6, 10], intro: '', weakTo: ['DEVOPS'] },
+];
+
+const SPECIES_BY_ID: Record<string, BugSpecies> = Object.fromEntries([...BUG_SPECIES, ...BOSS_SPECIES].map((s) => [s.id, s]));
+
+// Trainer battles: a fixed team fought in order, no running, no catching.
+// `sight` > 0 makes the NPC spot the player along its facing line and walk
+// over; `challengeDialogue` instead opens a dialogue whose action starts the
+// fight (the GYM LEADER). After a win the NPC falls back to its dialogueId.
+type TrainerDef = {
+  id: string;
+  name: string;
+  team: string[];
+  sight: number;
+  challenge: string[];
+  challengeDialogue?: string;
+  win: string[];
+  badge?: string;
+  music: 'battle' | 'boss';
+};
+
+const TRAINERS: Record<string, TrainerDef> = {
+  leader: {
+    id: 'leader',
+    name: 'GYM LEADER',
+    team: ['scopecreep', 'outage', 'monolith'],
+    sight: 0,
+    challenge: [],
+    challengeDialogue: 'npc_leader',
+    win: ['Clean rollback, zero downtime. That is how it is done.', 'The BACKEND BADGE is yours!'],
+    badge: 'BACKEND BADGE',
+    music: 'boss',
+  },
+  hiker: {
+    id: 'hiker',
+    name: 'HIKER',
+    team: ['offbyone', 'memleak'],
+    sight: 5,
+    challenge: ['Hey! You look like someone who can handle a few bugs.', 'Let me see what your party can do!'],
+    win: ['Whoa, my bugs are squashed! You are ready for the forest up north.'],
+    music: 'battle',
+  },
+  catcher: {
+    id: 'catcher',
+    name: 'BUG CATCHER',
+    team: ['merge', 'stackoverflow'],
+    sight: 4,
+    challenge: ['A trainer! My bugs have been itching for a real fight!'],
+    win: ['Argh! My STACK OVERFLOW overflowed the wrong way...'],
+    music: 'battle',
+  },
+};
 
 // Which species can appear in each map's tall grass. Keeps regions distinct so
 // exploring new areas means meeting (and catching) new bugs.
@@ -1430,10 +2254,12 @@ const skillMaxHp = (lv: number) => 20 + Math.round(lv / 2);
 const fullPartyHp = (): Record<string, number> =>
   Object.fromEntries(portfolioData.skills.party.map((s) => [s.name, skillMaxHp(s.lv)]));
 
-type BattlePartyMember = { name: string; abbr: string; color: string; maxHp: number; hp: number; moves: Move[] };
+type BattlePartyMember = { name: string; abbr: string; color: string; type: string; maxHp: number; hp: number; moves: Move[] };
 type BattlePhase = 'text' | 'menu' | 'fight' | 'party' | 'bag';
-type BattleNext = 'menu' | 'enemyTurn' | 'victory' | 'defeat' | 'runSuccess' | 'caught';
+type BattleNext = 'menu' | 'enemyTurn' | 'victory' | 'defeat' | 'runSuccess' | 'caught' | 'trainerNext' | 'trainerWin';
 type BattleState = {
+  // null for wild encounters; idx is the team member currently out
+  trainer: { def: TrainerDef; idx: number } | null;
   enemy: BugSpecies;
   enemyHp: number;
   party: BattlePartyMember[];
@@ -1810,7 +2636,92 @@ const MATRIX_ART: Record<string, MatrixArt> = {
     ],
     palette: { o: '#1f2735', s: '#3d4a5f', g: '#64748b', l: '#94a3b8', h: '#cbd5e1', r: '#dc2626', R: '#f87171', d: '#7a6a2e', k: '#b3a04a', y: '#e6d98a' },
   },
+  // ——— GYM LEADER bosses ———
+  // A sticky-note-waving vine blob that keeps growing new arms.
+  bug_scopecreep: {
+    rows: [
+      '..nn................nn..',
+      '..nN................Nn..',
+      '...O................O...',
+      '....Op............pO....',
+      '.....Op..........pO.....',
+      '......OpOOOOOOOOpO......',
+      '.....OPPhhPPPPPPPPO.....',
+      '....OPPhPPPPPPPPPppO....',
+      '....OPPekPPPPPPekPpO....',
+      '...OPPPkkPPPPPPkkPppO...',
+      '...OPPPPPPPPPPPPPPppO...',
+      '..OPPPPPkkkkkkPPPPpppO..',
+      '..OPPPPPPkkkkPPPPPpppO..',
+      '.OpPPPPPPPPPPPPPPPppppO.',
+      '.OpPPPPPPPPPPPPPPPppppO.',
+      'OppPPPPPPPPPPPPPPPpppppO',
+      'OppppppppppppppppppppppO',
+      'OOOOOOOOOOOOOOOOOOOOOOOO',
+      '..Op....Op....Op....Op..',
+      '...O.....O....O.....O...',
+    ],
+    palette: { O: '#1e1033', p: '#5b21b6', P: '#8b5cf6', h: '#ddd6fe', n: '#fde047', N: '#ca8a04', e: '#ffffff', k: '#111827' },
+  },
+  // A server rack with a spinning siren, X-ed out status lights and sparks.
+  bug_outage: {
+    rows: [
+      '...........OO...........',
+      '..y.......OwRO.......y..',
+      '...y.....ORRrrO.....y...',
+      '....y....OrrrrO....y....',
+      '.....OOOOOOOOOOOOOO.....',
+      '.....OBBBBBBBBBBBBO.....',
+      '.....OBxBxBBBBxBxBO.....',
+      '.....OBBxBBBBBBxBBO.....',
+      '.....OBxBxBBBBxBxBO.....',
+      '...y.OBBBBBBBBBBBBO.y...',
+      '..y..ObbbbbbbbbbbbO..y..',
+      '.....ObRbRbRbgbgbbO.....',
+      '.....OBBBBBBBBBBBBO.....',
+      '.....OBllllllllllBO.....',
+      '.....OBlwllllllRlBO.....',
+      '.....OBBBBBBBBBBBBO.....',
+      '.....ObbbbbbbbbbbbO.....',
+      '.....OOOOOOOOOOOOOO.....',
+      '......OBO......OBO......',
+      '......OOO......OOO......',
+    ],
+    palette: { O: '#2a0a0a', r: '#dc2626', R: '#f87171', w: '#fee2e2', B: '#374151', b: '#1f2937', l: '#6b7280', x: '#fca5a5', y: '#fbbf24', g: '#22c55e' },
+  },
+  // A cracked, moss-capped stone slab with stubby arms and amber eyes.
+  bug_monolith: {
+    rows: [
+      '.......OOOOOOOOOO.......',
+      '......OMMhhhhhhhhO......',
+      '......OmMgggggggsO......',
+      '......OhmggggkggsO......',
+      '......OhggggggkgsO......',
+      '......OhgyYggyYgsO......',
+      '......OhgyyggyygsO......',
+      '......OhggggggggsO......',
+      '......OhggddddggsO......',
+      '...OOOOhgkggggggsOOOO...',
+      '...OggOhggkgggggsOggO...',
+      '...OgsOhgggggggksOsdO...',
+      '...OOOOhggggggkgsOOOO...',
+      '......OhggggggggsO......',
+      '......OsggggggggdO......',
+      '......OssggggggddO......',
+      '......OdssssssssdO......',
+      '......OOOOOOOOOOOO......',
+      '.......OdO....OdO.......',
+      '.......OOO....OOO.......',
+    ],
+    palette: { O: '#1f2430', h: '#c9ccd6', g: '#8b90a0', s: '#5b6070', d: '#3d414d', y: '#f59e0b', Y: '#fde68a', k: '#2a2e38', m: '#4d7c0f', M: '#84cc16' },
+  },
 };
+
+if (import.meta.env.DEV) {
+  for (const [id, art] of Object.entries(MATRIX_ART)) {
+    if (art.rows.length !== 20 || art.rows.some((r) => r.length !== 24)) console.error(`[art] ${id} is not 24x20`);
+  }
+}
 
 const bugSpriteCache = new Map<string, HTMLCanvasElement>();
 function getBugSprite(species: BugSpecies): HTMLCanvasElement {
@@ -1823,9 +2734,7 @@ function getBugSprite(species: BugSpecies): HTMLCanvasElement {
   const art = MATRIX_ART[`bug_${species.id}`];
   if (art) {
     drawMatrix(ctx, art.rows, art.palette, 0, 0);
-    paintTopLightShade(ctx, BUG_W, BUG_H);
-    bugSpriteCache.set(species.id, c);
-    return c;
+    return finishBugSprite(species.id, c);
   }
   const { color: col, accent: a, dark: d2 } = species;
   px(ctx, 5, 6, 14, 9, d2);
@@ -1843,9 +2752,15 @@ function getBugSprite(species: BugSpecies): HTMLCanvasElement {
   px(ctx, 18, 14, 2, 3, d2);
   px(ctx, 5, 16, 2, 2, d2);
   px(ctx, 17, 16, 2, 2, d2);
-  paintTopLightShade(ctx, BUG_W, BUG_H);
-  bugSpriteCache.set(species.id, c);
-  return c;
+  return finishBugSprite(species.id, c);
+}
+
+// Upscale to HD (BUG_W*HD x BUG_H*HD), shade at that resolution, cache.
+function finishBugSprite(id: string, c: HTMLCanvasElement): HTMLCanvasElement {
+  const hd = upscale3(c);
+  paintTopLightShade(hd.getContext('2d')!, hd.width, hd.height);
+  bugSpriteCache.set(id, hd);
+  return hd;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -1968,84 +2883,205 @@ function getSkillCreatureSprite(skillName: string): HTMLCanvasElement {
     const paint = SKILL_CREATURE_PAINTERS[skillName] ?? ((ctxx: Ctx) => paintCritterBase(ctxx, '#94a3b8', '#334155', '#e2e8f0'));
     paint(ctx);
   }
-  paintTopLightShade(ctx, CREATURE_W, CREATURE_H);
-  creatureSpriteCache.set(skillName, c);
-  return c;
+  // returned at HD resolution, shaded after upscaling
+  const hd = upscale3(c);
+  paintTopLightShade(hd.getContext('2d')!, hd.width, hd.height);
+  creatureSpriteCache.set(skillName, hd);
+  return hd;
 }
 
-/* Battle backdrop: one 320x180 pixel painting scaled to fill the screen —
-   layered sky, drifting clouds, a distant treeline, and grassy combat
-   platforms under each fighter. Replaces the old flat two-color gradient. */
+/* Battle backdrop: one 640x360 pixel painting stretched to fill the screen —
+   layered sky, clouds, a two-row treeline and grassy combat platforms under
+   each fighter. Everything is drawn as whole pixels (no antialiased curves),
+   so it stays crisp when scaled up. */
+const BACKDROP_W = 640;
+const BACKDROP_H = 360;
+// Platform centres in backdrop pixels; BattleScreen stands the fighters on them.
+const ENEMY_PAD = { x: 496, y: 132 };
+const PLAYER_PAD = { x: 170, y: 260 };
+
+// Where the backdrop sits on screen: c = CSS px per backdrop px, (ox, oy) =
+// its top-left corner. One uniform scale in whole device pixels, never a
+// stretch. Landscape covers the screen; portrait fits the strip holding both
+// platforms (backdrop x 54..600) to the width, centred above the text box.
+function backdropLayout(vw: number, vh: number, dpr: number) {
+  if (vw >= vh) {
+    const c = Math.ceil(Math.max(vw / BACKDROP_W, vh / BACKDROP_H) * dpr) / dpr;
+    return { c, ox: (vw - BACKDROP_W * c) / 2, oy: (vh - BACKDROP_H * c) / 2 };
+  }
+  const c = Math.max(1, Math.floor((vw / 550) * dpr)) / dpr;
+  return { c, ox: vw / 2 - 327 * c, oy: Math.max(0, (vh - 140 - BACKDROP_H * c) / 2) };
+}
+
+// Filled pixel ellipse/circle, one horizontal span per row (no antialiasing).
+function pxEllipse(ctx: Ctx, cx: number, cy: number, rx: number, ry: number, c: string) {
+  for (let dy = -ry; dy <= ry; dy++) {
+    const half = Math.round(rx * Math.sqrt(Math.max(0, 1 - (dy / ry) ** 2)));
+    if (half > 0) px(ctx, cx - half, cy + dy, half * 2, 1, c);
+  }
+}
+
+// Two rows of checkerboard where one colour band meets the next, the classic
+// pixel-art stand-in for a gradient.
+function ditherSeam(ctx: Ctx, y: number, w: number, c: string) {
+  for (let x = 0; x < w; x += 2) {
+    px(ctx, x, y - 2, 1, 1, c);
+    px(ctx, x + 1, y - 1, 1, 1, c);
+  }
+}
+
 let battleBackdropCache: HTMLCanvasElement | null = null;
 function getBattleBackdrop(): HTMLCanvasElement {
   if (battleBackdropCache) return battleBackdropCache;
-  const W = 320, H = 180;
+  const W = BACKDROP_W, H = BACKDROP_H;
   const c = document.createElement('canvas');
   c.width = W;
   c.height = H;
   const ctx = c.getContext('2d')!;
-  // sky bands, light at the horizon
-  px(ctx, 0, 0, W, 40, '#8ecdec');
-  px(ctx, 0, 40, W, 30, '#9dd6ef');
-  px(ctx, 0, 70, W, 20, '#b3e1f4');
-  px(ctx, 0, 90, W, 10, '#cceaf7');
+  // sky bands, light at the horizon, dithered where they meet
+  const sky: Array<[number, string]> = [[0, '#8ecdec'], [80, '#9dd6ef'], [140, '#b3e1f4'], [180, '#cceaf7']];
+  sky.forEach(([y, col], i) => px(ctx, 0, y, W, (sky[i + 1]?.[0] ?? 200) - y, col));
+  sky.slice(1).forEach(([y, col]) => ditherSeam(ctx, y, W, col));
   // sun with a soft halo, upper left
-  px(ctx, 34, 16, 12, 12, '#fff7cf');
-  px(ctx, 36, 14, 8, 16, '#fff7cf');
-  px(ctx, 32, 18, 16, 8, '#fff7cf');
-  px(ctx, 37, 17, 6, 10, '#ffeda8');
-  px(ctx, 35, 19, 10, 6, '#ffeda8');
-  // pixel clouds (flat-bottomed puffs, deterministic placement)
+  pxEllipse(ctx, 76, 46, 22, 22, '#fdf3c4');
+  pxEllipse(ctx, 76, 46, 16, 16, '#fff7cf');
+  pxEllipse(ctx, 76, 46, 11, 11, '#ffeda8');
+  // pixel clouds: three puffs on a flat base, a shaded underside, a lit top edge
   const cloud = (cx: number, cy: number, s: number) => {
-    px(ctx, cx, cy + 3 * s, 16 * s, 4 * s, '#ffffff');
-    px(ctx, cx + 2 * s, cy, 7 * s, 4 * s, '#ffffff');
-    px(ctx, cx + 8 * s, cy + 1 * s, 6 * s, 3 * s, '#ffffff');
-    px(ctx, cx, cy + 6 * s, 16 * s, 1 * s, '#dceef8');
+    const puffs: Array<[number, number, number]> = [[10, 8, 8], [22, 4, 11], [35, 8, 8]];
+    for (const [ox, oy, r] of puffs) pxEllipse(ctx, cx + ox * s, cy + oy * s, r * s, r * s, '#ffffff');
+    px(ctx, cx + 2 * s, cy + 8 * s, 41 * s, 7 * s, '#ffffff');
+    px(ctx, cx + 3 * s, cy + 15 * s, 39 * s, 2 * s, '#dceef8');
+    px(ctx, cx + 18 * s, cy - 6 * s, 6 * s, 1, '#ffffff');
   };
-  cloud(96, 18, 2);
-  cloud(210, 34, 1);
-  cloud(262, 12, 2);
-  cloud(20, 52, 1);
-  // distant treeline silhouette on the horizon
-  for (let x = 0; x < W; x += 10) {
-    const h2 = 6 + Math.floor(hash2(x, 7) * 5);
-    px(ctx, x, 100 - h2, 10, h2, '#5e9e6b');
-    px(ctx, x + 2, 100 - h2 - 2, 6, 2, '#5e9e6b');
+  cloud(186, 30, 2);
+  cloud(420, 66, 1);
+  cloud(520, 18, 2);
+  cloud(36, 104, 1);
+  // treeline: a pale far row, then a darker near row of rounded crowns
+  for (let x = -4; x < W; x += 9) {
+    const h = 14 + Math.floor(hash2(x, 7) * 12);
+    pxEllipse(ctx, x + 5, 200 - h, 6, 6, '#7bb487');
+    px(ctx, x, 200 - h, 11, h, '#7bb487');
   }
-  px(ctx, 0, 98, W, 2, '#6fae76');
+  for (let x = -6; x < W; x += 12) {
+    const h = 8 + Math.floor(hash2(x, 19) * 10);
+    pxEllipse(ctx, x + 7, 202 - h, 8, 7, '#5e9e6b');
+    px(ctx, x, 202 - h, 15, h, '#5e9e6b');
+    px(ctx, x + 3, 202 - h - 5, 4, 1, '#79bb86'); // sunlit crown edge
+  }
+  px(ctx, 0, 198, W, 4, '#6fae76');
   // ground: banded grass, darker toward the bottom edge
-  px(ctx, 0, 100, W, 26, '#8fc95e');
-  px(ctx, 0, 126, W, 28, '#7fbc52');
-  px(ctx, 0, 154, W, 26, '#6bb246');
-  for (let i = 0; i < 40; i++) {
+  const ground: Array<[number, string]> = [[200, '#8fc95e'], [252, '#7fbc52'], [308, '#6bb246']];
+  ground.forEach(([y, col], i) => px(ctx, 0, y, W, (ground[i + 1]?.[0] ?? H) - y, col));
+  ground.slice(1).forEach(([y, col]) => ditherSeam(ctx, y, W, col));
+  // grass tufts: two blades and a root pixel, darker on the lower bands
+  for (let i = 0; i < 140; i++) {
     const gx = Math.floor(hash2(i * 13, 3) * W);
-    const gy = 102 + Math.floor(hash2(i * 7, 11) * 70);
-    px(ctx, gx, gy, 2, 1, gy < 130 ? '#7fbc52' : '#5da03c');
+    const gy = 206 + Math.floor(hash2(i * 7, 11) * 148);
+    const col = gy < 252 ? '#7fbc52' : gy < 308 ? '#6aa947' : '#5da03c';
+    px(ctx, gx, gy, 1, 3, col);
+    px(ctx, gx + 2, gy + 1, 1, 2, col);
+    px(ctx, gx + 1, gy + 2, 1, 1, col);
   }
-  // combat platforms: light oval pads with darker rims
+  // combat platforms: dark rim, light pad, a lit patch and a rim highlight
   const platform = (cx: number, cy: number, rx: number, ry: number) => {
-    ctx.fillStyle = '#5da03c';
-    ctx.beginPath();
-    ctx.ellipse(cx, cy + 1, rx, ry, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = '#a4d970';
-    ctx.beginPath();
-    ctx.ellipse(cx, cy, rx - 2, ry - 2, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = '#b8e386';
-    ctx.beginPath();
-    ctx.ellipse(cx - rx * 0.15, cy - 1, rx * 0.6, ry * 0.5, 0, 0, Math.PI * 2);
-    ctx.fill();
+    pxEllipse(ctx, cx, cy + 3, rx, ry, '#4f8f33');
+    pxEllipse(ctx, cx, cy + 1, rx, ry, '#5da03c');
+    pxEllipse(ctx, cx, cy, rx - 4, ry - 4, '#a4d970');
+    pxEllipse(ctx, cx - Math.round(rx * 0.15), cy - 2, Math.round(rx * 0.6), Math.round(ry * 0.5), '#b8e386');
+    px(ctx, cx - Math.round(rx * 0.5), cy - ry + 3, Math.round(rx * 0.7), 1, '#c9eb9d');
   };
-  platform(248, 66, 52, 12); // enemy pad, floats against the horizon
-  platform(85, 130, 58, 14); // player pad, lower-left (above the text box)
+  platform(ENEMY_PAD.x, ENEMY_PAD.y, 104, 24); // enemy pad, floats against the horizon
+  platform(PLAYER_PAD.x, PLAYER_PAD.y, 116, 28); // player pad, lower-left (above the text box)
   battleBackdropCache = c;
   return c;
+}
+
+// The backdrop at HD resolution (Scale3x), which is what the battle shows.
+let battleBackdropHdCache: HTMLCanvasElement | null = null;
+function getBattleBackdropHD(): HTMLCanvasElement {
+  battleBackdropHdCache ??= upscale3(getBattleBackdrop());
+  return battleBackdropHdCache;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
    § 7 — SOUND (tiny WebAudio chiptune blips)
    ═══════════════════════════════════════════════════════════════════════════ */
+
+type MusicTrack = 'overworld' | 'battle' | 'boss';
+
+/* Music loops. Notes are semitones from `lead` (melody, chord stabs) or
+   `bass` (bassline); null = rest. Drums: one character per step, k kick ·
+   s snare · h hat · . rest. Shorter parts repeat under longer ones. */
+type MusicTrackDef = {
+  bpm: number;
+  lead: number;
+  bass: number;
+  melody: (number | null)[];
+  bassline: (number | null)[];
+  chords?: (number[] | null)[];
+  drums?: string;
+};
+
+// Chord stabs on beats 2 and 4 of a bar of eighths.
+const stabs = (...chords: number[][]) => chords.flatMap((c) => [null, null, c, null, null, null, c, null]);
+
+const MUSIC_TRACKS: Record<MusicTrack, MusicTrackDef> = {
+  // Town theme: an easygoing F major tune over I-vi-IV-V, soft stabs and hats.
+  overworld: {
+    bpm: 104,
+    lead: 349.23, // F4
+    bass: 87.31, // F2
+    melody: [
+      7, null, 4, 5, 7, null, 12, null,
+      9, null, 7, 5, 4, null, 2, null,
+      5, null, 2, 5, 9, null, 7, 5,
+      4, null, 7, null, 2, null, null, null,
+      7, null, 4, 5, 7, null, 12, 14,
+      16, null, 14, 12, 9, null, 12, null,
+      17, null, 14, 12, 14, null, 9, null,
+      11, null, 12, null, 7, null, null, null,
+    ],
+    bassline: [
+      0, null, 12, null, 7, null, 12, null,
+      -3, null, 9, null, 4, null, 9, null,
+      -7, null, 5, null, 0, null, 5, null,
+      -5, null, 7, null, 2, null, 7, null,
+    ],
+    // F, Dm, Bb, C voiced close around F3-D4
+    chords: stabs([-12, -8, -5], [-12, -8, -3], [-12, -7, -3], [-13, -10, -5]),
+    drums: 'kh.hkh.h',
+  },
+  // Wild battle: an A minor riff over a pedal, climbing each bar, with a backbeat.
+  battle: {
+    bpm: 150,
+    lead: 220, // A3
+    bass: 110, // A2
+    melody: [
+      12, 0, 12, 10, 12, 7, 8, 7,
+      12, 0, 12, 10, 12, 15, 14, 12,
+      17, 5, 17, 15, 17, 12, 14, 15,
+      19, 7, 19, 17, 15, 14, 12, 11,
+    ],
+    bassline: [
+      0, null, 0, 12, 0, null, 0, 12,
+      0, null, 0, 12, 0, null, 0, 12,
+      5, null, 5, 17, 5, null, 5, 17,
+      7, null, 7, 19, 7, null, 7, 19,
+    ],
+    drums: 'khshkhsh',
+  },
+  // GYM LEADER fight: faster, lower, a descending minor run over a driving bass
+  boss: {
+    bpm: 168,
+    lead: 196, // G3
+    bass: 98, // G2
+    melody: [0, 3, 7, 10, 12, 10, 7, 3, 0, 3, 8, 7, 5, 3, 2, -2],
+    bassline: [0, 0, 0, 12, -2, -2, -2, 10, -4, -4, -4, 8, -5, -5, 7, -5],
+    drums: 'kkshkhsh',
+  },
+};
 
 class SFX {
   private ctx: AudioContext | null = null;
@@ -2098,38 +3134,40 @@ class SFX {
   catchTick() { this.tone(900, 0.03, 'square', 0.045); this.tone(600, 0.03, 'square', 0.03, 0.02); }
   catchWin() { [523, 659, 784, 1047, 784, 1047].forEach((f, i) => this.tone(f, 0.13, 'square', 0.05, i * 0.1)); }
   catchFail() { this.tone(300, 0.1, 'square', 0.05); this.tone(180, 0.16, 'square', 0.05, 0.09); }
+  // a trainer locks eyes with you: two sharp rising stabs
+  spotted() { this.tone(988, 0.07, 'square', 0.05); this.tone(1319, 0.12, 'square', 0.05, 0.08); }
 
-  /* ——— Background music: original chiptune loops (square lead + triangle
-     bass), scheduled with a lookahead clock. `null` = rest. Semitone offsets
-     from each track's base frequency. ——— */
+  /* ——— Background music: original chiptune loops on an eighth-note grid,
+     scheduled with a lookahead clock. Voices: a soft 25% pulse lead, a
+     triangle bass, quiet pulse chord stabs and a small noise/sine drum kit
+     (see MUSIC_TRACKS). ——— */
   private musicTimer: number | null = null;
-  private musicTrack: 'overworld' | 'battle' | null = null;
+  private musicTrack: MusicTrack | null = null;
   private musicGain: GainNode | null = null;
+  private pulseWave: PeriodicWave | null = null;
+  private noiseBuffer: AudioBuffer | null = null;
   private step = 0;
   private nextNoteTime = 0;
-  private static readonly TRACKS = {
-    overworld: {
-      bpm: 112,
-      lead: 261.63, // C4
-      bass: 130.81, // C3
-      melody: [0, 4, 7, 4, 9, 7, 4, 0, 2, 5, 9, 5, 7, 4, 0, null],
-      bassline: [0, null, 7, null, 5, null, 12, null, 7, null, 14, null, 0, null, 7, null],
-    },
-    battle: {
-      bpm: 152,
-      lead: 220, // A3
-      bass: 110, // A2
-      melody: [0, 7, 3, 0, 7, 3, 0, -2, 0, 7, 10, 7, 8, 7, 5, 3],
-      bassline: [0, 0, 12, 0, 0, 0, 12, 0, -5, -5, 7, -5, -3, -3, 9, -3],
-    },
-  } as const;
 
-  private playAt(freq: number, dur: number, type: OscillatorType, vol: number, at: number) {
+  // 25% duty pulse: rounder and softer than a plain square wave
+  private pulse(ctx: AudioContext): PeriodicWave {
+    if (!this.pulseWave) {
+      const n = 32;
+      const real = new Float32Array(n);
+      const imag = new Float32Array(n);
+      for (let k = 1; k < n; k++) real[k] = (2 / (k * Math.PI)) * Math.sin(k * Math.PI * 0.25);
+      this.pulseWave = ctx.createPeriodicWave(real, imag);
+    }
+    return this.pulseWave;
+  }
+
+  private playAt(freq: number, dur: number, type: OscillatorType | 'pulse', vol: number, at: number) {
     const ctx = this.ctx;
     if (!ctx) return;
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
-    osc.type = type;
+    if (type === 'pulse') osc.setPeriodicWave(this.pulse(ctx));
+    else osc.type = type;
     osc.frequency.setValueAtTime(freq, at);
     gain.gain.setValueAtTime(0.0001, at);
     gain.gain.exponentialRampToValueAtTime(vol, at + 0.01);
@@ -2142,25 +3180,70 @@ class SFX {
     osc.stop(at + dur + 0.02);
   }
 
+  // k: sine kick swept down in pitch · s: band-passed noise snare · h: high-passed noise hat
+  private drum(kind: string, at: number) {
+    const ctx = this.ctx;
+    if (!ctx) return;
+    const out = this.musicGain ?? ctx.destination;
+    if (kind === 'k') {
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(140, at);
+      osc.frequency.exponentialRampToValueAtTime(45, at + 0.12);
+      g.gain.setValueAtTime(0.07, at);
+      g.gain.exponentialRampToValueAtTime(0.0001, at + 0.16);
+      osc.connect(g).connect(out);
+      osc.start(at);
+      osc.stop(at + 0.18);
+      return;
+    }
+    if (!this.noiseBuffer) {
+      const len = Math.floor(ctx.sampleRate * 0.3);
+      this.noiseBuffer = ctx.createBuffer(1, len, ctx.sampleRate);
+      const data = this.noiseBuffer.getChannelData(0);
+      const rnd = mulberry32(0x5eed);
+      for (let i = 0; i < len; i++) data[i] = rnd() * 2 - 1;
+    }
+    const hat = kind === 'h';
+    const src = ctx.createBufferSource();
+    src.buffer = this.noiseBuffer;
+    const filter = ctx.createBiquadFilter();
+    filter.type = hat ? 'highpass' : 'bandpass';
+    filter.frequency.setValueAtTime(hat ? 7000 : 1800, at);
+    const g = ctx.createGain();
+    const len = hat ? 0.04 : 0.12;
+    g.gain.setValueAtTime(hat ? 0.012 : 0.035, at);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + len);
+    src.connect(filter).connect(g).connect(out);
+    src.start(at);
+    src.stop(at + len + 0.02);
+  }
+
   private scheduler = () => {
     const ctx = this.ctx;
     if (!ctx || this.musicTrack === null || this.muted) return;
-    const t = SFX.TRACKS[this.musicTrack];
+    const t = MUSIC_TRACKS[this.musicTrack];
     const stepDur = 60 / t.bpm / 2; // eighth-note grid
     // If the tab was throttled, don't schedule a burst of notes in the past.
     if (this.nextNoteTime < ctx.currentTime) this.nextNoteTime = ctx.currentTime + 0.02;
     while (this.nextNoteTime < ctx.currentTime + 0.13) {
+      const at = this.nextNoteTime;
       const i = this.step % t.melody.length;
       const m = t.melody[i];
-      if (m !== null) this.playAt(t.lead * 2 ** (m / 12), stepDur * 0.92, 'square', 0.045, this.nextNoteTime);
-      const b = t.bassline[i];
-      if (b !== null) this.playAt(t.bass * 2 ** (b / 12), stepDur * 1.5, 'triangle', 0.05, this.nextNoteTime);
+      if (m !== null) this.playAt(t.lead * 2 ** (m / 12), stepDur * 0.9, 'pulse', 0.032, at);
+      const b = t.bassline[i % t.bassline.length];
+      if (b !== null) this.playAt(t.bass * 2 ** (b / 12), stepDur * 1.4, 'triangle', 0.055, at);
+      const chord = t.chords?.[i % t.chords.length];
+      if (chord) for (const n of chord) this.playAt(t.lead * 2 ** (n / 12), stepDur * 1.6, 'pulse', 0.011, at);
+      const hit = t.drums?.[i % t.drums.length];
+      if (hit && hit !== '.') this.drum(hit, at);
       this.nextNoteTime += stepDur;
       this.step += 1;
     }
   };
 
-  startMusic(track: 'overworld' | 'battle') {
+  startMusic(track: MusicTrack) {
     if (this.muted) return;
     const ctx = this.ensure();
     if (!ctx) return;
@@ -2215,7 +3298,14 @@ const sfx = new SFX();
    ═══════════════════════════════════════════════════════════════════════════ */
 
 const SAVE_KEY = 'portfolio-town-save-v1';
-type SaveData = { map: string; x: number; y: number; facing: Dir; badges: string[]; muted: boolean; bugsDefeated: number; caughtBugs: string[]; partyHp?: Record<string, number> };
+// Fields added after v1 shipped are optional so older saves still load.
+type SaveData = {
+  map: string; x: number; y: number; facing: Dir;
+  badges: string[]; muted: boolean; bugsDefeated: number; caughtBugs: string[];
+  partyHp?: Record<string, number>;
+  defeatedTrainers?: string[];
+  seen?: string[]; // dialogue ids opened at least once (drives TOWN TASKS)
+};
 
 function loadSave(): SaveData | null {
   try {
@@ -2240,7 +3330,9 @@ type Entity = {
   move: MoveTween;
   stepParity: number;
 };
-type NPCRuntime = Entity & { def: NPCDef; home: Vec; nextThink: number; paused: boolean };
+// approachSteps > 0: a trainer that spotted the player is walking over; when the
+// last step lands the main loop calls back to open the challenge.
+type NPCRuntime = Entity & { def: NPCDef; home: Vec; nextThink: number; paused: boolean; approachSteps: number; approaching: boolean };
 type EntityEls = { el: HTMLDivElement | null; canvas: HTMLCanvasElement | null };
 
 function makeEntity(x: number, y: number, facing: Dir): Entity {
@@ -2256,11 +3348,14 @@ function entityPixelPos(e: Entity, now: number): Vec {
   };
 }
 
-function blitEntity(e: Entity, els: EntityEls, palette: string, now: number) {
+// zoom = device pixels per art pixel; mid-step positions snap to that grid so
+// a walking sprite never lands between screen pixels.
+function blitEntity(e: Entity, els: EntityEls, palette: string, now: number, zoom: number) {
   if (!els.el || !els.canvas) return;
   const pos = entityPixelPos(e, now);
+  const snap = (v: number) => Math.round(v * zoom) / zoom;
   // sprite is 20px tall on a 16px tile — anchor feet to the tile bottom
-  els.el.style.transform = `translate3d(${pos.x}px, ${pos.y - 4}px, 0)`;
+  els.el.style.transform = `translate3d(${snap(pos.x)}px, ${snap(pos.y - 4)}px, 0)`;
   els.el.style.zIndex = String(10 + Math.round(pos.y / TILE));
   let frame = 0;
   if (e.move) {
@@ -2274,7 +3369,7 @@ function blitEntity(e: Entity, els: EntityEls, palette: string, now: number) {
     els.canvas.dataset.frame = key;
     const ctx = els.canvas.getContext('2d');
     if (ctx) {
-      ctx.clearRect(0, 0, SPRITE_W, SPRITE_H);
+      ctx.clearRect(0, 0, els.canvas.width, els.canvas.height);
       ctx.drawImage(getSpriteFrame(palette, e.facing, frame), 0, 0);
     }
   }
@@ -2340,7 +3435,7 @@ function DialogueBox({
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 40, opacity: 0 }}
       transition={{ type: 'spring', stiffness: 500, damping: 38 }}
-      className={`absolute inset-x-2 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 sm:w-[620px] max-w-full z-30 ${touchMode ? 'bottom-36' : 'bottom-4'}`}
+      className={`absolute inset-x-2 sm:inset-x-0 sm:mx-auto sm:w-[620px] max-w-full z-30 ${touchMode ? 'bottom-36' : 'bottom-4'}`}
       onClick={onAdvance}
       role="dialog"
       aria-label={`${spec.speaker} says`}
@@ -2427,8 +3522,25 @@ function PartyHUD({ onOpen, partyHp }: { onOpen: () => void; partyHp: Record<str
   );
 }
 
+// TOWN TASKS: a suggested route through the portfolio, shown in the BACKPACK
+// and as a HUD counter. Progress is derived from what the player has opened.
+type TaskProgress = { seen: string[]; badges: string[]; caughtBugs: string[] };
+const TOWN_TASKS: { label: string; done: (p: TaskProgress) => boolean }[] = [
+  { label: 'Read the PC in the ABOUT-ME HOUSE', done: (p) => p.seen.includes('pc') },
+  { label: 'View an exhibit in the PROJECT GALLERY', done: (p) => p.seen.some((s) => s.startsWith('project_')) },
+  { label: 'Read a plaque in the CAREER HALL', done: (p) => p.seen.some((s) => s.startsWith('job_')) },
+  { label: 'Beat the GYM LEADER for the BACKEND BADGE', done: (p) => p.badges.includes('BACKEND BADGE') },
+  { label: 'File 3 bugs in your BUGDEX', done: (p) => p.caughtBugs.length >= 3 },
+  { label: 'Check the MAILBOX outside the house', done: (p) => p.seen.includes('mailbox') },
+];
+
+const BACKPACK_TABS = ['PROFILE', 'TASKS', 'SKILLS', 'PROJECTS', 'BUGDEX', 'CONTACT'] as const;
+type BackpackTab = (typeof BACKPACK_TABS)[number];
+
 function Backpack({
   onClose,
+  initialTab,
+  tasks,
   badges,
   bugsDefeated,
   caughtBugs,
@@ -2438,6 +3550,8 @@ function Backpack({
   onClassicView,
 }: {
   onClose: () => void;
+  initialTab?: BackpackTab;
+  tasks: { label: string; done: boolean }[];
   badges: string[];
   bugsDefeated: number;
   caughtBugs: string[];
@@ -2446,8 +3560,8 @@ function Backpack({
   onSave: () => void;
   onClassicView: () => void;
 }) {
-  const tabs = ['PROFILE', 'SKILLS', 'PROJECTS', 'BUGDEX', 'CONTACT'] as const;
-  const [tab, setTab] = useState<(typeof tabs)[number]>('PROFILE');
+  const tabs = BACKPACK_TABS;
+  const [tab, setTab] = useState<BackpackTab>(initialTab ?? 'PROFILE');
   const cvHref = import.meta.env.BASE_URL + portfolioData.contact.cvFile;
   return (
     <motion.div
@@ -2502,6 +3616,12 @@ function Backpack({
               {portfolioData.experience.map((e) => (
                 <p key={e.role + e.company} className="mt-1">▸ {e.role} @ {e.company} <span className="text-[#2b234088]">({e.period})</span></p>
               ))}
+              <p className="mt-4 text-[9px]">EDUCATION:</p>
+              {portfolioData.education.map((ed) => (
+                <p key={ed.school} className="mt-1">▸ {ed.degree}, {ed.school} <span className="text-[#2b234088]">({ed.period})</span></p>
+              ))}
+              <p className="mt-4 text-[9px]">LANGUAGES:</p>
+              <p className="mt-1">{portfolioData.languages.join(' · ')}</p>
               <a
                 href={cvHref}
                 download={portfolioData.contact.cvFile}
@@ -2509,6 +3629,28 @@ function Backpack({
               >
                 ⬇ DOWNLOAD CV (PDF)
               </a>
+            </div>
+          )}
+          {tab === 'TASKS' && (
+            <div>
+              <p className="text-[9px]">
+                TOWN TASKS: <span className="text-amber-600">{tasks.filter((t) => t.done).length}/{tasks.length}</span>
+              </p>
+              <p className="text-[8px] text-[#2b234088] mt-1">A suggested route through the portfolio. Short on time? The PROFILE tab has the CV download.</p>
+              <ul className="mt-3 grid gap-2.5">
+                {tasks.map((t) => (
+                  <li key={t.label} className={`flex items-start gap-2 text-[9px] ${t.done ? 'text-[#2b234088]' : ''}`}>
+                    <span
+                      className="shrink-0 w-3.5 h-3.5 border-2 border-[#2b2340] grid place-items-center text-[7px] leading-none"
+                      style={{ background: t.done ? '#fbbf24' : 'transparent' }}
+                      aria-label={t.done ? 'done' : 'not done'}
+                    >
+                      {t.done ? '✓' : ''}
+                    </span>
+                    <span className={t.done ? 'line-through' : ''}>{t.label}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
           {tab === 'SKILLS' && (
@@ -2579,16 +3721,19 @@ function Backpack({
                               // silhouette: darken un-filed entries
                               ctx.globalCompositeOperation = 'source-atop';
                               ctx.fillStyle = 'rgba(43,35,64,0.86)';
-                              ctx.fillRect(0, 0, BUG_W, BUG_H);
+                              ctx.fillRect(0, 0, BUG_W * HD, BUG_H * HD);
                             }
                           }
                         }}
-                        width={BUG_W}
-                        height={BUG_H}
+                        width={BUG_W * HD}
+                        height={BUG_H * HD}
                         className="pixelated shrink-0"
-                        style={{ width: BUG_W * 1.6, height: BUG_H * 1.6 }}
+                        style={{ width: BUG_W * HD, height: BUG_H * HD }}
                       />
-                      <span className="text-[8px] leading-tight">{owned ? s.name : '???'}</span>
+                      <span className="text-[8px] leading-tight">
+                        {owned ? s.name : '???'}
+                        {owned && s.weakTo && <span className="block text-[7px] text-[#2b234099] mt-0.5">WEAK: {s.weakTo.join('/')}</span>}
+                      </span>
                     </div>
                   );
                 })}
@@ -2728,9 +3873,28 @@ function ClassicView({ onClose }: { onClose: () => void }) {
                   {e.role} <span className="text-slate-400 font-normal">— {e.company}</span>
                 </p>
                 <p className="text-slate-500 text-xs">{e.period}</p>
-                <p className="mt-1 text-slate-300 text-sm leading-relaxed">{e.summary}</p>
+                <ul className="mt-1 space-y-1 text-slate-300 text-sm leading-relaxed">
+                  {e.highlights.map((h) => (
+                    <li key={h}>• {h}</li>
+                  ))}
+                </ul>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="mt-9">
+          <Chip>EDUCATION</Chip>
+          <div className="mt-3 space-y-2">
+            {d.education.map((ed) => (
+              <p key={ed.school} className="text-sm text-slate-300">
+                <span className="text-white font-semibold">{ed.degree}</span> — {ed.school} <span className="text-slate-500 text-xs">· {ed.period}</span>
+              </p>
+            ))}
+          </div>
+          <div className="mt-4">
+            <Chip>LANGUAGES</Chip>
+            <p className="mt-3 text-sm text-slate-300">{d.languages.join(' · ')}</p>
           </div>
         </section>
 
@@ -2823,7 +3987,7 @@ function TitleScreen({
       f = (f + 1) % 4;
       const ctx = spriteRef.current?.getContext('2d');
       if (ctx) {
-        ctx.clearRect(0, 0, SPRITE_W, SPRITE_H);
+        ctx.clearRect(0, 0, SPRITE_W * HD, SPRITE_H * HD);
         ctx.drawImage(getSpriteFrame('player', 'down', f === 1 ? 1 : f === 3 ? 2 : 0), 0, 0);
       }
     }, 220);
@@ -2870,7 +4034,7 @@ function TitleScreen({
           TOWN
         </motion.h1>
         <p className="mt-3 text-[8px] sm:text-[9px] text-slate-400">A PLAYABLE PORTFOLIO — {portfolioData.role.toUpperCase()}</p>
-        <canvas ref={spriteRef} width={SPRITE_W} height={SPRITE_H} className="pixelated mx-auto mt-6 w-16 h-20" />
+        <canvas ref={spriteRef} width={SPRITE_W * HD} height={SPRITE_H * HD} className="pixelated mx-auto mt-6 w-24 h-[120px]" />
         <div className="mt-6 inline-block rpg-frame-dark px-6 py-4 text-left">
           {options.map((o, i) => (
             <button
@@ -2899,7 +4063,7 @@ function TitleScreen({
         </p>
         <button
           onClick={onClassicView}
-          className="mt-5 text-[8px] text-slate-500 hover:text-amber-300 underline underline-offset-4 decoration-dotted"
+          className="mt-5 text-[9px] text-amber-300 hover:text-amber-200 underline underline-offset-4 decoration-dotted"
         >
           In a hurry? View as a classic CV page →
         </button>
@@ -3060,6 +4224,38 @@ function BattleScreen({
   const prevHitPlayer = useRef(battle.hitPlayer);
   const prevThrow = useRef(battle.throwSeq);
   const active = battle.party[battle.active];
+  const [vp, setVp] = useState(() => ({ w: window.innerWidth, h: window.innerHeight }));
+  useEffect(() => {
+    const onResize = () => setVp({ w: window.innerWidth, h: window.innerHeight });
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+  const dpr = window.devicePixelRatio || 1;
+  const layout = backdropLayout(vp.w, vp.h, dpr);
+  // Sprite pixels are ~2.5 backdrop pixels, so fighters keep their size
+  // relative to the platforms on any screen; rounded to whole device pixels so
+  // every sprite pixel is the same size.
+  // (a multiple of HD device pixels, so each HD sprite pixel maps to whole pixels)
+  const spriteScale = (HD * Math.max(Math.ceil((3 * dpr) / HD), Math.floor((2.5 * layout.c * dpr) / HD))) / dpr;
+  // CSS position of a backdrop point
+  const anchor = (pt: { x: number; y: number }) => ({ left: layout.ox + pt.x * layout.c, top: layout.oy + pt.y * layout.c });
+  const backdropRef = useRef<HTMLCanvasElement | null>(null);
+  useEffect(() => {
+    const el = backdropRef.current;
+    const ctx = el?.getContext('2d');
+    if (!el || !ctx) return;
+    // drawn at device resolution, so the browser never rescales it
+    el.width = Math.round(vp.w * dpr);
+    el.height = Math.round(vp.h * dpr);
+    const k = layout.c * dpr;
+    const top = Math.round(layout.oy * dpr);
+    const bottom = top + Math.round(BACKDROP_H * k);
+    ctx.imageSmoothingEnabled = false;
+    // sky above and grass below the painting, for screens taller than it
+    px(ctx, 0, 0, el.width, top, '#8ecdec');
+    px(ctx, 0, bottom, el.width, el.height - bottom, '#6bb246');
+    ctx.drawImage(getBattleBackdropHD(), Math.round(layout.ox * dpr), top, Math.round(BACKDROP_W * k), bottom - top);
+  }, [vp, dpr, layout.c, layout.ox, layout.oy]);
 
   // Impact burst on hit (star + shards over the struck fighter), keyed by seq.
   const [impact, setImpact] = useState<{ seq: number; side: 'enemy' | 'player' } | null>(null);
@@ -3070,7 +4266,7 @@ function BattleScreen({
   useEffect(() => {
     const ctx = enemyCanvasRef.current?.getContext('2d');
     if (ctx) {
-      ctx.clearRect(0, 0, BUG_W, BUG_H);
+      ctx.clearRect(0, 0, BUG_W * HD, BUG_H * HD);
       ctx.drawImage(getBugSprite(battle.enemy), 0, 0);
     }
   }, [battle.enemy]);
@@ -3078,7 +4274,7 @@ function BattleScreen({
   useEffect(() => {
     const ctx = playerCanvasRef.current?.getContext('2d');
     if (ctx) {
-      ctx.clearRect(0, 0, CREATURE_W, CREATURE_H);
+      ctx.clearRect(0, 0, CREATURE_W * HD, CREATURE_H * HD);
       ctx.drawImage(getSkillCreatureSprite(active.name), 0, 0);
     }
   }, [active.name]);
@@ -3173,26 +4369,26 @@ function BattleScreen({
       role="dialog"
       aria-label="Battle"
     >
-      <canvas
-        ref={(el) => {
-          const ctx = el?.getContext('2d');
-          if (ctx && el && el.dataset.painted !== '1') {
-            el.dataset.painted = '1';
-            ctx.drawImage(getBattleBackdrop(), 0, 0);
-          }
-        }}
-        width={320}
-        height={180}
-        className="pixelated absolute inset-0 w-full h-full"
-      />
+      <canvas ref={backdropRef} className="absolute inset-0 w-full h-full" />
       <div className="absolute left-2 top-2 z-20">
         <MuteButton muted={muted} onToggle={onToggleMute} />
       </div>
-      <div className="relative flex-1 overflow-hidden">
-        {/* Enemy platform */}
-        <div className="absolute right-[13%] top-[19%] flex flex-col items-end gap-1.5">
+      {/* Fighters, each standing on its platform: the column's bottom edge
+          (the sprite's feet) sits on the platform centre. */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute flex flex-col items-center gap-1.5" style={{ ...anchor(ENEMY_PAD), transform: 'translate(-50%, -100%)' }}>
           <div className="rpg-frame px-2.5 py-1.5 text-[9px] min-w-[150px]">
-            <span>{battle.enemy.name}</span>
+            <div className="flex items-center justify-between gap-2">
+              <span>{battle.enemy.name}</span>
+              {battle.trainer && (
+                // one pip per team member: hollow once fainted
+                <span className="text-[8px] tracking-[0.2em]" aria-label="Trainer team">
+                  {battle.trainer.def.team
+                    .map((_, i) => (i < battle.trainer!.idx || (i === battle.trainer!.idx && battle.enemyHp <= 0) ? '○' : '●'))
+                    .join('')}
+                </span>
+              )}
+            </div>
             <div className="h-2 mt-1.5 w-full bg-[#2b2340] border border-[#2b2340]">
               <motion.span
                 className="block h-full"
@@ -3204,13 +4400,16 @@ function BattleScreen({
           </div>
           <motion.div animate={reducedMotion ? undefined : { y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 1.7, ease: 'easeInOut' }}>
             <div ref={enemyShakeRef} className="relative">
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-4 rounded-[50%] bg-black/20" />
+              <div
+                className="absolute left-1/2 -translate-x-1/2 rounded-[50%] bg-black/20"
+                style={{ bottom: -spriteScale, width: BUG_W * spriteScale * 0.7, height: spriteScale * 3 }}
+              />
               <canvas
                 ref={enemyCanvasRef}
-                width={BUG_W}
-                height={BUG_H}
-                className="pixelated"
-                style={{ width: BUG_W * 4.5, height: BUG_H * 4.5, opacity: enemyVisible ? 1 : 0, transition: 'opacity 0.2s' }}
+                width={BUG_W * HD}
+                height={BUG_H * HD}
+                className="pixelated block"
+                style={{ width: BUG_W * spriteScale, height: BUG_H * spriteScale, opacity: enemyVisible && battle.enemyHp > 0 ? 1 : 0, transition: 'opacity 0.35s' }}
               />
               {impact?.side === 'enemy' && <ImpactBurst key={impact.seq} color="#fff7cf" />}
               {catchPhase !== 'idle' && <CatchDevice key={battle.throwSeq} phase={catchPhase} />}
@@ -3218,16 +4417,8 @@ function BattleScreen({
           </motion.div>
         </div>
 
-        {/* Player platform */}
-        <div className="absolute left-[18%] bottom-[10%] flex flex-col items-start gap-1.5">
-          <motion.div animate={reducedMotion ? undefined : { y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }} className="order-2">
-            <div ref={playerShakeRef} className="relative">
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-14 h-4 rounded-[50%] bg-black/20" />
-              <canvas ref={playerCanvasRef} width={CREATURE_W} height={CREATURE_H} className="pixelated" style={{ width: CREATURE_W * 4.5, height: CREATURE_H * 4.5 }} />
-              {impact?.side === 'player' && <ImpactBurst key={impact.seq} color="#f87171" />}
-            </div>
-          </motion.div>
-          <div className="rpg-frame px-2.5 py-1.5 text-[9px] min-w-[160px] order-1">
+        <div className="absolute flex flex-col items-center gap-1.5" style={{ ...anchor(PLAYER_PAD), transform: 'translate(-50%, -100%)' }}>
+          <div className="rpg-frame px-2.5 py-1.5 text-[9px] min-w-[160px]">
             <div className="flex items-center justify-between gap-2">
               <span style={{ color: active.color }}>● {active.name}</span>
               <span>{active.hp}/{active.maxHp}</span>
@@ -3241,8 +4432,25 @@ function BattleScreen({
               />
             </div>
           </div>
+          <motion.div animate={reducedMotion ? undefined : { y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}>
+            <div ref={playerShakeRef} className="relative">
+              <div
+                className="absolute left-1/2 -translate-x-1/2 rounded-[50%] bg-black/20"
+                style={{ bottom: -spriteScale, width: CREATURE_W * spriteScale * 0.7, height: spriteScale * 3 }}
+              />
+              <canvas
+                ref={playerCanvasRef}
+                width={CREATURE_W * HD}
+                height={CREATURE_H * HD}
+                className="pixelated block"
+                style={{ width: CREATURE_W * spriteScale, height: CREATURE_H * spriteScale }}
+              />
+              {impact?.side === 'player' && <ImpactBurst key={impact.seq} color="#f87171" />}
+            </div>
+          </motion.div>
         </div>
       </div>
+      <div className="flex-1" />
 
       {/* Bottom text / menu box */}
       <div className="rpg-frame relative z-10 mx-2 mb-2 sm:mx-3 sm:mb-3 p-3 min-h-[112px] selectable">
@@ -3332,7 +4540,8 @@ const BOOT_SPAWNS: Record<string, Vec> = {
   house: { x: 5, y: 5 },
   town: { x: 9, y: 20 },
   gym: { x: 7, y: 9 },
-  gallery: { x: 8, y: 9 },
+  gallery: { x: GALLERY_DOOR, y: 9 },
+  career: { x: CAREER_DOOR, y: CAREER_H - 2 },
   heal: { x: 5, y: 6 },
   meadow: { x: 10, y: 15 },
   forest: { x: 9, y: 13 },
@@ -3354,6 +4563,8 @@ const BOOT: { map: string; x: number; y: number } | null = (() => {
 })();
 // `?battle=1` force-opens a wild encounter right after boot (headless testing hook).
 const FORCE_BATTLE = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('battle') === '1';
+// `?trainer=leader|hiker|catcher` force-opens that trainer battle (headless testing hook).
+const FORCE_TRAINER = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('trainer') : null;
 
 // `?sheet=1` renders every generated asset in a labelled grid instead of the
 // game — a living sprite sheet used to review art quality at a glance.
@@ -3367,11 +4578,12 @@ function SheetCanvas({ draw, w, h, zoom = 4, label }: { draw: (ctx: Ctx) => void
           const ctx = el?.getContext('2d');
           if (ctx && el && el.dataset.painted !== '1') {
             el.dataset.painted = '1';
+            ctx.setTransform(HD, 0, 0, HD, 0, 0); // draw in art pixels at HD resolution
             draw(ctx);
           }
         }}
-        width={w}
-        height={h}
+        width={w * HD}
+        height={h * HD}
         className="pixelated bg-[#2a3244] border border-[#3d4663]"
         style={{ width: w * zoom, height: h * zoom }}
       />
@@ -3398,20 +4610,26 @@ function SpriteSheetView() {
             label={p}
             w={SPRITE_W * 3 + 8}
             h={SPRITE_H}
-            draw={(ctx) => facings.forEach((f, i) => ctx.drawImage(getSpriteFrame(p, f, 0), i * (SPRITE_W + 4), 0))}
+            draw={(ctx) => facings.forEach((f, i) => ctx.drawImage(getSpriteFrame(p, f, 0), i * (SPRITE_W + 4), 0, SPRITE_W, SPRITE_H))}
           />
         ))}
       </div>
       <h2 className="text-[9px] mb-2 text-slate-400">WILD BUGS</h2>
       <div className="flex flex-wrap gap-3 mb-6">
         {BUG_SPECIES.map((s) => (
-          <SheetCanvas key={s.id} label={s.name} w={BUG_W} h={BUG_H} zoom={5} draw={(ctx) => ctx.drawImage(getBugSprite(s), 0, 0)} />
+          <SheetCanvas key={s.id} label={s.name} w={BUG_W} h={BUG_H} zoom={5} draw={(ctx) => ctx.drawImage(getBugSprite(s), 0, 0, BUG_W, BUG_H)} />
+        ))}
+      </div>
+      <h2 className="text-[9px] mb-2 text-slate-400">GYM LEADER BOSSES</h2>
+      <div className="flex flex-wrap gap-3 mb-6">
+        {BOSS_SPECIES.map((s) => (
+          <SheetCanvas key={s.id} label={s.name} w={BUG_W} h={BUG_H} zoom={5} draw={(ctx) => ctx.drawImage(getBugSprite(s), 0, 0, BUG_W, BUG_H)} />
         ))}
       </div>
       <h2 className="text-[9px] mb-2 text-slate-400">SKILL CREATURES</h2>
       <div className="flex flex-wrap gap-3 mb-6">
         {portfolioData.skills.party.map((s) => (
-          <SheetCanvas key={s.name} label={s.name} w={CREATURE_W} h={CREATURE_H} zoom={5} draw={(ctx) => ctx.drawImage(getSkillCreatureSprite(s.name), 0, 0)} />
+          <SheetCanvas key={s.name} label={s.name} w={CREATURE_W} h={CREATURE_H} zoom={5} draw={(ctx) => ctx.drawImage(getSkillCreatureSprite(s.name), 0, 0, CREATURE_W, CREATURE_H)} />
         ))}
       </div>
       <h2 className="text-[9px] mb-2 text-slate-400">TERRAIN & TREE</h2>
@@ -3457,7 +4675,7 @@ function SpriteSheetView() {
         />
       </div>
       <h2 className="text-[9px] mb-2 text-slate-400">BATTLE BACKDROP</h2>
-      <SheetCanvas label="backdrop 320x180" w={320} h={180} zoom={2} draw={(ctx) => ctx.drawImage(getBattleBackdrop(), 0, 0)} />
+      <SheetCanvas label={`backdrop ${BACKDROP_W}x${BACKDROP_H}`} w={BACKDROP_W} h={BACKDROP_H} zoom={2} draw={(ctx) => ctx.drawImage(getBattleBackdropHD(), 0, 0, BACKDROP_W, BACKDROP_H)} />
     </div>
   );
 }
@@ -3485,10 +4703,9 @@ function Game() {
   const [badges, setBadges] = useState<string[]>([]);
   const [muted, setMuted] = useState(false);
   const [particles, setParticles] = useState<Particle[]>([]);
-  const [facedHint, setFacedHint] = useState(false);
+  const [facedHint, setFacedHint] = useState<string | null>(null); // e.g. 'TALK: GUIDE'
   const [emoteNpc, setEmoteNpc] = useState<string | null>(null);
-  const [scale, setScale] = useState(3);
-  const [viewport, setViewport] = useState({ w: 800, h: 600 });
+  const [viewport, setViewport] = useState({ w: 800, h: 600, dpr: 1 });
   const [animFrame, setAnimFrame] = useState(0);
   const [inTallGrass, setInTallGrass] = useState(false);
   const [battle, setBattle] = useState<BattleState | null>(null);
@@ -3496,6 +4713,11 @@ function Game() {
   const [bugsDefeated, setBugsDefeated] = useState(0);
   const [caughtBugs, setCaughtBugs] = useState<string[]>([]);
   const [partyHp, setPartyHp] = useState<Record<string, number>>(() => fullPartyHp());
+  const [defeatedTrainers, setDefeatedTrainers] = useState<string[]>([]);
+  const [seen, setSeen] = useState<string[]>([]);
+  // A trainer spotted the player and is walking over: input is frozen.
+  const [cutscene, setCutscene] = useState(false);
+  const [menuTab, setMenuTab] = useState<BackpackTab | undefined>(undefined);
   // `?classic=1` opens the readable CV page directly — a shareable deep-link
   // for recruiters who'd rather not play through the game.
   const [classicView, setClassicView] = useState(
@@ -3511,6 +4733,7 @@ function Game() {
   const map = MAPS[mapId];
   const mapRef = useRef(map);
   mapRef.current = map;
+  const zoom = zoomFor(viewport.w, viewport.h, viewport.dpr);
   const playerRef = useRef<Entity>(makeEntity(BOOT?.x ?? 5, BOOT?.y ?? 5, 'down'));
   const playerElsRef = useRef<EntityEls>({ el: null, canvas: null });
   const npcsRef = useRef<NPCRuntime[]>([]);
@@ -3543,34 +4766,26 @@ function Game() {
   partyHpRef.current = partyHp;
   const classicViewRef = useRef(classicView);
   classicViewRef.current = classicView;
+  const defeatedTrainersRef = useRef(defeatedTrainers);
+  defeatedTrainersRef.current = defeatedTrainers;
+  const seenRef = useRef(seen);
+  seenRef.current = seen;
+  const cutsceneRef = useRef(cutscene);
+  cutsceneRef.current = cutscene;
+  // Trainer whose battle starts as soon as the current dialogue closes.
+  const pendingTrainerRef = useRef<string | null>(null);
+  const trainerArriveRef = useRef<(n: NPCRuntime) => void>(() => {});
+  // null until the first count after start/load, so loading a finished save doesn't celebrate.
+  const prevTasksDoneRef = useRef<number | null>(null);
 
-  blockedRef.current = phase !== 'playing' || dialogue !== null || menuOpen || fade || battle !== null || classicView;
+  blockedRef.current = phase !== 'playing' || dialogue !== null || menuOpen || fade || battle !== null || classicView || cutscene;
 
-  const dialogues = useMemo(() => buildDialogues((b) => badgesRef.current.includes(b)), []);
+  const dialogues = useMemo(() => buildDialogues(), []);
 
   /* ——— Helpers ——— */
   const showToast = useCallback((text: string) => {
     setToast(text);
     window.setTimeout(() => setToast(null), 2600);
-  }, []);
-
-  const isSolid = useCallback((m: GameMap, x: number, y: number): boolean => {
-    if (x < 0 || y < 0 || y >= m.rows.length || x >= m.rows[0].length) return true;
-    const ch = m.rows[y][x];
-    if (m.kind === 'town') {
-      if (ch === 'T' || ch === 'W') return true;
-    } else if (ch === 'W') {
-      return true;
-    }
-    for (const b of m.buildings) {
-      if (x >= b.x && x < b.x + b.w && y >= b.y && y < b.y + b.h) {
-        return !(x === b.door.x && y === b.door.y);
-      }
-    }
-    for (const dec of m.decor) {
-      if (dec.solid && dec.x === x && dec.y === y) return true;
-    }
-    return false;
   }, []);
 
   const warpAt = useCallback((m: GameMap, x: number, y: number) => m.warps.find((w) => w.x === x && w.y === y), []);
@@ -3599,7 +4814,9 @@ function Game() {
 
   const refreshFacedHint = useCallback(() => {
     const target = facedInteractable();
-    setFacedHint(target !== null);
+    setFacedHint(
+      target?.npc ? `TALK: ${target.npc.def.name}` : target?.decor ? target.decor.label ?? DECOR_HINTS[target.decor.type] ?? 'INSPECT' : null
+    );
     if (target?.npc && !dialogueRef.current) {
       setEmoteNpc(target.npc.def.id);
       window.setTimeout(() => setEmoteNpc((cur) => (cur === target.npc!.def.id ? null : cur)), 900);
@@ -3623,8 +4840,20 @@ function Game() {
     [showToast]
   );
 
+  const markSeen = useCallback((id: string) => {
+    setSeen((prev) => (prev.includes(id) ? prev : [...prev, id]));
+  }, []);
+
+  // The GYM LEADER also counts as beaten for saves that got the badge before
+  // the leader battle existed.
+  const trainerBeaten = useCallback((id: string) => {
+    const t = TRAINERS[id];
+    return defeatedTrainersRef.current.includes(id) || (!!t?.badge && badgesRef.current.includes(t.badge));
+  }, []);
+
   const handleDialogueAction = useCallback(
     (a: DialogueAction) => {
+      if (a.startTrainer) pendingTrainerRef.current = a.startTrainer; // starts once the dialogue closes
       if (a.grantBadge) grantBadge(a.grantBadge);
       if (a.href) window.open(a.href, a.href.startsWith('mailto:') ? '_self' : '_blank', 'noopener');
       if (a.heal) {
@@ -3664,13 +4893,31 @@ function Game() {
       const dx = p.tile.x - n.tile.x;
       const dy = p.tile.y - n.tile.y;
       n.facing = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : dy > 0 ? 'down' : 'up';
+      const tid = n.def.trainer;
+      if (tid && !trainerBeaten(tid)) {
+        const t = TRAINERS[tid];
+        const challenge = t.challengeDialogue ? dialogues[t.challengeDialogue] : undefined;
+        if (challenge) {
+          openDialogue(challenge());
+        } else {
+          pendingTrainerRef.current = tid;
+          openDialogue({ speaker: t.name, pages: t.challenge });
+        }
+        return;
+      }
       const make = dialogues[n.def.dialogueId];
-      if (make) openDialogue(make());
+      if (make) {
+        markSeen(n.def.dialogueId);
+        openDialogue(make());
+      }
     } else if (target.decor?.dialogueId) {
       const make = dialogues[target.decor.dialogueId];
-      if (make) openDialogue(make());
+      if (make) {
+        markSeen(target.decor.dialogueId);
+        openDialogue(make());
+      }
     }
-  }, [dialogues, facedInteractable, openDialogue]);
+  }, [dialogues, facedInteractable, markSeen, openDialogue, trainerBeaten]);
 
   const handleActionButton = useCallback(() => {
     const cur = dialogueRef.current;
@@ -3700,7 +4947,7 @@ function Game() {
         heldRef.current = [];
         setMapId(w.toMap);
         setInTallGrass(false);
-        setFacedHint(false);
+        setFacedHint(null);
         window.setTimeout(() => {
           setFade(false);
           warpingRef.current = false;
@@ -3720,24 +4967,30 @@ function Game() {
   /* ——— Battle system (turn-based, triggered by tall-grass encounters) ——— */
   const ENCOUNTER_CHANCE = 0.14;
 
-  const startBattle = useCallback(() => {
-    const table = ENCOUNTER_TABLES[mapRef.current.id] ?? ENCOUNTER_TABLES.town;
-    const pool = table.map((id) => BUG_SPECIES.find((s) => s.id === id)).filter((s): s is BugSpecies => !!s);
-    const species = pool[Math.floor(rngRef.current() * pool.length)];
+  // The overworld party HP, as battle members. If somehow the whole party is
+  // down, start everyone at full (defeat already full-heals, so this is just a
+  // safety net against an unwinnable encounter).
+  const buildParty = useCallback((): { party: BattlePartyMember[]; active: number } => {
     const persisted = partyHpRef.current;
-    // If somehow the whole party is down, start everyone at full (defeat already
-    // full-heals, so this is just a safety net against an unwinnable encounter).
     const anyAlive = portfolioData.skills.party.some((s) => (persisted[s.name] ?? skillMaxHp(s.lv)) > 0);
     const party: BattlePartyMember[] = portfolioData.skills.party.map((s) => {
       const maxHp = skillMaxHp(s.lv);
       const hp = anyAlive ? Math.max(0, Math.min(maxHp, persisted[s.name] ?? maxHp)) : maxHp;
-      return { name: s.name, abbr: s.abbr, color: s.color, maxHp, hp, moves: SKILL_MOVES[s.name] ?? DEFAULT_MOVES };
+      return { name: s.name, abbr: s.abbr, color: s.color, type: s.type, maxHp, hp, moves: SKILL_MOVES[s.name] ?? DEFAULT_MOVES };
     });
-    const active = Math.max(0, party.findIndex((m) => m.hp > 0));
+    return { party, active: Math.max(0, party.findIndex((m) => m.hp > 0)) };
+  }, []);
+
+  const startBattle = useCallback(() => {
+    const table = ENCOUNTER_TABLES[mapRef.current.id] ?? ENCOUNTER_TABLES.town;
+    const pool = table.map((id) => BUG_SPECIES.find((s) => s.id === id)).filter((s): s is BugSpecies => !!s);
+    const species = pool[Math.floor(rngRef.current() * pool.length)];
+    const { party, active } = buildParty();
     sfx.encounter();
     setBattleFlash(true);
     window.setTimeout(() => setBattleFlash(false), 180);
     setBattle({
+      trainer: null,
       enemy: species,
       enemyHp: species.maxHp,
       party,
@@ -3753,10 +5006,52 @@ function Game() {
       throwSeq: 0,
       catchWillSucceed: false,
     });
-  }, []);
+  }, [buildParty]);
+
+  const startTrainerBattle = useCallback(
+    (id: string) => {
+      const def = TRAINERS[id];
+      if (!def) return;
+      const first = SPECIES_BY_ID[def.team[0]];
+      const { party, active } = buildParty();
+      setEmoteNpc(null);
+      sfx.encounter();
+      setBattleFlash(true);
+      window.setTimeout(() => setBattleFlash(false), 180);
+      setBattle({
+        trainer: { def, idx: 0 },
+        enemy: first,
+        enemyHp: first.maxHp,
+        party,
+        active,
+        phase: 'text',
+        msgs: [`${def.name} wants to battle!`, `${def.name} sent out ${first.name}!`],
+        msgIdx: 0,
+        typed: false,
+        next: 'menu',
+        cursor: 0,
+        hitEnemy: 0,
+        hitPlayer: 0,
+        throwSeq: 0,
+        catchWillSucceed: false,
+      });
+    },
+    [buildParty]
+  );
+
+  // A trainer's challenge dialogue (or the leader's ACCEPT CHALLENGE) queues
+  // the battle; it starts the moment that dialogue closes.
+  useEffect(() => {
+    if (dialogue !== null || !pendingTrainerRef.current) return;
+    const id = pendingTrainerRef.current;
+    pendingTrainerRef.current = null;
+    startTrainerBattle(id);
+  }, [dialogue, startTrainerBattle]);
 
   useEffect(() => {
-    if (FORCE_BATTLE && phase === 'playing') startBattle();
+    if (phase !== 'playing') return;
+    if (FORCE_TRAINER && TRAINERS[FORCE_TRAINER]) startTrainerBattle(FORCE_TRAINER);
+    else if (FORCE_BATTLE) startBattle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);
 
@@ -3821,6 +5116,37 @@ function Game() {
           showToast(`★ Squashed the ${b.enemy.name}!`);
           setBattle(null);
           return;
+        case 'trainerNext': {
+          const t = b.trainer!;
+          const idx = t.idx + 1;
+          const nextUp = SPECIES_BY_ID[t.def.team[idx]];
+          setBattle({
+            ...b,
+            trainer: { ...t, idx },
+            enemy: nextUp,
+            enemyHp: nextUp.maxHp,
+            phase: 'text',
+            msgs: [`${t.def.name} sent out ${nextUp.name}!`],
+            msgIdx: 0,
+            typed: false,
+            next: 'menu',
+            cursor: 0,
+          });
+          return;
+        }
+        case 'trainerWin': {
+          const def = b.trainer!.def;
+          commitBattleHp(b.party);
+          setDefeatedTrainers((prev) => (prev.includes(def.id) ? prev : [...prev, def.id]));
+          if (def.badge) {
+            grantBadge(def.badge);
+          } else {
+            sfx.badge();
+            showToast(`★ You beat the ${def.name}!`);
+          }
+          setBattle(null);
+          return;
+        }
         case 'caught':
           commitBattleHp(b.party);
           setCaughtBugs((prev) => (prev.includes(b.enemy.id) ? prev : [...prev, b.enemy.id]));
@@ -3832,7 +5158,11 @@ function Game() {
           // Whiting-out fully restores the party (matches the "no harm done"
           // copy) so a wipe can never soft-lock the player.
           setPartyHp(fullPartyHp());
-          showToast('Your skills black out and recover fully. Find a HEAL CENTER next time!');
+          showToast(
+            b.trainer
+              ? `You blacked out and recover fully. The ${b.trainer.def.name} is still waiting!`
+              : 'Your skills black out and recover fully. Find a HEAL CENTER next time!'
+          );
           setBattle(null);
           return;
         case 'runSuccess':
@@ -3844,7 +5174,7 @@ function Game() {
           setBattle({ ...b, phase: 'menu', cursor: 0 });
       }
     },
-    [showToast, commitBattleHp]
+    [showToast, commitBattleHp, grantBadge]
   );
 
   const advanceBattleText = useCallback(() => {
@@ -3868,15 +5198,31 @@ function Game() {
     const attacker = b.party[b.active];
     const move = attacker.moves[moveIdx];
     if (!move) return;
-    const dmg = randInt(rngRef.current, move.power[0], move.power[1]);
+    const weak = b.enemy.weakTo?.includes(attacker.type) ?? false;
+    const dmg = Math.round(randInt(rngRef.current, move.power[0], move.power[1]) * (weak ? 1.5 : 1));
     const enemyHp = Math.max(0, b.enemyHp - dmg);
+    const used = [`${attacker.name} used ${move.name}!`, ...(weak ? ["It's super effective!"] : [])];
     sfx.attack();
-    if (enemyHp <= 0) {
+    if (enemyHp <= 0 && b.trainer) {
+      const last = b.trainer.idx >= b.trainer.def.team.length - 1;
       setBattle({
         ...b,
         enemyHp,
         phase: 'text',
-        msgs: [`${attacker.name} used ${move.name}!`, `The wild ${b.enemy.name} was defeated!`],
+        msgs: last
+          ? [...used, `${b.enemy.name} fainted!`, `You defeated the ${b.trainer.def.name}!`, ...b.trainer.def.win]
+          : [...used, `${b.enemy.name} fainted!`],
+        msgIdx: 0,
+        typed: false,
+        next: last ? 'trainerWin' : 'trainerNext',
+        hitEnemy: b.hitEnemy + 1,
+      });
+    } else if (enemyHp <= 0) {
+      setBattle({
+        ...b,
+        enemyHp,
+        phase: 'text',
+        msgs: [...used, `The wild ${b.enemy.name} was defeated!`],
         msgIdx: 0,
         typed: false,
         next: 'victory',
@@ -3887,7 +5233,7 @@ function Game() {
         ...b,
         enemyHp,
         phase: 'text',
-        msgs: [`${attacker.name} used ${move.name}!`],
+        msgs: used,
         msgIdx: 0,
         typed: false,
         next: 'enemyTurn',
@@ -3912,6 +5258,18 @@ function Game() {
   const useDebugger = useCallback(() => {
     const b = battleRef.current;
     if (!b || b.phase !== 'bag') return;
+    if (b.trainer) {
+      // trainers' bugs can't be caught; no turn is spent
+      setBattle({
+        ...b,
+        phase: 'text',
+        msgs: [`The ${b.trainer.def.name} blocked the DEBUGGER!`, "You can't patch someone else's bug!"],
+        msgIdx: 0,
+        typed: false,
+        next: 'menu',
+      });
+      return;
+    }
     const frac = b.enemyHp / b.enemy.maxHp;
     const already = caughtBugsRef.current.includes(b.enemy.id);
     const chance = already ? 0.9 : Math.max(0.15, Math.min(0.92, 0.3 + 0.6 * (1 - frac)));
@@ -3956,6 +5314,10 @@ function Game() {
   const attemptRun = useCallback(() => {
     const b = battleRef.current;
     if (!b || b.phase !== 'menu') return;
+    if (b.trainer) {
+      setBattle({ ...b, phase: 'text', msgs: ['No running from a trainer battle!'], msgIdx: 0, typed: false, next: 'menu' });
+      return;
+    }
     if (rngRef.current() < 0.85) {
       setBattle({ ...b, phase: 'text', msgs: ['Got away safely!'], msgIdx: 0, typed: false, next: 'runSuccess' });
     } else {
@@ -4030,6 +5392,60 @@ function Game() {
     [advanceBattleText, chooseMove, selectMenuOption, switchActive, useCoffee, useDebugger]
   );
 
+  /* ——— Trainers spotting the player ——— */
+  // An unbeaten trainer sees `sight` tiles straight ahead; walls, solid decor
+  // and other NPCs block the line.
+  const spotTrainer = useCallback(
+    (m: GameMap, p: Entity): NPCRuntime | undefined =>
+      npcsRef.current.find((n) => {
+        const t = n.def.trainer ? TRAINERS[n.def.trainer] : undefined;
+        if (!t || t.sight <= 0 || n.move || n.approaching || trainerBeaten(t.id)) return false;
+        const dv = DELTA[n.facing];
+        for (let i = 1; i <= t.sight; i++) {
+          const tx = n.tile.x + dv.x * i;
+          const ty = n.tile.y + dv.y * i;
+          if (tx === p.tile.x && ty === p.tile.y) return true;
+          if (isSolid(m, tx, ty) || npcAt(tx, ty)) return false;
+        }
+        return false;
+      }),
+    [npcAt, trainerBeaten]
+  );
+
+  // Freeze input, pop the "!" over the trainer, then walk them up to the
+  // player; the main loop calls trainerArriveRef when the last step lands.
+  const beginTrainerApproach = useCallback((n: NPCRuntime) => {
+    const p = playerRef.current;
+    heldRef.current = [];
+    blockedRef.current = true;
+    setCutscene(true);
+    setFacedHint(null);
+    setEmoteNpc(n.def.id);
+    sfx.spotted();
+    p.facing = OPPOSITE[n.facing];
+    const steps = Math.abs(p.tile.x - n.tile.x) + Math.abs(p.tile.y - n.tile.y) - 1;
+    window.setTimeout(() => {
+      if (steps > 0) {
+        n.approachSteps = steps;
+        n.approaching = true;
+      } else {
+        trainerArriveRef.current(n);
+      }
+    }, reducedMotion ? 0 : 700);
+  }, []);
+
+  const trainerArrive = useCallback(
+    (n: NPCRuntime) => {
+      const t = TRAINERS[n.def.trainer!];
+      setEmoteNpc(null);
+      setCutscene(false);
+      pendingTrainerRef.current = t.id;
+      openDialogue({ speaker: t.name, pages: t.challenge });
+    },
+    [openDialogue]
+  );
+  trainerArriveRef.current = trainerArrive;
+
   /* ——— Landing on a tile ——— */
   const onPlayerLand = useCallback(() => {
     const m = mapRef.current;
@@ -4044,10 +5460,15 @@ function Game() {
         setParticles((prev) => [...prev.slice(-14), { id, x: p.tile.x * TILE, y: p.tile.y * TILE, seed: Math.floor(rngRef.current() * 1e9) }]);
         window.setTimeout(() => setParticles((prev) => prev.filter((pt) => pt.id !== id)), 520);
       }
-      if (rngRef.current() < ENCOUNTER_CHANCE) {
-        startBattle();
-        return;
-      }
+    }
+    const spotter = spotTrainer(m, p);
+    if (spotter) {
+      beginTrainerApproach(spotter);
+      return;
+    }
+    if (tall && rngRef.current() < ENCOUNTER_CHANCE) {
+      startBattle();
+      return;
     }
     const w = warpAt(m, p.tile.x, p.tile.y);
     if (w) {
@@ -4055,7 +5476,7 @@ function Game() {
       return;
     }
     refreshFacedHint();
-  }, [doWarp, refreshFacedHint, startBattle, warpAt]);
+  }, [beginTrainerApproach, doWarp, refreshFacedHint, spotTrainer, startBattle, warpAt]);
 
   const onPlayerLandRef = useRef(onPlayerLand);
   onPlayerLandRef.current = onPlayerLand;
@@ -4083,6 +5504,8 @@ function Game() {
         handleBattleKey(e);
         return;
       }
+      // A trainer is walking over: hold every key until their challenge opens.
+      if (cutsceneRef.current) return;
 
       // Menu keys
       if (e.key === 'm' || e.key === 'M') {
@@ -4153,36 +5576,72 @@ function Game() {
     };
   }, [advanceDialogue, handleBattleKey, handleDialogueAction, interact, refreshFacedHint]);
 
-  /* ——— Viewport scale ——— */
+  /* ——— Viewport size & pixel ratio (zoomFor turns these into the zoom) ——— */
   useEffect(() => {
+    let dprQuery: MediaQueryList | null = null;
     const measure = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      setViewport({ w, h });
-      setScale(Math.max(2, Math.min(5, Math.floor(Math.min(w / (24 * TILE), h / (16 * TILE))) || 2)));
+      const dpr = window.devicePixelRatio || 1;
+      setViewport({ w: window.innerWidth, h: window.innerHeight, dpr });
+      // Dragging the window to a screen with another pixel ratio (laptop <->
+      // monitor) doesn't always fire resize, so watch the ratio itself.
+      dprQuery?.removeEventListener('change', measure);
+      dprQuery = window.matchMedia(`(resolution: ${dpr}dppx)`);
+      dprQuery.addEventListener('change', measure);
     };
     measure();
     window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+    return () => {
+      window.removeEventListener('resize', measure);
+      dprQuery?.removeEventListener('change', measure);
+    };
   }, []);
 
-  /* ——— Map canvas rendering (terrain + buildings + decor) ——— */
+  /* ——— Map canvas rendering (terrain + buildings + decor) ———
+     The canvas holds HD fine pixels per art pixel but is laid out in art
+     pixels, so the world's zoom transform shows the extra detail. */
+  const animFrameRef = useRef(animFrame);
+  animFrameRef.current = animFrame;
+  const paintedRowsRef = useRef<string[] | null>(null);
   useEffect(() => {
     const canvas = mapCanvasRef.current;
     if (!canvas) return;
     const m = MAPS[mapId];
-    const w = m.rows[0].length * TILE;
-    const h = m.rows.length * TILE;
-    if (canvas.width !== w) canvas.width = w;
-    if (canvas.height !== h) canvas.height = h;
+    // Outdoor maps carry a forest ring; the canvas is shifted up-left by it so
+    // map tile (0,0) still sits at world (0,0).
+    const pad = isOutdoor(m) ? OUTDOOR_PAD : 0;
+    const rows = pad ? padRows(m.rows, pad) : m.rows;
+    const w = rows[0].length * TILE;
+    const h = rows.length * TILE;
+    if (canvas.width !== w * HD) canvas.width = w * HD;
+    if (canvas.height !== h * HD) canvas.height = h * HD;
+    canvas.style.width = `${w}px`;
+    canvas.style.height = `${h}px`;
+    canvas.style.left = `${-pad * TILE}px`;
+    canvas.style.top = `${-pad * TILE}px`;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    for (let y = 0; y < m.rows.length; y++)
-      for (let x = 0; x < m.rows[0].length; x++)
-        paintTerrainTile(ctx, m.rows[y][x], x, y, m.kind, animFrame, m.rows);
+    ctx.setTransform(HD, 0, 0, HD, 0, 0);
+    ctx.imageSmoothingEnabled = false;
+    for (let y = 0; y < rows.length; y++)
+      for (let x = 0; x < rows[0].length; x++)
+        paintTerrainTile(ctx, rows[y][x], x, y, m.kind, animFrameRef.current, rows);
+    ctx.translate(pad * TILE, pad * TILE);
     for (const b of m.buildings) paintBuilding(ctx, b);
     for (const dec of m.decor) paintDecor(ctx, dec, m.kind);
-  }, [mapId, animFrame]);
+    paintedRowsRef.current = rows;
+  }, [mapId]);
+
+  // Water is the only animated terrain: each frame repaints just its tiles.
+  useEffect(() => {
+    const ctx = mapCanvasRef.current?.getContext('2d');
+    const rows = paintedRowsRef.current;
+    if (!ctx || !rows || !isOutdoor(MAPS[mapId])) return;
+    ctx.setTransform(HD, 0, 0, HD, 0, 0);
+    for (let y = 0; y < rows.length; y++)
+      for (let x = 0; x < rows[0].length; x++)
+        if (rows[y][x] === 'W') paintWater(ctx, x, y, animFrame, rows);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animFrame]);
 
   // Animate water on the town map.
   useEffect(() => {
@@ -4195,15 +5654,34 @@ function Game() {
   // encounter; silent on the title screen, the classic CV overlay, or when
   // muted. The cleanup stops the scheduler on unmount / HMR so the interval and
   // its WebAudio voices never orphan (and two loops can't stack on Fast Refresh).
-  const inBattle = battle !== null;
+  const musicTrack: MusicTrack = battle ? battle.trainer?.def.music ?? 'battle' : 'overworld';
   useEffect(() => {
     if (phase !== 'playing' || muted || classicView) {
       sfx.stopMusic();
       return;
     }
-    sfx.startMusic(inBattle ? 'battle' : 'overworld');
+    sfx.startMusic(musicTrack);
     return () => sfx.stopMusic();
-  }, [phase, muted, inBattle, classicView]);
+  }, [phase, muted, musicTrack, classicView]);
+
+  /* ——— Town tasks ——— */
+  const tasks = TOWN_TASKS.map((t) => ({ label: t.label, done: t.done({ seen, badges, caughtBugs }) }));
+  const tasksDone = tasks.filter((t) => t.done).length;
+  useEffect(() => {
+    const prev = prevTasksDoneRef.current;
+    prevTasksDoneRef.current = tasksDone;
+    if (prev === null || prev >= TOWN_TASKS.length || tasksDone < TOWN_TASKS.length) return;
+    // let the toast for the final task (badge, catch...) finish first
+    const t = window.setTimeout(() => {
+      sfx.catchWin();
+      showToast('★ All TOWN TASKS done — thanks for exploring! The MAILBOX is always open.');
+    }, 2800);
+    return () => window.clearTimeout(t);
+  }, [tasksDone, showToast]);
+
+  useEffect(() => {
+    if (!menuOpen) setMenuTab(undefined);
+  }, [menuOpen]);
 
   /* ——— Resume NPC wandering after a conversation ends ——— */
   useEffect(() => {
@@ -4220,6 +5698,8 @@ function Game() {
       home: { x: def.x, y: def.y },
       nextThink: performance.now() + 800 + rngRef.current() * 2000,
       paused: false,
+      approachSteps: 0,
+      approaching: false,
     }));
     setBanner(MAPS[mapId].name);
     const t = window.setTimeout(() => setBanner(null), 2200);
@@ -4269,6 +5749,17 @@ function Game() {
         if (n.move && now - n.move.start >= n.move.dur) {
           n.tile = { ...n.move.to };
           n.move = null;
+          if (n.approaching && n.approachSteps === 0) {
+            n.approaching = false;
+            trainerArriveRef.current(n);
+          }
+        }
+        if (!n.move && n.approachSteps > 0) {
+          // walking over to a spotted player; the line was clear when spotted
+          const dv = DELTA[n.facing];
+          n.stepParity += 1;
+          n.move = { from: { ...n.tile }, to: { x: n.tile.x + dv.x, y: n.tile.y + dv.y }, start: now, dur: NPC_MS };
+          n.approachSteps -= 1;
         }
         if (!n.move && !n.paused && n.def.wander && now >= n.nextThink) {
           n.nextThink = now + 1400 + rngRef.current() * 2200;
@@ -4290,15 +5781,16 @@ function Game() {
           }
         }
         const els = npcElsRef.current[n.def.id];
-        if (els) blitEntity(n, els, n.def.palette, now);
+        if (els) blitEntity(n, els, n.def.palette, now, zoom);
       }
 
-      blitEntity(p, playerElsRef.current, 'player', now);
+      blitEntity(p, playerElsRef.current, 'player', now, zoom);
 
       // Camera
       const world = worldRef.current;
       if (world) {
-        const s = scale;
+        const dpr = viewport.dpr;
+        const s = zoom / dpr; // CSS px per art px
         const mapW = m.rows[0].length * TILE;
         const mapH = m.rows.length * TILE;
         const pos = entityPixelPos(p, now);
@@ -4310,14 +5802,15 @@ function Game() {
         else camX = Math.max(0, Math.min(mapW - viewW, camX));
         if (mapH <= viewH) camY = (mapH - viewH) / 2;
         else camY = Math.max(0, Math.min(mapH - viewH, camY));
-        world.style.transform = `translate3d(${Math.round(-camX * s)}px, ${Math.round(-camY * s)}px, 0) scale(${s})`;
+        // whole device pixels, so the map and the sprites share one pixel grid
+        world.style.transform = `translate3d(${Math.round(-camX * zoom) / dpr}px, ${Math.round(-camY * zoom) / dpr}px, 0) scale(${s})`;
       }
 
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [isSolid, npcAt, refreshFacedHint, scale, viewport, warpAt]);
+  }, [npcAt, refreshFacedHint, zoom, viewport, warpAt]);
 
   /* ——— Start / save / load ——— */
   const startGame = useCallback(
@@ -4327,6 +5820,7 @@ function Game() {
       // can't boot up behind the overlay.
       if (classicViewRef.current) return;
       const save = cont ? loadSave() : null;
+      prevTasksDoneRef.current = null;
       if (save) {
         playerRef.current = makeEntity(save.x, save.y, save.facing);
         setBadges(save.badges);
@@ -4335,6 +5829,8 @@ function Game() {
         setBugsDefeated(save.bugsDefeated ?? 0);
         setCaughtBugs(save.caughtBugs ?? []);
         setPartyHp({ ...fullPartyHp(), ...(save.partyHp ?? {}) });
+        setDefeatedTrainers(save.defeatedTrainers ?? []);
+        setSeen(save.seen ?? []);
         setMapId(save.map);
       } else {
         playerRef.current = makeEntity(5, 5, 'down');
@@ -4362,6 +5858,8 @@ function Game() {
       bugsDefeated: bugsDefeatedRef.current,
       caughtBugs: caughtBugsRef.current,
       partyHp: partyHpRef.current,
+      defeatedTrainers: defeatedTrainersRef.current,
+      seen: seenRef.current,
     };
     try {
       localStorage.setItem(SAVE_KEY, JSON.stringify(data));
@@ -4402,7 +5900,7 @@ function Game() {
       {/* ——— World viewport ——— */}
       <div className="absolute inset-0 overflow-hidden">
         <div ref={worldRef} className="absolute left-0 top-0" style={{ transformOrigin: '0 0', willChange: 'transform' }}>
-          <canvas ref={mapCanvasRef} className="pixelated block" />
+          <canvas ref={mapCanvasRef} className="pixelated absolute left-0 top-0" />
 
           {/* NPCs */}
           {map.npcs.map((def) => (
@@ -4418,15 +5916,16 @@ function Game() {
                 ref={(el) => {
                   npcElsRef.current[def.id] = { ...(npcElsRef.current[def.id] ?? { el: null }), canvas: el };
                 }}
-                width={SPRITE_W}
-                height={SPRITE_H}
+                width={SPRITE_W * HD}
+                height={SPRITE_H * HD}
                 className="pixelated block"
+                style={{ width: SPRITE_W, height: SPRITE_H }}
               />
               {(def.important || emoteNpc === def.id) && (
                 <motion.div
                   animate={reducedMotion ? undefined : { y: [0, -2, 0] }}
                   transition={{ repeat: Infinity, duration: 1.1 }}
-                  className="absolute -top-[9px] left-1/2 -translate-x-1/2 w-[7px] h-[8px]"
+                  className="absolute -top-[9px] left-[4.5px] w-[7px] h-[8px]"
                 >
                   <div className="w-full h-full bg-[#f8f6ee] border border-[#241d33] grid place-items-center">
                     <span className="text-[5px] leading-none text-[#b91c1c] font-bold">!</span>
@@ -4444,9 +5943,10 @@ function Game() {
           >
             <canvas
               ref={(el) => { playerElsRef.current.canvas = el; }}
-              width={SPRITE_W}
-              height={SPRITE_H}
+              width={SPRITE_W * HD}
+              height={SPRITE_H * HD}
               className="pixelated block"
+              style={{ width: SPRITE_W, height: SPRITE_H }}
             />
             {inTallGrass && (
               <div className="absolute bottom-0 left-0 w-full h-[6px]" style={{ background: '#57a844' }}>
@@ -4501,6 +6001,16 @@ function Game() {
                 ★ ×{badges.length}
               </div>
             )}
+            <button
+              onClick={() => {
+                setMenuTab('TASKS');
+                setMenuOpen(true);
+              }}
+              className="rpg-frame-dark px-2 py-1 text-[8px] text-amber-300 hover:brightness-125"
+              aria-label={`Town tasks: ${tasksDone} of ${tasks.length} done`}
+            >
+              TASKS {tasksDone}/{tasks.length}
+            </button>
           </div>
 
           {/* Interact hint */}
@@ -4510,10 +6020,10 @@ function Game() {
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 6 }}
-                className={`absolute left-1/2 -translate-x-1/2 z-20 ${touchMode ? 'bottom-40' : 'bottom-16'}`}
+                className={`absolute inset-x-0 mx-auto w-fit z-20 ${touchMode ? 'bottom-40' : 'bottom-16'}`}
               >
                 <div className="rpg-frame-dark px-3 py-1.5 text-[9px] text-amber-300">
-                  {touchMode ? 'TAP A' : 'PRESS E'} — INTERACT
+                  {touchMode ? 'TAP A' : 'PRESS E'} — {facedHint}
                 </div>
               </motion.div>
             )}
@@ -4527,7 +6037,7 @@ function Game() {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: -140, opacity: 0 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                className="absolute left-1/2 -translate-x-1/2 top-16 md:top-4 md:left-auto md:right-40 md:translate-x-0 z-20"
+                className="absolute inset-x-0 mx-auto w-fit top-16 md:top-4 md:left-auto md:right-40 md:mx-0 z-20"
               >
                 <div className="rpg-frame px-4 py-2 text-[10px]">{banner}</div>
               </motion.div>
@@ -4541,7 +6051,7 @@ function Game() {
                 initial={{ y: -30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -30, opacity: 0 }}
-                className="absolute top-3 left-1/2 -translate-x-1/2 z-40"
+                className="absolute top-3 inset-x-0 mx-auto w-fit z-40"
               >
                 <div className="rpg-frame px-4 py-2 text-[9px]">{toast}</div>
               </motion.div>
@@ -4569,6 +6079,8 @@ function Game() {
             {menuOpen && (
               <Backpack
                 onClose={() => setMenuOpen(false)}
+                initialTab={menuTab}
+                tasks={tasks}
                 badges={badges}
                 bugsDefeated={bugsDefeated}
                 caughtBugs={caughtBugs}
